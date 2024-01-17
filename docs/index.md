@@ -39,11 +39,11 @@
 
 贡献方法：
 
-- fork本项目并下载到本地
+ - fork本项目并下载到本地
 
-- 在`docs`目录下进行更改，commit到github
+ - 在`docs`目录下进行更改，commit到github
 
-- 提交pr
+ - 提交pr
 
 
 本地预览：
@@ -56,18 +56,20 @@
 
 提交内容
 
-- 统一使用markdown作为介绍（有typora可以直接预览，没有可以用任意的编辑器打开，参考本文件的语法）。个人习题最好不要使用图片，优先pdf。
+ - 统一使用markdown作为介绍（有typora可以直接预览，没有可以用任意的编辑器打开，参考本文件的语法）。文件优先pdf。
 
-- 避免上传较大的文件。电子书等内容最好给出百度云/google drive的链接，而不是直接放在项目里
+ - 避免上传较大的文件。电子书等内容最好给出百度云/google drive的链接，而不是直接放在项目里
 
-- 指明课程的时间（如2023春/秋）与老师名称（统一首字母大写，如FXZ）。
+ - 指明课程的时间（如2023春/秋）与老师名称（统一首字母大写，如FXZ）。
+
+ - 不要向仓库内上传图片！所有图片一律通过图床显示（推荐使用[postimage](https://postimages.org/)使用简单无需注册）
 
 
 提交格式
 
-- 增加文档内容：`docs: 增加/更新xxx课程内容`
-- 增加网站功能：`feat: xxx`
-- 修改big：`fix: xxx`
+ - 增加文档内容：`docs: 增加/更新xxx课程内容`
+ - 增加网站功能：`feat: xxx`
+ - 修改big：`fix: xxx`
 
 Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
 
@@ -76,9 +78,14 @@ Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
 
 本项目参考了
 
-- https://github.com/ZJU-Turing/TuringCourses/tree/master
+ - https://github.com/ZJU-Turing/TuringCourses
 
-- https://github.com/QSCTech/zju-icicles
+ - https://github.com/QSCTech/zju-icicles
+
+
+
+
+
 
 
 

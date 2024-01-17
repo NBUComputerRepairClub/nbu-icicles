@@ -2,5 +2,7 @@ site_name: nbu-icicles
 nav :
   - Home: index.md
   - 本科生课程: 
+    - 毕业设计: 毕业设计/readme.md
+    - 毕业实习: 毕业实习/readme.md    
     - 数值计算: 数值计算/readme.md
     - 随机过程: 随机过程/readme.md
