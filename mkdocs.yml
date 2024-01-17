@@ -1,0 +1,5 @@
+site_name: nbu-icicles
+nav :
+  - Home: index.md
+  - 本科生课程: 
+    - 数值计算: 数值计算/readme.md
