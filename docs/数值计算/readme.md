@@ -20,6 +20,7 @@ DJF每节理论课都会随机点名提问（上机课有概率点名），因�
 ### 课程资料
 
 - [实验手册](MATLAB实验手册.pdf)
+- 课本 [百度网盘](https://pan.baidu.com/s/1dhOEYK2pXsYBk-Bldh32dA?pwd=mdu4)
 
 ### 个人参考答案
 
