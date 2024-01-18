@@ -1,8 +1,23 @@
 site_name: nbu-icicles
 nav :
-  - Home: index.md
+  - 主页: index.md
   - 本科生课程: 
     - 毕业设计: 毕业设计/readme.md
     - 毕业实习: 毕业实习/readme.md    
     - 数值计算: 数值计算/readme.md
     - 随机过程: 随机过程/readme.md
+
+  - 竞赛:
+    简介/竞赛.md
+    - 飞桨黑客马拉松: 竞赛/paddle.md
+
+  - 升学:
+    简介/升学.md
+
+  - 工作:
+    简介/工作.md
+
+  - 百科:
+    简介/百科.md
+
+  
