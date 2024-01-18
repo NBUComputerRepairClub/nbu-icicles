@@ -8,7 +8,7 @@
         
         
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>随机过程 - nbu-icicles</title>
+        <title>飞桨黑客马拉松 - nbu-icicles</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.min.css" rel="stylesheet">
         <link href="../../css/base.css" rel="stylesheet">
@@ -36,7 +36,7 @@
                             <li class="navitem">
                                 <a href="../.." class="nav-link">主页</a>
                             </li>
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">本科生课程 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -53,11 +53,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active">随机过程</a>
+    <a href="../../%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/readme/" class="dropdown-item">随机过程</a>
 </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown active">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">竞赛 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
@@ -66,7 +66,7 @@
 </li>
                                     
 <li>
-    <a href="../../%E7%AB%9E%E8%B5%9B/paddle/" class="dropdown-item">飞桨黑客马拉松</a>
+    <a href="./" class="dropdown-item active">飞桨黑客马拉松</a>
 </li>
                                 </ul>
                             </li>
@@ -106,12 +106,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/readme/" class="nav-link">
+                                <a rel="prev" href="../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/" class="nav-link">
+                                <a rel="next" href="../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -133,13 +133,13 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">随机过程</a>
+            <li class="nav-item" data-level="1"><a href="#paddlepaddle-hackathon" class="nav-link">PaddlePaddle Hackathon</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">期末考试</a>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">报名</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">文件列表</a>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">参赛</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -150,42 +150,38 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="_1">随机过程</h1>
-<p>上的是2022秋JXJ的随机过程。课本是张波的应用随机过程。课上很多人在摸鱼，老师比较随意，也不挂人，都会捞的。</p>
-<h2 id="_2">期末考试</h2>
-<p>期末考试的组成如下</p>
+<h1 id="paddlepaddle-hackathon">PaddlePaddle Hackathon</h1>
+<p>这个是百度的一个开源比赛，AI方向，<strong>不在学校承认的竞赛之内</strong>。但好处有：</p>
 <ul>
-<li>叙述题 25分</li>
-<li>填空题 15分</li>
-<li>计算题 40分（5个）</li>
-<li>证明题 20分（2个）</li>
+<li>可以学到很多东西，比如规范地贡献开源项目</li>
+<li>对进入百度实习有帮助 </li>
+<li>有钱拿</li>
 </ul>
-<p>范围是1-9章，第四章更新过程不考。</p>
-<p>以下是个人回忆的期末考题：</p>
-<p>简答题x5（写概念）</p>
+<h2 id="_1">报名</h2>
+<p>注意关注官方<a href="https://github.com/PaddlePaddle/Paddle/issues/50629">github</a>。一般在春季学期开学的时间。</p>
+<p>报名（建议组队，最好能线下）需要在issue下认领任务，然后根据赛道发简历给对应的邮箱。简历通过后会可能有笔试，当时做的笔试如下</p>
+<p>说明：请根据要求完成以下问题，问题1的回答保存成py文件，问题2、3直接在题目文件中作答，完成后将2个文件打包发回即可。考核达到60分即为合格，每超时10分钟扣除10%的分数，在限定的1个小时内最多可提交2次。</p>
 <ul>
-<li>条件期望的性质</li>
-<li>possion过程</li>
-<li>首达概率</li>
-<li>正常返</li>
-<li>离散鞅</li>
+<li>
+<p>请将代码code.py中的torch组网代码转换成paddle。（60分）</p>
+</li>
+<li>
+<p>请阅读项目https://github.com/DingXiaoH/RepVGG 的代码</p>
+<ul>
+<li>找出RepVGG-A0模型训练的学习率、batchsize、数据增强配置。（30分）</li>
+<li>如果还有余力，你可以列出尽可能多的训练配置参数，可以获得额外加分。（上限10分）</li>
 </ul>
-<p>填空题（忘了不全）</p>
-<ul>
-<li>$N(s+h)-N(s)$ 概率服从一个$2\times2$的表格，求条件期望</li>
-<li>0-1布朗运动，求期望$E(X(S)X(T))$</li>
+</li>
+<li>简要回答以下题目，每题10分。<ul>
+<li>什么是AMP，会对训练造成哪些影响？</li>
+<li>如果在训练过程中发现数据读取速度较慢，可以有哪些方法优化？</li>
+<li>在复现过程中，如果发现paddle与torch模型前向结果不一致，应该如何调试？</li>
 </ul>
-<p>大题（忘了不全）</p>
-<ul>
-<li>求$P{\int^1_0B(t)\mathrm{d}t}&lt;\frac{2}{\sqrt{3}}$的概率</li>
-<li>伊藤公式计算</li>
-<li>possion过程里的指数推导</li>
-<li>证明布朗运动的鞅是自己</li>
+</li>
 </ul>
-<h2 id="_3">文件列表</h2>
-<ul>
-<li><a href="../course.pdf">课件（1-5章）</a>：包括课后习题和考点</li>
-</ul></div>
+<p>之后会有导师来加微信，整个交流会在同一个赛道的微信群里。有的导师要求每周汇报，有的老师就放手不管（有问题会来回答）</p>
+<h2 id="_2">参赛</h2>
+<p>我参加的是2023的，虽然学了些东西，但是最后也没有产出有点遗憾。虽然给的时间有两三个月，但还是建议一拿到题目就开始做。算力是使用百度公开的ai studio，没有其他单独的服务器。这个平台每次登陆都可以领券，如果参加比赛可以找导师要券。</p></div>
             </div>
         </div>
 
