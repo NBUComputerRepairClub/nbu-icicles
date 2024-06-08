@@ -1,0 +1,303 @@
+Microsoft (R) Macro Assembler Version 6.11		    11/07/22 17:43:40
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATA0 SEGMENT		;排序数据段
+				   ORG 20H  ;从20H开始安排数据
+ 0020 0C 09 08 07 06 05		   DATA1 DB 0Ch,09h,08h,07h,06h,05h,04h,03h,0Dh,02h ;data
+       04 03 0D 02
+ 002A  1A 19 18 07 06 05	 		 DB 1ah,19h,18h,07h,06h,05h,04h,03h,01h,12h
+       04 03 01 12
+ 0034  2A 29 28 07 06 05	 		 DB 2ah,29h,28h,07h,06h,05h,04h,03h,01h,22h
+       04 03 01 22
+ 003E  3A 39 38 07 06 05	 		 DB 3ah,39h,38h,07h,06h,05h,04h,03h,01h,32h
+       04 03 01 32
+ 0048  4A 49 48 07 06 05	 		 DB 4ah,49h,48h,07h,06h,05h,04h,03h,01h,42h
+       04 03 01 42
+ 0052				DATA0 ENDS
+
+ 0000				DATAS SEGMENT ;文本数据段
+				   ORG 100H
+ = 000A				   SORTNUM EQU 10   ;改到10显示得下，50题目要求
+ 0100 49 4E 50 55 54 20		   MESS1 DB 'INPUT SEGMENT VALUE:$'
+       53 45 47 4D 45 4E
+       54 20 56 41 4C 55
+       45 3A 24
+ 0115 49 4E 50 55 54 20		   MESS2 DB 'INPUT OFFSET VALUE:$'
+       4F 46 46 53 45 54
+       20 56 41 4C 55 45
+       3A 24
+ 0129 73 75 63 63 65 73		   MESS3 DB 'success sort',13,10,'$'
+       73 20 73 6F 72 74
+       0D 0A 24
+ 0138 49 4E 50 55 54 20		   ERROR DB 'INPUT ERRORt',13,10,'$'
+       45 52 52 4F 52 74
+       0D 0A 24
+ 0147				DATAS ENDS
+
+ 0000				STACK   SEGMENT STACK          ;栈定义
+ 0000  0020 [			STA     DB      32 DUP (?)
+        00
+       ]
+ 0020 0000			TOP     DW      ?
+ 0022				STACK   ENDS
+
+ 0000				CODES SEGMENT						
+				    ASSUME CS:CODES,DS:DATAS,SS:STACK
+ 0000				START:
+					;段初始化
+ 0000  B8 ---- R			MOV AX,DATAS                 
+ 0003  8E D8			    MOV DS,AX  ;DS当前使用存放文本的数据段DATAS
+ 0005  B8 ---- R		    MOV AX,STACK
+ 0008  8E D0			    MOV SS,AX
+ 000A  36: A1 0020 R		    MOV AX,TOP
+ 000E  8B E0			    MOV SP,AX
+				    ;提示输入选择段
+ 0010  B4 09			    MOV AH,09H          ;09H号功能显示字符串
+ 0012  BA 0100 R		    MOV DX,OFFSET MESS1
+ 0015  CD 21			    INT 21H        
+				    
+				    ;调用GETNUM，返回值放DL，最多输入4位，返回二进制表示保存在DX
+ 0017  E8 00A3			    CALL GETNUM
+
+				    ;键入段地址送ES，提示数据位置
+ 001A  B6 00			    MOV DH,00H ;DH有值清零
+ 001C  8E C2			    MOV ES,DX
+ 001E  E8 008F			    CALL CRLF ;换行
+				    
+				    ;提示输入偏移值
+ 0021  B4 09			    MOV AH,09H          
+ 0023  BA 0115 R		    MOV DX,OFFSET MESS2
+ 0026  CD 21			    INT  21H  
+				    
+				    ;调用GETNUM，返回值放DX
+ 0028  E8 0092			    CALL GETNUM    
+				    
+				    ;键入偏移量送SI，排序数据段位置
+ 002B  B6 00				MOV DH,00H ;DH有值清零
+ 002D  8B F2			    MOV SI,DX;数据开始位置，偏移段地址多少
+
+					;DS指向存放排序的数据段data0
+ 002F  B8 ---- R			mov AX,DATA0
+ 0032  8E D8				MOV DS,AX
+					
+ 0034  B9 000A			    MOV CX,SORTNUM  ;外循环次数SORTNUM—1送CX
+ 0037  49			    DEC CX ;cx-1
+ 0038  33 DB			    XOR BX,BX ;偏移指针BX清0
+				      
+ 003A				AGAIN0:
+ 003A  8A 00				MOV AL,[SI+BX] ;偏移量+偏移指针,从[SI+BX]单元取数送AL
+ 003C  8A E3				MOV AH,BL     ;AH指向当前选择排序的数的位置，AH=BL
+ 003E  51				PUSH CX       ;CX入栈，外循环计数保存
+ 003F  B9 000A				MOV CX,SORTNUM   ;计算内循环次数送CX
+ 0042  2B CB				SUB CX,BX        ;CX-BX,剩余需要排序的数
+ 0044  49				DEC CX
+ 0045  8B D3				MOV DX,BX     ;内循环控制变量DX初始化
+					;选择BX之后（之前的已经排好），最小的数据位置保存在AX
+ 0047				AGAIN1:
+ 0047  42				INC DX  ;DX值加1
+ 0048  53				PUSH BX ;保存选择排序内循环开始位置
+ 0049  8B DA				MOV BX,DX   ;BX指向下一个数据
+ 004B  3A 00				CMP AL,[SI+BX]  ;比较AL与DX批示单元的值
+ 004D  76 04			JBE UUU			;比AL大跳转
+ 004F  8A 00				MOV AL,[SI+BX] ;DX指示单元的值赋给AL
+ 0051  8A E2				MOV AH,DL		;并修改指针AH，AH指向最小的位置
+ 0053				UUU:
+ 0053  5B				POP BX
+ 0054  E2 F1			LOOP AGAIN1
+					;最小值与从前往后遍历的目前位置交换
+ 0056  8A 08				MOV CL,[SI+BX] ;[SI+BX]旧值暂存CL
+ 0058  88 00				MOV [SI+BX],AL  ;[SI+BX]新值得到AL记录的最小值
+ 005A  8A D4				MOV DL,AH		;DL,记录最小值位置
+ 005C  53				PUSH BX			;BX入栈
+ 005D  8B DA				MOV BX,DX		;[SI+BX]变为最小值位置
+ 005F  88 08				MOV [SI+BX],CL 	;最小值位置赋交换的值
+ 0061  5B				POP BX			;恢复外循环位置
+					;当前位置完成排序，排后面一个
+ 0062  43				INC BX   ;偏移指针B加1
+ 0063  59				POP CX	  ;一个循环结束后cx-1
+ 0064  E2 D4			LOOP AGAIN0
+				    
+ 0066  1E			    PUSH DS  ;保存排序数据段位置 
+ 0067  B8 ---- R		    MOV AX,DATAS ;临时换为输出数据段
+ 006A  8E D8			    MOV     DS,AX
+				     ;输出完成排序
+ 006C  B4 09			    MOV     AH,09H          ;09H号功能显示字符串
+ 006E  BA 0129 R		    MOV     DX,OFFSET MESS3
+ 0071  CD 21			    INT     21H        
+				    
+ 0073  1F			    POP DS ;恢复排序数据段位置
+ 0074  B9 000A			    MOV CX,SORTNUM
+				    ;显示输出
+ 0077				AGAIN2:
+ 0077  8A 04				MOV AL,[SI]
+ 0079  E8 000B			    CALL DISP1 ;循环调DISP1，将排序后的数依次显示出
+ 007C  E8 0031			    CALL CRLF
+ 007F  46			    INC SI
+ 0080  E2 F5			LOOP AGAIN2
+
+					;结束进程，返回控制权限
+ 0082  B8 4C00			    MOV     AX,4C00H
+ 0085  CD 21			    INT     21H
+
+ 0087				DISP1 PROC    near   ;输出2位16进制数
+ 0087  51				PUSH CX 
+ 0088  8A D8				MOV BL,AL ;AL当前要输出的数
+ 008A  8A D3				MOV DL,BL ;DL存当前要输出的数
+ 008C  B1 04				MOV CL,04
+ 008E  D2 C2				ROL DL,CL ;DL循环左移4位
+ 0090  80 E2 0F				AND DL,0FH ;DL保留低位
+ 0093  E8 000A				CALL DISPL ;输出第1个数字位
+ 0096  8A D3				MOV DL,BL ;DL存当前要输出的数
+ 0098  80 E2 0F				AND DL,0FH ;
+ 009B  E8 0002				CALL DISPL ;输出第二个数字位
+ 009E  59				POP CX
+ 009F  C3				RET
+ 00A0				DISP1 ENDP
+
+ 00A0				DISPL PROC    near   ;转字符，DL低四位保存需要输出的数
+ 00A0  80 C2 30				ADD DL,30H
+ 00A3  80 FA 3A				CMP DL,3AH
+ 00A6  72 03				JB DDD
+ 00A8  80 C2 27				ADD DL,27H
+ 00AB				DDD:
+ 00AB  B4 02				MOV AH,02H
+ 00AD  CD 21				INT 21H	
+ 00AF  C3				RET
+ 00B0				DISPL ENDP
+				;换行函数
+ 00B0				CRLF    PROC    near                      
+ 00B0  B2 0D				MOV DL,0DH
+ 00B2  B4 02			    MOV AH,02H
+ 00B4  CD 21			    INT 21H       ;光标移到第一列              
+ 00B6  B2 0A			    MOV DL,0AH
+ 00B8  B4 02			    MOV AH,02H
+ 00BA  CD 21			    INT 21H       ;光标移到下一行             
+ 00BC  C3			    RET
+ 00BD				CRLF ENDP
+
+
+ 00BD				GETNUM  PROC    NEAR  ;键盘接收子程序，2个数值转换2进制存DL中。连续2次，上一次因为左移保留在DH
+ 00BD  33 C0			  XOR     AX,AX
+ 00BF				again:  ;AH＝01H，回车或空格结束
+ 00BF  B4 01			  MOV     AH,01H ;01H号功能输入一个字符
+ 00C1  CD 21			  INT 21H        ;键盘接收键盘码
+ 00C3  3C 0D			  CMP AL,0DH     ;判回车键
+ 00C5  74 33			  JZ  done
+				  
+ 00C7  3C 20			  CMP AL,20H     ;判空格键
+ 00C9  74 2F			  JZ  done
+				  ;判为 0 - 9 数字键,满足转换成二进制，存在AL
+ 00CB  3C 30			  CMP AL,30H	 ;与'0'比较
+ 00CD  72 22			  JB  error0	 ;输入字符<'0',error
+ 00CF  2C 30			  SUB AL,30H	 ;字符转二进制数字-30H
+ 00D1  3C 0A			  CMP AL,0AH     ;并<10,判为 0 - 9 数字键
+ 00D3  72 14			  JB  GETS		 ;AL的值已转为数字，ascll码已处理变为2进制数值
+				  ;判 A - F 字母键
+ 00D5  3C 11			  CMP AL,11H                  
+ 00D7  72 18			  JB  error0	 ;<'A',error
+ 00D9  2C 07			  SUB AL,07H	 ;字符转对应二进制数字-30-07H
+ 00DB  3C 0F			  CMP AL,0FH     ;判 A - F 字母键
+ 00DD  76 0A			  JBE GETS		 ;AL的值已成功转为数字，
+				  ;判 a - f 字母键       
+ 00DF  3C 2A			  CMP AL,2AH	 ;与'a'比较
+ 00E1  72 0E			  JB  error0	 ;<'a',error
+ 00E3  3C 2F			  CMP AL,2FH     ;与'f'比较
+ 00E5  77 0A			  JA  error0	 ;>'f',error
+ 00E7  2C 20			  SUB AL,20H	 ;字符转对应数字-30-07-20H
+				  
+				  ;AL存储的就是输入字符对应的2进制数字，放入DX
+ 00E9				GETS:   
+ 00E9  B1 04			  MOV     CL,04H	;控制左移次数
+ 00EB  D3 E2			  SHL DX,CL      ;逻辑左移4位，空出4位，接上之前的
+ 00ED  02 D0			  ADD DL,AL      ;当前字符对应2进制数加入 DX 中
+ 00EF  EB CE			  JMP again		 ;输入下一个字符，判断转换
+				  ;输入错误
+ 00F1  52			error0: PUSH    DX
+ 00F2  B4 09			  MOV AH,09
+ 00F4  BA 0138 R		  MOV DX,OFFSET ERROR
+ 00F7  CD 21			  INT 21H        ;显示输入错误提示信息
+ 00F9  5A			  POP DX
+				  ;返回结果，并换行
+ 00FA  52			done:   PUSH    DX
+				  ;CALL CRLF
+ 00FB  5A			  POP DX
+ 00FC  C3			  RET
+ 00FD				GETNUM  ENDP
+				  
+ 00FD				CODES ENDS
+				END START
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    11/07/22 17:43:40
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODES  . . . . . . . . . . . . .	16 Bit	 00FD	  Para	  Private 
+DATA0  . . . . . . . . . . . . .	16 Bit	 0052	  Para	  Private 
+DATAS  . . . . . . . . . . . . .	16 Bit	 0147	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 0022	  Para	  Stack	  
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+CRLF . . . . . . . . . . . . . .	P Near	 00B0	  CODES	Length= 000D Public
+DISP1  . . . . . . . . . . . . .	P Near	 0087	  CODES	Length= 0019 Public
+DISPL  . . . . . . . . . . . . .	P Near	 00A0	  CODES	Length= 0010 Public
+  DDD  . . . . . . . . . . . . .	L Near	 00AB	  CODES	
+GETNUM . . . . . . . . . . . . .	P Near	 00BD	  CODES	Length= 0040 Public
+  again  . . . . . . . . . . . .	L Near	 00BF	  CODES	
+  GETS . . . . . . . . . . . . .	L Near	 00E9	  CODES	
+  error0 . . . . . . . . . . . .	L Near	 00F1	  CODES	
+  done . . . . . . . . . . . . .	L Near	 00FA	  CODES	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+AGAIN0 . . . . . . . . . . . . .	L Near	 003A	  CODES	
+AGAIN1 . . . . . . . . . . . . .	L Near	 0047	  CODES	
+AGAIN2 . . . . . . . . . . . . .	L Near	 0077	  CODES	
+DATA1  . . . . . . . . . . . . .	Byte	 0020	  DATA0	
+ERROR  . . . . . . . . . . . . .	Byte	 0138	  DATAS	
+MESS1  . . . . . . . . . . . . .	Byte	 0100	  DATAS	
+MESS2  . . . . . . . . . . . . .	Byte	 0115	  DATAS	
+MESS3  . . . . . . . . . . . . .	Byte	 0129	  DATAS	
+SORTNUM  . . . . . . . . . . . .	Number	 000Ah	 
+START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
+STA  . . . . . . . . . . . . . .	Byte	 0000	  STACK	
+TOP  . . . . . . . . . . . . . .	Word	 0020	  STACK	
+UUU  . . . . . . . . . . . . . .	L Near	 0053	  CODES	
+
+	   0 Warnings
+	   0 Errors

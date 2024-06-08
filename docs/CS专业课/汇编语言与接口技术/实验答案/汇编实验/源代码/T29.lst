@@ -1,0 +1,61 @@
+Microsoft (R) Macro Assembler Version 6.11		    10/10/22 17:01:07
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATAS SEGMENT
+ 0000 11				BUFX DB 11H
+ 0001 12				BUFY DB 12H
+ 0002 00				BUFZ DB ?
+				    ;此处输入数据段代码  
+ 0003				DATAS ENDS
+
+ 0000				STACKS SEGMENT
+				    ;此处输入堆栈段代码
+ 0000				STACKS ENDS
+
+ 0000				CODES SEGMENT
+				    ASSUME CS:CODES,DS:DATAS,SS:STACKS
+ 0000				START:
+ 0000  B8 ---- R		    MOV AX,DATAS
+ 0003  8E D8			    MOV DS,AX
+ 0005  A0 0000 R		    MOV AL,BUFX
+ 0008  8A 0E 0001 R		    MOV CL,BUFY
+ 000C  38 C8			    cmp AL,CL
+ 000E  BB 0002 R		    MOV BX,offset BUFZ
+ 0011  72 04			    jc Yjump
+ 0013  88 07			    mov [BX],AL  ;X大
+ 0015  72 02			    jc over
+ 0017  88 0F			Yjump:mov [BX],CL
+ 0019  B4 4C			over:MOV AH,4CH
+ 001B  CD 21			    INT 21H
+ 001D				CODES ENDS
+				    END START
+
+Microsoft (R) Macro Assembler Version 6.11		    10/10/22 17:01:07
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODES  . . . . . . . . . . . . .	16 Bit	 001D	  Para	  Private 
+DATAS  . . . . . . . . . . . . .	16 Bit	 0003	  Para	  Private 
+STACKS . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+BUFX . . . . . . . . . . . . . .	Byte	 0000	  DATAS	
+BUFY . . . . . . . . . . . . . .	Byte	 0001	  DATAS	
+BUFZ . . . . . . . . . . . . . .	Byte	 0002	  DATAS	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
+Yjump  . . . . . . . . . . . . .	L Near	 0017	  CODES	
+over . . . . . . . . . . . . . .	L Near	 0019	  CODES	
+
+	   0 Warnings
+	   0 Errors

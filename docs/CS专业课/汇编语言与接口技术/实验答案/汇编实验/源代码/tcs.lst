@@ -1,0 +1,612 @@
+Microsoft (R) Macro Assembler Version 6.11		    10/27/22 10:25:02
+tempfile.asm						     Page 1 - 1
+
+
+				assume cs:code,ds:data,ss:stack
+
+ 0000				data segment
+
+				;**********************************************************************************************************
+				;**********************************************************************************************************
+				;**********************************************************************************************************
+
+ 0000 1131			BOUNDARY_COLOR		dw	1131H
+ 0002 00A0			NEXT_ROW		dw	160
+
+ 0004 0000			SNAKE_HEAD		dw	0
+ 0006 000C			SNAKE_STERN		dw	12
+
+ 0008 2201			SNAKE_COLOR		dw	2201H
+
+ 000A  00C8 [			SNAKE			dw	200 dup (0,0,0)
+        0000 0000 0000
+       ]
+
+
+ 04BA 0012			NEW_NODE		dw	18
+
+
+ 04BC 035C			FOOD_LOCTION		dw	160*5 + 30*2
+ 04BE 4439			FOOD_COLOR		dw	4439H
+
+
+ 04C0 48			UP			db	48H
+ 04C1 50			DOWN			db	50H
+ 04C2 4B			LEFT			db	4BH		
+ 04C3 4D			RIGHT			db	4DH
+
+ 04C4 0700			BACK_GROUND_COLOR	dw	0700H	
+
+
+ 04C6 0003			DIRECTION		dw	3					;up 0 down 1 left 2 right 3
+
+ 04C8 7FB5			DIRECTION_FUNTION	dw	OFFSET isMoveUp 	- OFFSET greedy_snake + 7E00H	; 0
+ 04CA  7F93						dw	OFFSET isMoveDown 	- OFFSET greedy_snake + 7E00H	; 1
+ 04CC  7F72						dw	OFFSET isMoveLeft 	- OFFSET greedy_snake + 7E00H	; 2
+ 04CE  7F51						dw	OFFSET isMoveRight 	- OFFSET greedy_snake + 7E00H	; 3
+
+				;**********************************************************************************************************
+				;**********************************************************************************************************
+				;**********************************************************************************************************
+
+ 04D0				data ends
+
+ 0000				stack segment stack
+ 0000  0080 [				db	128 dup (0)
+        00
+       ]
+ 0080				stack ends
+
+
+
+ 0000				code segment
+
+ 0000  B8 ---- R			start:	mov ax,stack
+ 0003  8E D0					mov ss,ax
+ 0005  BC 0080					mov sp,128
+
+
+ 0008  E8 02F3					call sav_old_int9
+ 000B  E8 02DA					call set_new_int9
+ 000E  E8 0307					call cpy_greedy_snake
+
+
+
+ 0011  BB 0000					mov bx,0
+ 0014  53					push bx
+ 0015  BB 7E00					mov bx,7E00H
+ 0018  53					push bx
+
+ 0019  CB					retf
+
+
+ 001A  B8 4C00					mov ax,4C00H
+ 001D  CD 21					int 21H
+
+
+				;================================================================
+ 001F  E8 02BA			greedy_snake:	call init_reg
+ 0022  E8 02A5					call clear_screen
+ 0025  E8 0223					call init_screen
+ 0028  E8 003E					call init_direction
+ 002B  E8 000A					call init_food
+						
+
+				;nextDelay:	call delay
+				;		cli
+				;		call isMoveDirection
+				;		sti
+				;		jmp nextDelay
+
+
+ 002E  B8 1000			testA:		mov ax,1000H
+ 0031  EB FB					jmp testA
+
+
+ 0033  B8 4C00					mov ax,4C00H
+ 0036  CD 21					int 21H
+
+
+				;================================================================
+ 0038  8B 36 04BC R		init_food:	mov si,FOOD_LOCTION
+ 003C  8B 16 04BE R				mov dx,FOOD_COLOR
+
+ 0040  26: 89 14				mov es:[si],dx
+
+					
+ 0043  C3					ret
+				;================================================================
+ 0044				isMoveDirection:
+ 0044  8B 1E 04C6 R				mov bx,DIRECTION
+ 0048  03 DB					add bx,bx
+
+ 004A  FF 97 04C8 R				call word ptr ds:DIRECTION_FUNTION[bx]	
+
+ 004E  C3					ret
+				;================================================================
+ 004F  50			delay:		push ax
+ 0050  52					push dx
+
+ 0051  BA 9000					mov dx,9000H
+ 0054  2B C0					sub ax,ax
+
+ 0056  2D 1000			delaying:	sub ax,1000H
+ 0059  83 DA 00					sbb dx,0
+ 005C  83 F8 00					cmp ax,0
+ 005F  75 F5					jne delaying
+ 0061  83 FA 00					cmp dx,0
+ 0064  75 F0					jne delaying
+
+ 0066  5A					pop dx
+ 0067  58					pop ax
+ 0068  C3					ret
+				;================================================================
+ 0069				init_direction:
+ 0069  C7 06 04C6 R 0003			mov DIRECTION,3
+ 006F  C3					ret
+				;================================================================
+ 0070  50			new_int9:	push ax
+
+ 0071  E4 60					in al,60H
+ 0073  9C					pushf
+ 0074  2E: FF 1E 0200				call dword ptr cs:[200H]
+
+
+ 0079  3A 06 04C0 R				cmp al,UP
+ 007D  74 1B					je isUp
+ 007F  3A 06 04C1 R				cmp al,DOWN
+ 0083  74 28					je isDown
+ 0085  3A 06 04C2 R				cmp al,LEFT
+ 0089  74 35					je isLeft
+ 008B  3A 06 04C3 R				cmp al,RIGHT
+ 008F  74 42					je isRight
+
+
+ 0091  3C 3B					cmp al,3BH
+ 0093  75 03					jne int9Ret
+ 0095  E8 0199					call change_screen_color
+
+ 0098  58			int9Ret:	pop ax
+ 0099  CF					iret
+
+				;================================================================
+ 009A  BF 0F50			isUp:		mov di,160*24 + 40*2
+ 009D  26: C6 05 55				mov byte ptr es:[di],'U'
+ 00A1  83 3E 04C6 R 01				cmp DIRECTION,1
+ 00A6  74 F0					je int9Ret
+ 00A8  E8 0129					call isMoveUp
+ 00AB  EB EB					jmp int9Ret
+
+ 00AD  BF 0F50			isDown:		mov di,160*24 + 40*2
+ 00B0  26: C6 05 44				mov byte ptr es:[di],'D'
+ 00B4  83 3E 04C6 R 00				cmp DIRECTION,0
+ 00B9  74 DD					je int9Ret
+ 00BB  E8 00F4					call isMoveDown
+ 00BE  EB D8					jmp int9Ret
+
+ 00C0  BF 0F50			isLeft:		mov di,160*24 + 40*2
+ 00C3  26: C6 05 4C				mov byte ptr es:[di],'L'
+ 00C7  83 3E 04C6 R 03				cmp DIRECTION,3
+ 00CC  74 CA					je int9Ret
+ 00CE  E8 00C0					call isMoveLeft
+ 00D1  EB C5					jmp int9Ret
+
+ 00D3  BF 0F50			isRight:	mov di,160*24 + 40*2
+ 00D6  26: C6 05 52				mov byte ptr es:[di],'R'
+ 00DA  83 3E 04C6 R 02				cmp DIRECTION,2
+ 00DF  74 B7					je int9Ret
+ 00E1  E8 008C					call isMoveRight
+ 00E4  EB B2					jmp int9Ret
+					
+
+
+				;================================================================
+ 00E6  26: 80 3C 39		isFood:		cmp byte ptr es:[si],'9'
+ 00EA  75 07					jne noFood
+ 00EC  E8 0051					call eat_food
+ 00EF  E8 0016					call new_food
+ 00F2  C3					ret
+
+ 00F3  BF 0F14			noFood:		mov di,160*24 + 10 *2
+ 00F6  26: C7 05 5535				mov word ptr es:[di],5535H
+ 00FB  E8 0001					call game_over
+ 00FE  C3					ret
+
+
+				;================================================================
+ 00FF  E8 01C8			game_over:	call clear_screen
+
+ 0102  B8 4C00					mov ax,4C00H
+ 0105  CD 21					int 21H
+
+ 0107  C3					ret
+				;================================================================
+ 0108  50			new_food:	push ax
+ 0109  53					push bx
+
+
+ 010A  B0 00			newFood:	mov al,0
+ 010C  E6 70					out 70H,al
+ 010E  E4 71					in al,71H
+
+ 0110  8A D0					mov dl,al				;AL = 0001 0002
+ 0112  D0 E8					shr al,1
+ 0114  D0 E8					shr al,1
+ 0116  D0 E8					shr al,1
+ 0118  D0 E8					shr al,1
+ 011A  80 E2 0F					and dl,00001111B
+
+ 011D  B3 0A					mov bl,10
+ 011F  F6 E3					mul bl
+
+ 0121  02 C2					add al,dl
+ 0123  8A D8					mov bl,al
+
+ 0125  F6 E3					mul bl
+
+ 0127  D1 E8					shr ax,1
+ 0129  D1 E0					shl ax,1
+ 012B  05 00A8					add ax,168
+						
+ 012E  8B F8					mov di,ax
+ 0130  26: 80 3D 00				cmp byte ptr es:[di],0
+ 0134  75 D4					jne newFood
+
+ 0136  FF 36 04BE R				push FOOD_COLOR
+ 013A  26: 8F 05				pop es:[di]
+
+
+ 013D  5B					pop bx
+ 013E  58					pop ax
+ 013F  C3					ret
+				;================================================================
+ 0140  FF 36 04BA R		eat_food:	push NEW_NODE
+ 0144  8F 07					pop ds:[bx+0]
+
+ 0146  BB 000A R				mov bx,OFFSET SNAKE
+ 0149  03 1E 04BA R				add bx,NEW_NODE
+
+
+ 014D  C7 07 0000				mov word ptr ds:[bx+0],0		;0
+
+ 0151  89 77 02					mov ds:[bx+2],si			;2
+ 0154  FF 36 0008 R				push SNAKE_COLOR
+ 0158  26: 8F 04				pop es:[si]
+
+ 015B  FF 36 0004 R				push SNAKE_HEAD				;4
+ 015F  8F 47 04					pop ds:[bx+4]
+
+ 0162  FF 36 04BA R				push NEW_NODE
+ 0166  8F 06 0004 R				pop SNAKE_HEAD
+
+					
+ 016A  83 06 04BA R 06				add NEW_NODE,6
+					
+ 016F  C3					ret
+				;================================================================
+ 0170  BB 000A R		isMoveRight:	mov bx,OFFSET SNAKE
+ 0173  03 1E 0004 R				add bx,SNAKE_HEAD
+ 0177  8B 77 02					mov si,ds:[bx+2]
+ 017A  83 C6 02					add si,2
+					
+ 017D  26: 80 3C 00				cmp byte ptr es:[si],0
+ 0181  75 0A					jne noMoveRight
+ 0183  E8 0070					call new_snake
+ 0186  C7 06 04C6 R 0003			mov DIRECTION,3
+ 018C  C3					ret
+
+ 018D  E8 FF56			noMoveRight:	call isFood
+ 0190  C3					ret
+				;================================================================
+ 0191  BB 000A R		isMoveLeft:	mov bx,OFFSET SNAKE
+ 0194  03 1E 0004 R				add bx,SNAKE_HEAD
+ 0198  8B 77 02					mov si,ds:[bx+2]
+ 019B  83 EE 02					sub si,2
+					
+ 019E  26: 80 3C 00				cmp byte ptr es:[si],0
+ 01A2  75 0A					jne noMoveLeft
+ 01A4  E8 004F					call new_snake
+ 01A7  C7 06 04C6 R 0002			mov DIRECTION,2
+ 01AD  C3					ret
+
+ 01AE  E8 FF35			noMoveLeft:	call isFood
+ 01B1  C3					ret
+				;================================================================
+ 01B2  BB 000A R		isMoveDown:	mov bx,OFFSET SNAKE
+ 01B5  03 1E 0004 R				add bx,SNAKE_HEAD
+ 01B9  8B 77 02					mov si,ds:[bx+2]
+ 01BC  03 36 0002 R				add si,NEXT_ROW
+					
+ 01C0  26: 80 3C 00				cmp byte ptr es:[si],0
+ 01C4  75 0A					jne noMoveDown
+ 01C6  E8 002D					call new_snake
+ 01C9  C7 06 04C6 R 0001			mov DIRECTION,1
+ 01CF  C3					ret
+
+ 01D0  E8 FF13			noMoveDown:	call isFood
+ 01D3  C3					ret
+				;================================================================
+ 01D4  BB 000A R		isMoveUp:	mov bx,OFFSET SNAKE
+ 01D7  03 1E 0004 R				add bx,SNAKE_HEAD
+ 01DB  8B 77 02					mov si,ds:[bx+2]
+ 01DE  2B 36 0002 R				sub si,NEXT_ROW
+
+ 01E2  26: 80 3C 00				cmp byte ptr es:[si],0
+ 01E6  75 0A					jne noMoveUp
+ 01E8  E8 000B					call new_snake	
+ 01EB  C7 06 04C6 R 0000			mov DIRECTION,0
+ 01F1  C3					ret
+
+
+ 01F2  E8 FEF1			noMoveUp:	call isFood
+ 01F5  C3					ret
+
+
+				;================================================================
+ 01F6  FF 36 0006 R		new_snake:	push SNAKE_STERN
+ 01FA  8F 07					pop ds:[bx+0]
+
+ 01FC  BB 000A R				mov bx,OFFSET SNAKE
+ 01FF  03 1E 0006 R				add bx,SNAKE_STERN
+
+ 0203  FF 37					push ds:[bx+0]
+ 0205  C7 07 0000				mov word ptr ds:[bx+0],0
+						
+ 0209  8B 7F 02					mov di,ds:[bx+2]
+ 020C  FF 36 04C4 R				push BACK_GROUND_COLOR
+ 0210  26: 8F 05				pop es:[di]
+
+ 0213  89 77 02					mov ds:[bx+2],si
+ 0216  FF 36 0008 R				push SNAKE_COLOR
+ 021A  26: 8F 04				pop es:[si]
+
+ 021D  FF 36 0004 R				push SNAKE_HEAD
+ 0221  8F 47 04					pop ds:[bx+4]
+
+						
+ 0224  FF 36 0006 R				push SNAKE_STERN
+ 0228  8F 06 0004 R				pop SNAKE_HEAD
+
+ 022C  8F 06 0006 R				pop SNAKE_STERN
+
+ 0230  C3					ret
+				;================================================================
+ 0231				change_screen_color:
+ 0231  53					push bx
+ 0232  51					push cx
+ 0233  52					push dx
+
+ 0234  BB B800					mov bx,0B800H
+ 0237  8E C3					mov es,bx
+
+ 0239  BB 0001					mov bx,1
+ 023C  B9 07D0					mov cx,2000
+
+ 023F				changeScreenColor:
+ 023F  26: FE 07				inc byte ptr es:[bx]
+ 0242  83 C3 02					add bx,2
+ 0245  E2 F8					loop changeScreenColor
+
+ 0247  5A					pop dx
+ 0248  59					pop cx
+ 0249  5B					pop bx
+ 024A  C3					ret
+				;================================================================
+ 024B  8B 16 0000 R		init_screen:	mov dx,BOUNDARY_COLOR
+ 024F  E8 0064					call init_up_down_line
+ 0252  E8 004C					call init_left_right_line
+
+ 0255  E8 0001					call init_snake
+						
+ 0258  C3					ret
+
+				;================================================================
+ 0259  BB 000A R		init_snake:	mov bx,OFFSET SNAKE
+ 025C  03 1E 0004 R				add bx,SNAKE_HEAD
+ 0260  8B 16 0008 R				mov dx,SNAKE_COLOR
+ 0264  BE 0690					mov si,160*10 + 40*2
+
+ 0267  C7 07 0000				mov word ptr ds:[bx+0],0
+ 026B  89 77 02					mov ds:[bx+2],si
+ 026E  26: 89 14				mov es:[si],dx
+ 0271  C7 47 04 0006				mov word ptr ds:[bx+4],6
+
+ 0276  83 C3 06					add bx,6
+ 0279  83 EE 02					sub si,2
+
+ 027C  C7 07 0000				mov word ptr ds:[bx+0],0
+ 0280  89 77 02					mov ds:[bx+2],si
+ 0283  26: 89 14				mov es:[si],dx
+ 0286  C7 47 04 000C				mov word ptr ds:[bx+4],12
+
+ 028B  83 C3 06					add bx,6
+ 028E  83 EE 02					sub si,2
+
+ 0291  C7 07 0006				mov word ptr ds:[bx+0],6
+ 0295  89 77 02					mov ds:[bx+2],si
+ 0298  26: 89 14				mov es:[si],dx
+ 029B  C7 47 04 0012				mov word ptr ds:[bx+4],18
+
+ 02A0  C3					ret
+				;================================================================
+ 02A1				init_left_right_line:
+ 02A1  BB 0000					mov bx,0
+ 02A4  B9 0017					mov cx,23
+					
+ 02A7				initLeftRightLine:
+ 02A7  26: 89 17				mov es:[bx],dx
+ 02AA  26: 89 97 009E				mov es:[bx+158],dx
+ 02AF  03 1E 0002 R				add bx,NEXT_ROW
+ 02B3  E2 F2					loop initLeftRightLine
+
+ 02B5  C3					ret
+				;================================================================
+ 02B6				init_up_down_line:
+ 02B6  BB 0000					mov bx,0
+ 02B9  B9 0050					mov cx,80
+
+ 02BC  26: 89 17		initUpDownLine:	mov es:[bx],dx
+ 02BF  26: 89 97 0E60				mov es:[bx+160*23],dx
+ 02C4  83 C3 02					add bx,2
+ 02C7  E2 F3					loop initUpDownLine
+
+ 02C9  C3					ret
+				;================================================================
+ 02CA  BB 0000			clear_screen:	mov bx,0
+ 02CD  BA 0700					mov dx,0700H
+ 02D0  B9 07D0					mov cx,2000
+
+ 02D3  26: 89 17		clearScreen:	mov es:[bx],dx
+ 02D6  83 C3 02					add bx,2
+ 02D9  E2 F8					loop clearScreen
+						
+ 02DB  C3					ret
+				;================================================================
+ 02DC  BB B800			init_reg:	mov bx,0B800H
+ 02DF  8E C3					mov es,bx
+
+ 02E1  BB ---- R				mov bx,data
+ 02E4  8E DB					mov ds,bx		
+ 02E6  C3					ret
+
+ 02E7  90snake_end:	nop
+
+
+
+
+
+
+
+
+				;================================================================
+ 02E8				set_new_int9:
+ 02E8  BB 0000					mov bx,0
+ 02EB  8E C3					mov es,bx
+
+ 02ED  FA					cli
+ 02EE  26: C7 06 0024				mov word ptr es:[9*4],OFFSET new_int9 - OFFSET greedy_snake + 7E00H
+       7E51
+ 02F5  26: C7 06 0026				mov word ptr es:[9*4+2],0
+       0000
+ 02FC  FB					sti
+
+ 02FD  C3					ret
+				;================================================================
+ 02FE				sav_old_int9:
+ 02FE  BB 0000					mov bx,0
+ 0301  8E C3					mov es,bx
+
+ 0303  26: FF 36 0024				push es:[9*4]
+ 0308  26: 8F 06 0200				pop es:[200H]
+ 030D  26: FF 36 0026				push es:[9*4+2]
+ 0312  26: 8F 06 0202				pop es:[202H]
+
+ 0317  C3					ret
+				;================================================================
+ 0318				cpy_greedy_snake:
+ 0318  8C CB					mov bx,cs
+ 031A  8E DB					mov ds,bx
+ 031C  BE 001F R				mov si,OFFSET greedy_snake
+
+ 031F  BB 0000					mov bx,0
+ 0322  8E C3					mov es,bx
+ 0324  BF 7E00					mov di,7E00H
+
+ 0327  B9 02C8					mov cx,OFFSET snake_end - OFFSET greedy_snake
+ 032A  FC					cld
+ 032B  F3/ A4					rep movsb
+
+
+ 032D  C3					ret
+
+ 032E				code ends
+
+
+
+				end start
+
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    10/27/22 10:25:02
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+code . . . . . . . . . . . . . .	16 Bit	 032E	  Para	  Private 
+data . . . . . . . . . . . . . .	16 Bit	 04D0	  Para	  Private 
+stack  . . . . . . . . . . . . .	16 Bit	 0080	  Para	  Stack	  
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+BACK_GROUND_COLOR  . . . . . . .	Word	 04C4	  data	
+BOUNDARY_COLOR . . . . . . . . .	Word	 0000	  data	
+DIRECTION_FUNTION  . . . . . . .	Word	 04C8	  data	
+DIRECTION  . . . . . . . . . . .	Word	 04C6	  data	
+DOWN . . . . . . . . . . . . . .	Byte	 04C1	  data	
+FOOD_COLOR . . . . . . . . . . .	Word	 04BE	  data	
+FOOD_LOCTION . . . . . . . . . .	Word	 04BC	  data	
+LEFT . . . . . . . . . . . . . .	Byte	 04C2	  data	
+NEW_NODE . . . . . . . . . . . .	Word	 04BA	  data	
+NEXT_ROW . . . . . . . . . . . .	Word	 0002	  data	
+RIGHT  . . . . . . . . . . . . .	Byte	 04C3	  data	
+SNAKE_COLOR  . . . . . . . . . .	Word	 0008	  data	
+SNAKE_HEAD . . . . . . . . . . .	Word	 0004	  data	
+SNAKE_STERN  . . . . . . . . . .	Word	 0006	  data	
+SNAKE  . . . . . . . . . . . . .	Word	 000A	  data	
+UP . . . . . . . . . . . . . . .	Byte	 04C0	  data	
+changeScreenColor  . . . . . . .	L Near	 023F	  code	
+change_screen_color  . . . . . .	L Near	 0231	  code	
+clearScreen  . . . . . . . . . .	L Near	 02D3	  code	
+clear_screen . . . . . . . . . .	L Near	 02CA	  code	
+cpy_greedy_snake . . . . . . . .	L Near	 0318	  code	
+delaying . . . . . . . . . . . .	L Near	 0056	  code	
+delay  . . . . . . . . . . . . .	L Near	 004F	  code	
+eat_food . . . . . . . . . . . .	L Near	 0140	  code	
+game_over  . . . . . . . . . . .	L Near	 00FF	  code	
+greedy_snake . . . . . . . . . .	L Near	 001F	  code	
+initLeftRightLine  . . . . . . .	L Near	 02A7	  code	
+initUpDownLine . . . . . . . . .	L Near	 02BC	  code	
+init_direction . . . . . . . . .	L Near	 0069	  code	
+init_food  . . . . . . . . . . .	L Near	 0038	  code	
+init_left_right_line . . . . . .	L Near	 02A1	  code	
+init_reg . . . . . . . . . . . .	L Near	 02DC	  code	
+init_screen  . . . . . . . . . .	L Near	 024B	  code	
+init_snake . . . . . . . . . . .	L Near	 0259	  code	
+init_up_down_line  . . . . . . .	L Near	 02B6	  code	
+int9Ret  . . . . . . . . . . . .	L Near	 0098	  code	
+isDown . . . . . . . . . . . . .	L Near	 00AD	  code	
+isFood . . . . . . . . . . . . .	L Near	 00E6	  code	
+isLeft . . . . . . . . . . . . .	L Near	 00C0	  code	
+isMoveDirection  . . . . . . . .	L Near	 0044	  code	
+isMoveDown . . . . . . . . . . .	L Near	 01B2	  code	
+isMoveLeft . . . . . . . . . . .	L Near	 0191	  code	
+isMoveRight  . . . . . . . . . .	L Near	 0170	  code	
+isMoveUp . . . . . . . . . . . .	L Near	 01D4	  code	
+isRight  . . . . . . . . . . . .	L Near	 00D3	  code	
+isUp . . . . . . . . . . . . . .	L Near	 009A	  code	
+newFood  . . . . . . . . . . . .	L Near	 010A	  code	
+new_food . . . . . . . . . . . .	L Near	 0108	  code	
+new_int9 . . . . . . . . . . . .	L Near	 0070	  code	
+new_snake  . . . . . . . . . . .	L Near	 01F6	  code	
+noFood . . . . . . . . . . . . .	L Near	 00F3	  code	
+noMoveDown . . . . . . . . . . .	L Near	 01D0	  code	
+noMoveLeft . . . . . . . . . . .	L Near	 01AE	  code	
+noMoveRight  . . . . . . . . . .	L Near	 018D	  code	
+noMoveUp . . . . . . . . . . . .	L Near	 01F2	  code	
+sav_old_int9 . . . . . . . . . .	L Near	 02FE	  code	
+set_new_int9 . . . . . . . . . .	L Near	 02E8	  code	
+snake_end  . . . . . . . . . . .	L Near	 02E7	  code	
+start  . . . . . . . . . . . . .	L Near	 0000	  code	
+testA  . . . . . . . . . . . . .	L Near	 002E	  code	
+
+	   0 Warnings
+	   0 Errors

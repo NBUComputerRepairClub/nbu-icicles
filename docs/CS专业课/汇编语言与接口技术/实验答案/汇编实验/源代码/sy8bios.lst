@@ -1,0 +1,105 @@
+Microsoft (R) Macro Assembler Version 6.11		    11/08/22 09:46:45
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATA SEGMENT
+
+ 0000				DATA ENDS
+ 0000				STACK SEGMENT STACK 'STACK'
+ 0000  0080 [				STA DB 128 DUP(?)
+        00
+       ]
+ = 0080					TOP EQU LENGTH STA
+ 0080				STACK ENDS
+ 0000				CODE SEGMENT
+				ASSUME CS:CODE,DS:DATA,SS:STACK
+ 0000				START:
+					;初始化相关寄存器
+ 0000  B8 ---- R		 	MOV AX,DATA
+ 0003  8E D8				MOV DS,AX
+ 0005  B8 ---- R			MOV AX,STACK
+ 0008  8E D0				MOV SS,AX
+ 000A  BC 0080				MOV SP,TOP
+					
+					
+ 000D  B3 00				MOV BL,0;BL中存放要打印字符的ASCII码
+ 000F  B6 00				MOV DH,0;设置行号
+ 0011				OUTER:
+ 0011  B2 00				MOV DL,0;设置列号
+ 0013				INNER:
+					;输出ASCLL表的一个字符
+ 0013  B4 02				MOV AH,02H ;BH＝0显示页码,DH＝行(Y坐标),DL＝ 列(X坐标)
+ 0015  CD 10				INT 10H;调用BIOS中断设置光标位置
+					
+ 0017  80 FB 0A				CMP BL,0AH;判断是否为换行符
+ 001A  74 2E				JZ CHANGE
+ 001C  80 FB 0D				CMP BL,0DH;判断是否为回车符
+ 001F  74 29				JZ CHANGE
+ 0021  8A C3				MOV AL,BL;将BL->AL用于显示
+ 0023				SHOW:
+					;输出字符
+ 0023  B1 01				MOV CL,1;设置输出字符字数
+ 0025  B4 0A				MOV AH,0AH ;AL=字符，BH=页码，CX=多次打印字符
+ 0027  CD 10				INT 10H;调用BIOS中断输出字符
+					
+					;输出间隔的空格
+ 0029  FE C2				INC DL;列号+1
+ 002B  FE C3				INC BL;下一个字符ASCII码
+ 002D  B4 02				MOV AH,02H;设置光标位置
+ 002F  CD 10				INT 10H
+ 0031  B0 00				MOV AL,0
+ 0033  B4 0A				MOV AH,0AH
+ 0035  CD 10				INT 10H;输出空格间隔
+					
+					;输出32个为一行，总共16行
+ 0037  FE C2				INC DL;列号+1
+ 0039  80 FA 20				CMP DL,32;判断一列是否完成
+ 003C  75 D5				JNZ INNER
+ 003E  FE C6				INC DH
+ 0040  80 FE 10				CMP DH,16;判断行数是否达标
+ 0043  75 CC				JNZ OUTER
+					
+ 0045  B8 4C00				MOV AX,4C00H
+ 0048  CD 21				INT 21H;结束程序
+
+ 004A				CHANGE:;若为特殊字符则将其替换为0
+ 004A  B0 00			        MOV AL,0
+ 004C  EB D5				JMP SHOW
+
+ 004E				CODE ENDS
+				END START
+
+
+
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    11/08/22 09:46:45
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODE . . . . . . . . . . . . . .	16 Bit	 004E	  Para	  Private 
+DATA . . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 0080	  Para	  Stack	  'STACK'	 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+CHANGE . . . . . . . . . . . . .	L Near	 004A	  CODE	
+INNER  . . . . . . . . . . . . .	L Near	 0013	  CODE	
+OUTER  . . . . . . . . . . . . .	L Near	 0011	  CODE	
+SHOW . . . . . . . . . . . . . .	L Near	 0023	  CODE	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODE	
+STA  . . . . . . . . . . . . . .	Byte	 0000	  STACK	
+TOP  . . . . . . . . . . . . . .	Number	 0080h	 
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,62 @@
+Microsoft (R) Macro Assembler Version 6.11		    10/10/22 19:28:47
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATAS SEGMENT
+				    ;此处输入数据段代码  
+ 0000				DATAS ENDS
+
+ 0000				STACKS SEGMENT
+				    ;此处输入堆栈段代码
+ 0000				STACKS ENDS
+
+ 0000				CODES SEGMENT
+				    ASSUME CS:CODES,DS:DATAS,SS:STACKS
+ 0000				START:
+ 0000  B8 ---- R		    MOV AX,DATAS
+ 0003  8E D8			    MOV DS,AX
+ 0005  B4 01			    mov AH,1 ;键盘存入一个值，
+ 0007  CD 21			    int 21H
+ 0009  3C 61			    cmp AL,'a'
+ 000B  72 0E			    jb DAjump
+ 000D  3C 7A			    cmp AL,'z'
+ 000F  77 0C			    ja error
+ 0011  2C 20			    sub AL,20H
+ 0013  8A D0			    MOV DL,AL
+ 0015  EB 08			    jmp over
+				    ;此处输入代码段代码
+ 0017  B4 02			    MOV AH,2
+ 0019  CD 21			    INT 21H
+ 001B  B4 02			DAjump:MOV AH,02H
+ 001D  B4 02			error:MOV AH,02H
+ 001F  B4 02			over:MOV AH,2
+ 0021  CD 21			    INT 21H
+ 0023				CODES ENDS
+				    END START
+
+Microsoft (R) Macro Assembler Version 6.11		    10/10/22 19:28:47
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODES  . . . . . . . . . . . . .	16 Bit	 0023	  Para	  Private 
+DATAS  . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+STACKS . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+DAjump . . . . . . . . . . . . .	L Near	 001B	  CODES	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
+error  . . . . . . . . . . . . .	L Near	 001D	  CODES	
+over . . . . . . . . . . . . . .	L Near	 001F	  CODES	
+
+	   0 Warnings
+	   0 Errors
