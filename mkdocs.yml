@@ -31,3 +31,59 @@ nav :
 theme:
   name: 'material'
   language: 'zh'
+  custom_dir: overrides # 使用扩展主题
+  features:
+    - content.code.annotate #启用代码注释特性
+    - content.action.edit #启用编辑按钮
+    - navigation.tracking #启用导航跟踪
+    - navigation.top #启用顶部导航特性
+    - navigation.tabs #启用导航标签特性。
+    - navigation.footer #启用页脚导航特性。
+    - navigation.indexes #启用索引导航特性。
+    - navigation.sections #启用章节导航特性。
+  font:
+    # text: Noto Serif SC
+    code: JetBrains Mono
+  palette:
+    - scheme: default #配置颜色方案
+
+extra_css: # 额外的 CSS 文件
+  - https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i&display=fallback
+  - css/tasklist.css
+  - css/card.css
+  - css/custom.css
+
+extra_javascript:  # 额外的 JavaScript 文件
+  - js/katex.js
+
+
+markdown_extensions:
+  - toc:  # 目录扩展，为每个页面生成目录
+      permalink: true  # 每个标题都有一个永久链接
+      toc_depth: 4  # 目录的深度为 4
+  - meta  # 元数据扩展
+  - def_list  # 定义列表扩展
+  - attr_list  # 属性列表扩展
+  - md_in_html  # 在 HTML 中使用 Markdown 的扩展
+  - sane_lists  # 更合理的列表扩展
+  - admonition  # 警告框扩展
+  - pymdownx.keys  # 表示键盘按键的扩展
+  - pymdownx.mark  # 标记扩展
+  - pymdownx.tilde  # 波浪线扩展
+  - pymdownx.critic  # 批评扩展
+  - pymdownx.details  # 详细信息扩展
+  - pymdownx.snippets  # 代码片段扩展
+  - pymdownx.magiclink  # 魔术链接扩展
+  - pymdownx.superfences  # 超级围栏扩展
+  - pymdownx.inlinehilite  # 内联高亮扩展
+  - pymdownx.emoji:  # emoji 扩展
+      emoji_index: !!python/name:materialx.emoji.twemoji  # emoji 的索引
+      emoji_generator: !!python/name:materialx.emoji.to_svg  # emoji 的生成器
+  - pymdownx.tabbed:  # 制表符扩展
+      alternate_style: true  # 使用替代样式
+  - pymdownx.tasklist:  # 任务列表扩展
+      custom_checkbox: true  # 使用自定义的复选框
+  - pymdownx.highlight:  # 代码高亮扩展
+      anchor_linenums: true  # 每一行都有一个锚点
+  - pymdownx.arithmatex:  # 数学公式扩展
+      generic: true  # 使用通用模式
