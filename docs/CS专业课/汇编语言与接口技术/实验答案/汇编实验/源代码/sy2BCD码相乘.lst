@@ -1,0 +1,163 @@
+Microsoft (R) Macro Assembler Version 6.11		    11/01/22 10:10:25
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATA SEGMENT
+ 0000 50				Data1 DB 50H ;数字1
+ 0001 60				data2 DB 60H ;数字2
+ 0002  0002 [				Result DB 2 DUP(?) ;结果
+        00
+       ]
+ 0004 2A 24				MES1 DB '*','$' ;字符串
+ 0006 3D 24				MES2 DB '=','$'
+ 0008				DATA ENDS
+
+ 0000				STACK SEGMENT PARA STACK 'STACK'
+ 0000  0064 [				STAPN DB 100 DUP(?) ;开辟100个字节的堆栈段
+        00
+       ]
+ = 0064					TOP EQU LENGTH STAPN ;top=100
+ 0064				STACK ENDS
+
+ 0000				CODE SEGMENT
+					ASSUME CS:CODE,DS:DATA,SS:STACK ;说明当前使用的段
+ 0000				START:
+					;初始化数据段，堆栈段
+ 0000  B8 ---- R			MOV AX,DATA
+ 0003  8E D8				MOV DS,AX
+ 0005  B8 ---- R			MOV AX,STACK
+ 0008  8E D0				MOV SS,AX
+ 000A  B8 0064				MOV AX,TOP
+ 000D  8B E0				MOV SP,AX
+					
+					;DL累加CL乘数2；DH累加进位，次数为BL
+ 000F  8A 1E 0000 R			MOV BL,Data1
+ 0013  8A 0E 0001 R			MOV CL,Data2
+ 0017  BA 0000				MOV DX,0 ;初始值为0
+ 001A  8A C3				MOV AL,BL ;BL作为计数器，执行BL个data2相加
+					
+ 001C  0A C0			AGAIN:OR AL,AL ;BL=AL=0,则零标志位置=0,计数器结束
+ 001E  74 17				JZ DONE ;零标志位置=0，则跳转DONE
+					
+					;低位与乘数2累加
+ 0020  8A C2				MOV AL,DL ;AL暂存DL
+ 0022  02 C1				ADD AL,CL ;DL+CL
+ 0024  27				DAA       ;组合的BCD调整指令
+ 0025  8A D0				MOV DL,AL ;DL存累加后的值
+					
+					;高位进行进位调整
+ 0027  8A C6				MOV AL,DH ;暂存高位
+ 0029  14 00				ADC AL,0 ;带进位的加法
+ 002B  27				DAA		;组合的BCD调整指令
+ 002C  8A F0				MOV DH,AL ;DH存放进位后的值
+					
+					;计数器减一
+ 002E  8A C3				MOV AL,BL ;存data1
+ 0030  FE C8				DEC AL	  ;计数器BL-1
+ 0032  2F				DAS		  ;减法组合BCD码调整
+ 0033  8A D8				MOV BL,AL ;AL放
+					
+ 0035  EB E5				JMP AGAIN
+					
+					;显示结果
+ 0037				DONE:
+				    
+ 0037  8D 1E 0002 R		    LEA BX,result ;BX存变量result的地址
+ 003B  89 17				MOV [BX],DX  ;DX计算结果存入result
+					
+					;输出Data1
+ 003D  8D 36 0000 R			LEA SI,Data1 ;result地址存入SI
+ 0041  E8 002C				CALL DIS  ;调用DIS函数，输出
+					
+					;输出变量MES1对应字符*
+ 0044  33 C0				XOR AX,AX ;AX清零
+ 0046  B4 09				MOV AH,09H ;
+ 0048  8D 16 0004 R			LEA DX,MES1 
+ 004C  CD 21				INT 21H
+					
+					;输出Data2
+ 004E  8D 36 0001 R			LEA SI,Data2
+ 0052  E8 001B				CALL DIS
+					
+					;输出变量MES2对应字符=
+ 0055  33 C0				XOR AX,AX
+ 0057  B4 09				MOV AH,09H
+ 0059  8D 16 0006 R			LEA DX,MES2
+ 005D  CD 21				INT 21H
+					
+					;输出result高8位，2个字符
+ 005F  8D 36 0002 R			LEA SI,result
+ 0063  46				INC SI ;SI地址+1,DH=DL+1
+ 0064  E8 0009				CALL DIS
+					
+					;输出result低8位，2个字符
+ 0067  4E				DEC SI
+ 0068  E8 0005				CALL DIS
+					;程序结束
+ 006B  B8 4C00				MOV AX,4C00H
+ 006E  CD 21				INT 21H
+					
+				;输出2个4位对应字符
+ 0070				DIS PROC NEAR
+					;输出高4位对应字符
+ 0070  8A 04				MOV AL,[SI] ;AL存入结果数据
+ 0072  B1 04				MOV CL,04H  
+ 0074  D2 E8				SHR AL,CL   ;逻辑右移4位，AL取高4位
+ 0076  04 30				ADD AL,30H  ;数字转字符
+ 0078  8A D0				MOV DL,AL   ;结果存入DL
+ 007A  B4 02				MOV AH,02H  ;输出一个字符
+ 007C  CD 21				INT 21H
+					;输出低4位对应字符
+ 007E  8A 04				MOV AL,[SI] 
+ 0080  24 0F				AND AL,0FH 
+ 0082  04 30				ADD AL,30H
+ 0084  8A D0				MOV DL,AL
+ 0086  B4 02				MOV AH,02H
+ 0088  CD 21				INT 21H
+					
+ 008A  C3				RET ;返回指令
+ 008B				DIS ENDP 
+
+ 008B				CODE ENDS
+				END START
+
+
+Microsoft (R) Macro Assembler Version 6.11		    11/01/22 10:10:25
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODE . . . . . . . . . . . . . .	16 Bit	 008B	  Para	  Private 
+DATA . . . . . . . . . . . . . .	16 Bit	 0008	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 0064	  Para	  Stack	  'STACK'	 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+DIS  . . . . . . . . . . . . . .	P Near	 0070	  CODE	Length= 001B Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+AGAIN  . . . . . . . . . . . . .	L Near	 001C	  CODE	
+DONE . . . . . . . . . . . . . .	L Near	 0037	  CODE	
+Data1  . . . . . . . . . . . . .	Byte	 0000	  DATA	
+MES1 . . . . . . . . . . . . . .	Byte	 0004	  DATA	
+MES2 . . . . . . . . . . . . . .	Byte	 0006	  DATA	
+Result . . . . . . . . . . . . .	Byte	 0002	  DATA	
+STAPN  . . . . . . . . . . . . .	Byte	 0000	  STACK	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODE	
+TOP  . . . . . . . . . . . . . .	Number	 0064h	 
+data2  . . . . . . . . . . . . .	Byte	 0001	  DATA	
+
+	   0 Warnings
+	   0 Errors

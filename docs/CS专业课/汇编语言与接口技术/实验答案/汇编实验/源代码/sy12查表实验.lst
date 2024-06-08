@@ -1,0 +1,178 @@
+Microsoft (R) Macro Assembler Version 6.11		    10/27/22 12:31:04
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATAS SEGMENT
+ 0000 4A 41 4E 0A 0D 24		MONTAB DB 'JAN',0AH,0DH,'$';1
+ 0006  46 45 42 0A 0D 24			DB 'FEB',0AH,0DH,'$';2
+ 000C  4D 41 52 0A 0D 24			DB 'MAR',0AH,0DH,'$'
+ 0012  41 50 52 0A 0D 24			DB 'APR',0AH,0DH,'$';3,4
+ 0018  4D 41 59 0A 0D 24			DB 'MAY',0AH,0DH,'$','JUN' ,0AH,0DH,'$';5,6
+       4A 55 4E 0A 0D 24
+ 0024  4A 55 4C 0A 0D 24			DB 'JUL',0AH,0DH,'$','AUG' ,0AH,0DH,'$';7，8
+       41 55 47 0A 0D 24
+ 0030  53 45 50 0A 0D 24			DB 'SEP',0AH,0DH,'$','OCT' ,0AH,0DH,'$';9,10
+       4F 43 54 0A 0D 24
+ 003C  4D 4F 56 0A 0D 24			DB 'MOV',0AH,0DH,'$','DEC' ,0AH,0DH,'$';11,12
+       44 45 43 0A 0D 24
+ 0048 49 4E 50 55 54 20		MESS1 DB 'INPUT NUM 1-12:',0AH,0DH,'$'
+       4E 55 4D 20 31 2D
+       31 32 3A 0A 0D 24
+ 005A 69 6E 70 75 74 20		MESS2 DB 'input y again:','$'
+       79 20 61 67 61 69
+       6E 3A 24
+ 0069 69 6E 70 75 74 20		ERROR DB 'input ERROR',0AH,0DH,'$'		
+       45 52 52 4F 52 0A
+       0D 24
+
+ 0077				DATAS ENDS
+
+ 0000				STACKS SEGMENT
+				    ;此处输入堆栈段代码
+ 0000				STACKS ENDS
+
+ 0000				CODES SEGMENT
+				    ASSUME CS:CODES,DS:DATAS,SS:STACKS
+ 0000				START:
+ 0000  B8 ---- R		    MOV AX,DATAS
+ 0003  8E D8			    MOV DS,AX
+ 0005				again0:  
+				    ;提示输入  
+ 0005  8D 16 0048 R		    LEA DX,MESS1
+ 0009  B4 09			    MOV AH,09H;
+ 000B  CD 21			    INT 21H
+				    ;键盘获得一个数字,最多4位保存在DX，本程序最多2位
+ 000D  33 D2			    XOR DX,DX;清零
+ 000F  E8 002D			    CALL GETNUM
+				    
+				    ;SI偏移地址，BX指向开始的月地址
+ 0012  33 C0			    XOR AX,AX
+ 0014  8A C2			    MOV AL,DL;数值保存在SI
+ 0016  FE C8			    DEC AL   ;从0开始
+ 0018  B1 06			    MOV CL,06H ;一个月信息占6个字符
+ 001A  F6 E1			    MUL CL
+ 001C  8B F0			    MOV SI,AX ;计算出偏移地址给SI
+ 001E  8D 1E 0000 R		    LEA BX,MONTAB
+				    
+				    ;显示输出，
+ 0022  8D 10			    LEA DX,[BX+SI]
+ 0024  B4 09			    MOV AH,09H;
+ 0026  CD 21			    INT 21H
+				    
+				    ;提示输入  
+ 0028  8D 16 005A R		    LEA DX,MESS2
+ 002C  B4 09			    MOV AH,09H;
+ 002E  CD 21			    INT 21H
+				    
+ 0030  B4 01			    MOV AH,01H;
+ 0032  CD 21			    INT 21H
+ 0034  3C 79			    CMP AL,'y' ;y重新执行一次程序
+ 0036  E8 0046			    CALL CRLF ;换行
+ 0039  74 CA			    jz again0
+				    
+ 003B  B4 4C			    MOV AH,4CH
+ 003D  CD 21			    INT 21H
+				    
+ 003F				GETNUM  PROC    NEAR  ;键盘接收子程序，2个数值转换2进制存DL中。连续2次，上一次因为左移保留在DH
+ 003F  33 C0			  XOR     AX,AX
+ 0041				again:  ;AH＝01H，回车或空格结束
+ 0041  B4 01			  MOV     AH,01H ;01H号功能输入一个字符
+ 0043  CD 21			  INT 21H        ;键盘接收键盘码
+ 0045  3C 0D			  CMP AL,0DH     ;判回车键
+ 0047  74 33			  JZ  done
+				  
+ 0049  3C 20			  CMP AL,20H     ;判空格键
+ 004B  74 2F			  JZ  done
+				  ;判为 0 - 9 数字键,满足转换成二进制，存在AL
+ 004D  3C 30			  CMP AL,30H	 ;与'0'比较
+ 004F  72 22			  JB  error0	 ;输入字符<'0',error
+ 0051  2C 30			  SUB AL,30H	 ;字符转二进制数字-30H
+ 0053  3C 0A			  CMP AL,0AH     ;并<10,判为 0 - 9 数字键
+ 0055  72 14			  JB  GETS		 ;AL的值已转为数字，ascll码已处理变为2进制数值
+				  ;判 A - F 字母键
+ 0057  3C 11			  CMP AL,11H                  
+ 0059  72 18			  JB  error0	 ;<'A',error
+ 005B  2C 07			  SUB AL,07H	 ;字符转对应二进制数字-30-07H
+ 005D  3C 0F			  CMP AL,0FH     ;判 A - F 字母键
+ 005F  76 0A			  JBE GETS		 ;AL的值已成功转为数字，
+				  ;判 a - f 字母键       
+ 0061  3C 2A			  CMP AL,2AH	 ;与'a'比较
+ 0063  72 0E			  JB  error0	 ;<'a',error
+ 0065  3C 2F			  CMP AL,2FH     ;与'f'比较
+ 0067  77 0A			  JA  error0	 ;>'f',error
+ 0069  2C 20			  SUB AL,20H	 ;字符转对应数字-30-07-20H
+				  
+				  ;AL存储的就是输入字符对应的2进制数字，放入DX
+ 006B				GETS:   
+ 006B  B1 04			  MOV     CL,04H	;控制左移次数
+ 006D  D3 E2			  SHL DX,CL      ;逻辑左移4位，空出4位，接上之前的
+ 006F  02 D0			  ADD DL,AL      ;当前字符对应2进制数加入 DX 中
+ 0071  EB CE			  JMP again		 ;输入下一个字符，判断转换
+				  ;输入错误
+ 0073  52			error0: PUSH    DX
+ 0074  B4 09			  MOV AH,09
+ 0076  BA 0069 R		  MOV DX,OFFSET ERROR
+ 0079  CD 21			  INT 21H        ;显示输入错误提示信息
+ 007B  5A			  POP DX
+				  ;返回结果，并换行
+ 007C  52			done:   PUSH    DX
+				  ;CALL CRLF
+ 007D  5A			  POP DX
+ 007E  C3			  RET
+ 007F				GETNUM  ENDP
+				;换行函数
+ 007F				CRLF    PROC    near                      
+ 007F  B2 0D				MOV DL,0DH
+ 0081  B4 02			    MOV AH,02H
+ 0083  CD 21			    INT 21H       ;光标移到第一列              
+ 0085  B2 0A			    MOV DL,0AH
+ 0087  B4 02			    MOV AH,02H
+ 0089  CD 21			    INT 21H       ;光标移到下一行             
+ 008B  C3			    RET
+ 008C				CRLF ENDP
+ 008C				CODES ENDS
+				    END START
+
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    10/27/22 12:31:04
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODES  . . . . . . . . . . . . .	16 Bit	 008C	  Para	  Private 
+DATAS  . . . . . . . . . . . . .	16 Bit	 0077	  Para	  Private 
+STACKS . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+CRLF . . . . . . . . . . . . . .	P Near	 007F	  CODES	Length= 000D Public
+GETNUM . . . . . . . . . . . . .	P Near	 003F	  CODES	Length= 0040 Public
+  again  . . . . . . . . . . . .	L Near	 0041	  CODES	
+  GETS . . . . . . . . . . . . .	L Near	 006B	  CODES	
+  error0 . . . . . . . . . . . .	L Near	 0073	  CODES	
+  done . . . . . . . . . . . . .	L Near	 007C	  CODES	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+ERROR  . . . . . . . . . . . . .	Byte	 0069	  DATAS	
+MESS1  . . . . . . . . . . . . .	Byte	 0048	  DATAS	
+MESS2  . . . . . . . . . . . . .	Byte	 005A	  DATAS	
+MONTAB . . . . . . . . . . . . .	Byte	 0000	  DATAS	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
+again0 . . . . . . . . . . . . .	L Near	 0005	  CODES	
+
+	   0 Warnings
+	   0 Errors

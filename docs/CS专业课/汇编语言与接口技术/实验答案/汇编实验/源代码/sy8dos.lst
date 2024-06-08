@@ -1,0 +1,110 @@
+Microsoft (R) Macro Assembler Version 6.11		    11/08/22 09:47:16
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATA SEGMENT
+ 0000				DATA ENDS
+ 0000				STACK SEGMENT STACK 'STACK'
+ 0000  0080 [				STA DB 128 DUP(?)
+        00
+       ]
+ = 0080					TOP EQU LENGTH STA
+ 0080				STACK ENDS
+ 0000				CODE SEGMENT
+				ASSUME CS:CODE,DS:DATA,SS:STACK
+ 0000				START:
+					;初始化相关寄存器
+ 0000  B8 ---- R		    MOV AX,DATA
+ 0003  8E D8				MOV DS,AX
+ 0005  B8 ---- R			MOV AX,STACK
+ 0008  8E D0				MOV SS,AX
+ 000A  BC 0080				MOV SP,TOP
+					
+					;置行、列计数初值,字符0开始
+ 000D  B3 00				MOV BL,0;BL中存放要打印字符的ASCII码
+ 000F  B9 0010				MOV CX,16;设置外层循环次数，即行数
+ 0012				OUTER:
+ 0012  51				PUSH CX
+ 0013  B9 0010				MOV CX,16;设置内层循环次数，即列数
+ 0016				INNER:        
+ 0016  80 FB 0A				CMP BL,0AH;判断是否为换行符
+ 0019  74 1E				JZ CHANGE
+ 001B  80 FB 0D				CMP BL,0DH;判断是否为回车符
+ 001E  74 19				JZ CHANGE
+ 0020  8A D3				MOV DL,BL;显示码→DL
+ 0022				SHOW:
+					;输出DL里的内容
+ 0022  B4 02				MOV AH,2
+ 0024  CD 21				INT 21H ;int 21 02号功能，输出值放DL
+					
+					;输出空格间隔
+ 0026  B2 00				MOV DL,0
+ 0028  CD 21				INT 21H;输出空格间隔
+ 002A  FE C3				INC BL;下一个字符ASCII码
+ 002C  E2 E8				LOOP INNER
+					
+ 002E  E8 000C				CALL CRLF;换行函数
+ 0031  59				POP CX
+ 0032  E2 DE				LOOP OUTER
+					
+ 0034  B8 4C00				MOV AX,4C00H;退出程序
+ 0037  CD 21				INT 21H
+					
+ 0039				CHANGE:;是控制码则将其替换为0
+ 0039  B2 00				MOV DL,0
+ 003B  EB E5				JMP SHOW
+					
+				;换行函数
+ 003D				CRLF    PROC    NEAR                      
+ 003D  B2 0D				MOV DL,0DH
+ 003F  B4 02			    MOV AH,02H
+ 0041  CD 21			    INT 21H       ;光标移到第一列              
+ 0043  B2 0A			    MOV DL,0AH
+ 0045  B4 02			    MOV AH,02H
+ 0047  CD 21			    INT 21H       ;光标移到下一行             
+ 0049  C3			    RET
+ 004A				CRLF ENDP
+ 004A				CODE ENDS
+				END START
+
+
+
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    11/08/22 09:47:16
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODE . . . . . . . . . . . . . .	16 Bit	 004A	  Para	  Private 
+DATA . . . . . . . . . . . . . .	16 Bit	 0000	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 0080	  Para	  Stack	  'STACK'	 
+
+
+Procedures,  parameters and locals:
+
+                N a m e                 Type     Value    Attr
+
+CRLF . . . . . . . . . . . . . .	P Near	 003D	  CODE	Length= 000D Public
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+CHANGE . . . . . . . . . . . . .	L Near	 0039	  CODE	
+INNER  . . . . . . . . . . . . .	L Near	 0016	  CODE	
+OUTER  . . . . . . . . . . . . .	L Near	 0012	  CODE	
+SHOW . . . . . . . . . . . . . .	L Near	 0022	  CODE	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODE	
+STA  . . . . . . . . . . . . . .	Byte	 0000	  STACK	
+TOP  . . . . . . . . . . . . . .	Number	 0080h	 
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,103 @@
+Microsoft (R) Macro Assembler Version 6.11		    11/01/22 10:22:52
+tempfile.asm						     Page 1 - 1
+
+
+ 0000				DATA    SEGMENT
+ 0000 49 4E 50 55 54 20		MESS    DB      'INPUT ANY KEY TO CLEAR THE SCREEN $'
+       41 4E 59 20 4B 45
+       59 20 54 4F 20 43
+       4C 45 41 52 20 54
+       48 45 20 53 43 52
+       45 45 4E 20 24
+ 0023				DATA    ENDS
+
+ 0000				STACK   SEGMENT STACK                   ;栈定义
+ 0000  0080 [			STA     DB      128 DUP (?)
+        00
+       ]
+ 0080 0000			TOP     DW      ?
+ 0082				STACK   ENDS
+
+ 0000				CODES    SEGMENT
+				        ASSUME  CS:CODES,DS:DATA,SS:STACK,ES:DATA
+
+ 0000				START: ;段初始化
+ 0000  B8 ---- R			MOV AX,DATA                 
+ 0003  8E D8			    MOV DS,AX
+ 0005  8E C0			    MOV ES,AX
+ 0007  B8 ---- R		    MOV AX,STACK
+ 000A  8E D0			    MOV SS,AX
+ 000C  36: A1 0080 R		    MOV AX,TOP
+ 0010  8B E0			    MOV SP,AX
+				    ;int 21,09号功能输出字符串
+ 0012  8D 16 0000 R		    LEA DX, MESS
+ 0016  B4 09			    MOV AH, 9
+ 0018  CD 21			    INT 21H 
+				            
+					;int 21,01号功能等待键盘输入
+ 001A  B4 01			    MOV AH, 01H
+ 001C  CD 21			    INT 21H
+					;int 10,07号功能清屏,向下滚动很多
+ 001E  B8 0700				MOV AX,0700H 
+ 0021  B5 00				mov ch,0  ;(0,0),;左上角的行号
+ 0023  B1 00			    mov cl,0  ;;左上角的列号
+ 0025  B6 18			    mov dh,24 ;(24,79),右下角的行号
+ 0027  B2 4F			    mov dl,79 ;右下角的列号
+ 0029  B7 07			    mov bh,07 ;属性为黑底白字，17为蓝底更明显
+ 002B  CD 10				INT 10H
+
+					; int 10,02号功能设置光标   
+ 002D  B4 02				MOV AH, 2H
+ 002F  B7 00				MOV BH, 0 ;页数
+ 0031  B6 02				MOV DH, 02H ;行位置
+ 0033  B2 02				MOV DL, 02H ;列位置
+ 0035  CD 10				INT 10H
+					
+					;int 21,01号功能等待键盘输入，显示当前光标位置
+ 0037  B4 01				MOV AH, 01H
+ 0039  CD 21				INT 21H
+
+					; int 10,02号功能设置光标   
+ 003B  B4 02				MOV AH, 2H
+ 003D  B7 00				MOV BH, 0
+ 003F  B6 08				MOV DH, 08H
+ 0041  B2 09				MOV DL, 09H
+ 0043  CD 10				INT 10H
+					;int 21,01号功能等待键盘输入
+ 0045  B4 01				MOV AH, 01H
+ 0047  CD 21				INT 21H
+					;int 21,4C号功能结束程序，返回DOS权限
+ 0049  B4 4C				MOV AH, 4CH   ; exit to operating system.
+ 004B  CD 21				INT 21H
+
+ 004D				CODES  ENDS
+				END START
+
+
+
+Microsoft (R) Macro Assembler Version 6.11		    11/01/22 10:22:52
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+CODES  . . . . . . . . . . . . .	16 Bit	 004D	  Para	  Private 
+DATA . . . . . . . . . . . . . .	16 Bit	 0023	  Para	  Private 
+STACK  . . . . . . . . . . . . .	16 Bit	 0082	  Para	  Stack	  
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+MESS . . . . . . . . . . . . . .	Byte	 0000	  DATA	
+START  . . . . . . . . . . . . .	L Near	 0000	  CODES	
+STA  . . . . . . . . . . . . . .	Byte	 0000	  STACK	
+TOP  . . . . . . . . . . . . . .	Word	 0080	  STACK	
+
+	   0 Warnings
+	   0 Errors

@@ -1,0 +1,64 @@
+Microsoft (R) Macro Assembler Version 6.11		    10/05/22 11:11:21
+tempfile.asm						     Page 1 - 1
+
+
+				.model small
+ 0000				.data
+ 0000 12345678				A dd 12345678h
+ 0004 534ACDE3				B dd 534acde3h
+ 0008 00000000				SUM dd ?
+ 0000				.code
+ 0000				start:
+ 0000  B8 ---- R			mov ax,@data
+ 0003  8E D8				mov ds,ax
+ 0005  8E C0				mov es,ax
+ 0007  8D 36 0000 R			lea si,A
+ 000B  8B 04				mov ax,word ptr[si] ;读取低16位5678h
+ 000D  8B 54 02				mov dx,word ptr[si+2] ;读取高兆拦中16位1234h
+ 0010  8D 36 0004 R			lea si,B
+ 0014  8B 1C				mov bx,word ptr[si]
+ 0016  8B 4C 02				mov cx,word ptr[si+2]
+					;下面完成 DX:AX+CX:BX
+ 0019  03 C3				add ax,bx
+ 001B  13 D1				adc dx,cx ;如果低16位产生衡基进位则自动加上1（2进制族山进位只可能进1）
+ 001D  8D 3E 0008 R			lea di,SUM
+ 0021  89 05				mov word ptr[di],ax
+ 0023  89 55 02				mov word ptr[di+2],dx
+ 0026  B4 4C				mov ah,4ch
+ 0028  CD 21				int 21h
+				end
+Microsoft (R) Macro Assembler Version 6.11		    10/05/22 11:11:21
+tempfile.asm						     Symbols 2 - 1
+
+
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+DGROUP . . . . . . . . . . . . .	GROUP
+_DATA  . . . . . . . . . . . . .	16 Bit	 000C	  Word	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	16 Bit	 002A	  Word	  Public  'CODE'	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 0000h	 
+@DataSize  . . . . . . . . . . .	Number	 0000h	 
+@Interface . . . . . . . . . . .	Number	 0000h	 
+@Model . . . . . . . . . . . . .	Number	 0002h	 
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 DGROUP
+@fardata?  . . . . . . . . . . .	Text   	 FAR_BSS
+@fardata . . . . . . . . . . . .	Text   	 FAR_DATA
+@stack . . . . . . . . . . . . .	Text   	 DGROUP
+A  . . . . . . . . . . . . . . .	DWord	 0000	  _DATA	
+B  . . . . . . . . . . . . . . .	DWord	 0004	  _DATA	
+SUM  . . . . . . . . . . . . . .	DWord	 0008	  _DATA	
+start  . . . . . . . . . . . . .	L Near	 0000	  _TEXT	
+
+	   0 Warnings
+	   0 Errors
