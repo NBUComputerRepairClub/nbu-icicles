@@ -6,7 +6,11 @@ nav :
     - 毕业实习: 毕业实习/readme.md    
     - 数值计算: 数值计算/readme.md
     - 随机过程: 随机过程/readme.md
-
+  - CS专业课:
+    - 概览: CS专业课/index.md
+    - 数据库: CS专业课/数据库/index.md
+    - 编译原理: CS专业课/编译原理/index.md
+    
   - 竞赛:
     - 简介/竞赛.md
     - 飞桨黑客马拉松: 竞赛/paddle.md
@@ -23,3 +27,6 @@ nav :
     - 简介/百科.md
 
   
+theme:
+  name: 'material'
+  language: 'zh'
