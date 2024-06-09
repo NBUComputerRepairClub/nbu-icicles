@@ -63,6 +63,11 @@ plugins:
   - heti:
       extra_skipped_class:
         - arithmatex
+  # 不使用ZJU-Turing的插件：
+  # - turing_changelog
+  # - turing_contributors
+  # - turing_evaluations
+  # - turing_outdate_warning  
         
 extra_css: # 额外的 CSS 文件
   - https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i&display=fallback
