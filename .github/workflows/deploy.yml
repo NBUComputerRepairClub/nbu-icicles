@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # 添加手动触发
+  # workflow_dispatch: # 添加手动触发
     
 permissions:
   contents: write
@@ -11,14 +11,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
       - run: pip install -r requirements.txt
-      # 不使用ZJU-Turing的插件
+      # 不使用ZJU-Turing的插件,不然action会有问题，应该是缺少插件需要的自定义的一些文件
       # - name: Install TuringPlugins
       #   run: |
       #     git clone https://github.com/ZJU-Turing/TuringPlugins.git
