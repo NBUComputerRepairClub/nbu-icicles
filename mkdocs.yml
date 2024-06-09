@@ -1,4 +1,11 @@
-site_name: nbu-icicles
+site_name: 宁波大学课程攻略共享计划
+site_url: https://sayoriaaa.github.io/nbu-icicles/
+site_description: 宁波大学课程攻略共享计划
+repo_name: sayoriaaa/nbu-icicles
+repo_url: https://github.com/sayoriaaa/nbu-icicles/
+edit_uri: tree/master/docs
+# copyright: Copyright &copy; 2023-2024 浙江大学图灵班 https://zju-turing.github.io/TuringCourses/
+
 nav :
   - 主页: index.md
   - 本科生课程: 
@@ -31,6 +38,11 @@ nav :
 theme:
   name: 'material'
   language: 'zh'
+  # logo: images/icon.png
+  icon: # 图标
+    logo: material/notebook-outline
+    repo: fontawesome/brands/github
+    edit: material/pencil
   custom_dir: overrides # 使用扩展主题
   features:
     - content.code.annotate #启用代码注释特性
