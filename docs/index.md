@@ -41,14 +41,24 @@
 
  - fork本项目并下载到本地
 
- - 在`docs`目录下进行更改，commit到github
+ - 在`docs`目录下进行更改，commit到github。如果是添加新页面的话，请记得同时更新好 `mkdocs.yml` 的 `nav` 部分，使新页面能够正常通过站点目录被访问。
 
  - 提交pr
 
 
-本地预览：
+本地预览（构建）：
 
 如果你计划在提交前进行预览，或者计划在本地部署，你可以参考[mkdocs](https://www.mkdocs.org/)的文档（基于python的，非常简单）
+
+1. 克隆本项目 repo
+2. 安装 python 依赖（mkdocs 以及 material）
+    ```shell
+    $ pip3 install -r requirements.txt
+    ```
+3. 启动 mkdocs 本地服务（当前项目目录下）
+    ```shell
+    $ mkdocs serve
+    ```
 
 贡献规范：
 
