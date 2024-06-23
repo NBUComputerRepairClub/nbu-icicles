@@ -25,6 +25,9 @@ nav :
     - 无线网络 : CS专业课/无线网络/index.md
     - 编译原理 : CS专业课/编译原理/index.md
     - 模版 :  template.md
+  - EE专业课:
+    - 概览: EE专业课/index.md
+    - 智能控制导论: EE专业课/智能控制导论/index.md
     
   - 竞赛:
     - 简介/竞赛.md
