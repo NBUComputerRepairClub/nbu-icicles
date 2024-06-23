@@ -1,7 +1,8 @@
-# <课程名称> 
+# 智能控制导论
+
 <div class="badges">
 <span class="badge ee-badge">EE <控制方向选修></span>
-<span ><2学分></span>
+<span class="badge score-badge">2学分</span>
 </div>
 
 ## 课程学习内容
