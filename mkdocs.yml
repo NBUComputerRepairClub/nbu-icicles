@@ -7,7 +7,10 @@ edit_uri: tree/master/docs
 # copyright: Copyright &copy; 2023-2024 浙江大学图灵班 https://zju-turing.github.io/TuringCourses/
 
 nav :
-  - 主页: index.md
+  - 主页: 
+    - index.md
+    - 贡献指南: contributing.md
+    - 课程页面模板: template.md
   - 本科生课程: 
     - 毕业设计: 毕业设计/readme.md
     - 毕业实习: 毕业实习/readme.md    
@@ -15,6 +18,10 @@ nav :
     - 随机过程: 随机过程/readme.md
   - CS专业课:
     - 概览: CS专业课/index.md
+    - 概率论: CS专业课/概率论/index.md
+    - 离散数学: CS专业课/离散数学/index.md
+    - 数字电路: CS专业课/数字电路/index.md
+    - Matlab与数值计算: CS专业课/Matlab与数值计算/index.md
     - 数据库: CS专业课/数据库/index.md
     - 汇编语言与接口技术: CS专业课/汇编语言与接口技术/index.md
     - 操作系统 : CS专业课/操作系统/index.md
@@ -24,7 +31,7 @@ nav :
     - 软硬件基础课程设计 : CS专业课/软硬件基础课程设计/index.md
     - 无线网络 : CS专业课/无线网络/index.md
     - 编译原理 : CS专业课/编译原理/index.md
-    - 模版 :  template.md
+    
   - EE专业课:
     - 概览: EE专业课/index.md
     - 智能控制导论: EE专业课/智能控制导论/index.md

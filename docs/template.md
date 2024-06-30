@@ -1,8 +1,8 @@
 # <课程名称> 
 <div class="badges">
 <span class="badge cs-badge">CS <专业基础/专业必修/专业选修></span>
-<span class="badge ee-badge">AI <专业基础/专业必修/专业选修></span>
-<span class="badge score-badge">IS <专业基础/专业必修/专业选修></span>
+<span class="badge ee-badge">EE <专业基础/专业必修/专业选修></span>
+<span class="badge score-badge">AI <专业基础/专业必修/专业选修></span>
 </div>
 
 ## 课程学习内容
