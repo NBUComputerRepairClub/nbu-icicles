@@ -21,7 +21,9 @@
 
 ## 课程资料
 
-同目录下包含 当初做的课设 仅供参考
++ [课设报告.pdf](https://1drv.ms/b/s!AtocDSkaQMHclWOezil0_bPiBhgh?e=SlncPO)
+
+当初做的课设 仅供参考
 
 
 

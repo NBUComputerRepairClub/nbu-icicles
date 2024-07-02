@@ -29,5 +29,5 @@
 
 ## 课程资料
 
-​	同目录下包含ppt，实验指导书和本人写的答案
-
++ [2021汇编语言与接口技术课件.zip](https://1drv.ms/u/s!AtocDSkaQMHclX09_FRu-qJ8fAiM?e=aRYr2u)
++ [实验答案.zip](https://1drv.ms/u/s!AtocDSkaQMHclXQsw_BwUwdTrZyw?e=iS9ygk)
