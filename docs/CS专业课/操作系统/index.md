@@ -31,3 +31,9 @@
 ## 个人建议
 
 408 直接b站看王道就完了，直接考研打基础QWQ
+
+## 其他资源
+
++ [ppt.zip](https://1drv.ms/u/s!AtocDSkaQMHclXh7TRFX9xy5XGuy?e=jGe3Hc) 
++ [《计算机操作系统（第4版）》学习指导与题解 (梁红兵，汤小丹编著) (z-lib.org).pdf](https://1drv.ms/b/s!AtocDSkaQMHclgd7o59vTxzg0-jk?e=x6lpLM)
++ [实验](https://1drv.ms/f/s!AtocDSkaQMHclW1DoegM_GBmedxK?e=9OFAfp)

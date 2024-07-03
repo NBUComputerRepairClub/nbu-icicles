@@ -32,5 +32,8 @@
 
 ## 课程资料
 
-​	同目录下包含ppt，全部实验指导书和本人写的答案
++ [ppt.zip](https://1drv.ms/u/s!AtocDSkaQMHclWKByaFnfIsAOsTI?e=dfjOem)
++ [实验指导书.zip](https://1drv.ms/u/s!AtocDSkaQMHclWECFs3lARrW64xP?e=GQfn18)
++ [实验答案（仅供参考）.zip](https://1drv.ms/u/s!AtocDSkaQMHclWB9Ydd3A12Q_AHS?e=ESwyeb)
++ [数据库系统概论习题解析与实验指导  第5版 (王珊，张俊编著) (z-lib.org).pdf](https://1drv.ms/b/s!AtocDSkaQMHclWZc6b8tvq8bR-K1?e=KMr15b)
 
