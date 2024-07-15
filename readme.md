@@ -37,18 +37,26 @@
 ——因为很重要所以说了三遍
 
 
-贡献方法：
+[贡献指南](docs/contributing.md)：
 
- - fork本项目并下载到本地
+ - 有Pull Request和直接提交 2种方式，具体详见 docs/contributing.md
 
- - 在`docs`目录下进行更改，commit到github
+## 本地构建/预览
+1. 克隆本项目 repo
+    ```shell
+    $ git clone https://github.com/sayoriaaa/nbu-icicles.git
+    $ cd nbu-icicles
+    ```
+2. 安装 python 依赖（mkdocs 以及 material）
+    ```shell
+    $ pip install -r requirements.txt
+    ```
 
- - 提交pr
-
-
-本地预览：
-
-如果你计划在提交前进行预览，或者计划在本地部署，你可以参考[mkdocs](https://www.mkdocs.org/)的文档（基于python的，非常简单）
+3. 启动 mkdocs 本地服务
+    ```shell
+    $ mkdocs serve
+    ```
+    - 之后即可通过浏览器访问 localhost:8000 预览网站
 
 贡献规范：
 
