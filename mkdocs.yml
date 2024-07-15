@@ -18,19 +18,27 @@ nav :
     - 随机过程: 随机过程/readme.md
   - CS专业课:
     - 概览: CS专业课/index.md
-    - 概率论: CS专业课/概率论/index.md
-    - 离散数学: CS专业课/离散数学/index.md
-    - 数字电路: CS专业课/数字电路/index.md
-    - Matlab与数值计算: CS专业课/Matlab与数值计算/index.md
-    - 数据库: CS专业课/数据库/index.md
-    - 汇编语言与接口技术: CS专业课/汇编语言与接口技术/index.md
-    - 操作系统 : CS专业课/操作系统/index.md
-    - 软件工程 : CS专业课/软件工程/index.md
-    - 软件实训课程 : CS专业课/软件实训课程/index.md
-    - 网络工程课程设计 : CS专业课/网络工程课程设计/index.md
-    - 软硬件基础课程设计 : CS专业课/软硬件基础课程设计/index.md
-    - 无线网络 : CS专业课/无线网络/index.md
-    - 编译原理 : CS专业课/编译原理/index.md
+    - 大二上:
+       - CS专业课/大二上/index.md
+       - 概率论: CS专业课/大二上/概率论/index.md
+       - 离散数学: CS专业课/大二上/离散数学/index.md
+       - 数字电路: CS专业课/大二上/数字电路/index.md
+       - Matlab与数值计算: CS专业课/大二上/Matlab与数值计算/index.md
+    - 大三上:
+       - CS专业课/大三上/index.md
+       - 数据库: CS专业课/大三上/数据库/index.md
+       - 汇编语言与接口技术: CS专业课/大三上/汇编语言与接口技术/index.md
+       - 操作系统 : CS专业课/大三上/操作系统/index.md
+       - 软件工程 : CS专业课/大三上/软件工程/index.md
+       - 网络工程课程设计 : CS专业课/大三上/网络工程课程设计/index.md
+       - 软硬件基础课程设计 : CS专业课/大三上/软硬件基础课程设计/index.md
+       - 无线网络 : CS专业课/大三上/无线网络/index.md
+       - 移动应用开发 : CS专业课/大三上/移动应用开发/index.md
+       - Java高级应用 : CS专业课/大三上/Java高级应用/index.md
+    - 大三下:
+       - CS专业课/大三下/index.md
+       - 编译原理 : CS专业课/大三下/编译原理/index.md
+       - 软件实训课程 : CS专业课/大三下/软件实训课程/index.md
     
   - EE专业课:
     - 概览: EE专业课/index.md
