@@ -9,7 +9,7 @@
 |[概率论](概率论/)||大二上|必修|待完善😘|
 |[Matlab与数值计算](Matlab与数值计算/)||大二上|选修|待完善😘|
 
-PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  [模版](../template.md)
+PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  [模版](../../template.md)
 
 <style>
 .md-typeset table:not([class]) th {
