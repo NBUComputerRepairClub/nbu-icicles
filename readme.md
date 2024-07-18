@@ -44,7 +44,7 @@
 ## 本地构建/预览
 1. 克隆本项目 repo
     ```shell
-    $ git clone https://github.com/sayoriaaa/nbu-icicles.git
+    $ git clone https://github.com/NBUComputerRepairClub/nbu-icicles.git
     $ cd nbu-icicles
     ```
 2. 安装 python 依赖（mkdocs 以及 material）
