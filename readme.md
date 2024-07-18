@@ -77,7 +77,7 @@
 
  - 增加文档内容：`docs: 增加/更新xxx课程内容`
  - 增加网站功能：`feat: xxx`
- - 修改big：`fix: xxx`
+ - 修改bug：`fix: xxx`
 
 Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
 
