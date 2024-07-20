@@ -7,7 +7,7 @@
 ## 本地构建
 1. 克隆本项目 repo
     ```shell
-    $ git clone https://github.com/sayoriaaa/nbu-icicles.git
+    $ git clone https://github.com/NBUComputerRepairClub/nbu-icicles.git
     $ cd nbu-icicles
     ```
 2. 安装 python 依赖（mkdocs 以及 material）
@@ -60,7 +60,7 @@
     - 如果你实在搞不定，不要担心，尽管上传，我们发现后会及时进行修改
 
 !!! note
-    针对还完全没有内容的空页面，我们提供了一个[模板](./template.md)，可以在模板的[源码](https://github.com/sayoriaaa/nbu-icicles/blob/main/docs/template.md?plain=1)基础上修改使用。
+    针对还完全没有内容的空页面，我们提供了一个[模板](./template.md)，可以在模板的[源码](https://github.com/NBUComputerRepairClub/nbu-icicles/blob/main/docs/template.md?plain=1)基础上修改使用。
 
 ### 贡献方式
 #### Pull Request（推荐）
