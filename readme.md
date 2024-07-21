@@ -91,5 +91,9 @@ Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
  - https://github.com/QSCTech/zju-icicles
 
 
+微信公众号
+ - n8u-icicles
+ - 请注意，搜索公众号时不输入短横杠时不会搜索出结果
+
 
 
