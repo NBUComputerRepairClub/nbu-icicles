@@ -4,33 +4,33 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="宁波大学课程攻略共享计划" name="description"/>
-<link href="https://NBUComputerRepairClub.github.io/nbu-icicles/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/readme/" rel="canonical"/>
-<link href="../../%E6%AF%95%E4%B8%9A%E5%AE%9E%E4%B9%A0/readme/" rel="prev"/>
-<link href="../../%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/readme/" rel="next"/>
-<link href="../../assets/images/favicon.png" rel="icon"/>
+<link href="https://NBUComputerRepairClub.github.io/nbu-icicles/%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/readme/" rel="canonical"/>
+<link href="../../%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/readme/" rel="prev"/>
+<link href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/" rel="next"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.4" name="generator"/>
-<title>数值计算 - 宁波大学课程攻略共享计划</title>
-<link href="../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<title>随机过程 - 宁波大学课程攻略共享计划</title>
+<link href="../../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
-<link href="../../css/heti.css" rel="stylesheet"/>
+<link href="../../../css/heti.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<link href="../../css/tasklist.css" rel="stylesheet"/>
-<link href="../../css/card.css" rel="stylesheet"/>
-<link href="../../css/custom.css" rel="stylesheet"/>
-<link href="../../css/counter.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../css/tasklist.css" rel="stylesheet"/>
+<link href="../../../css/card.css" rel="stylesheet"/>
+<link href="../../../css/custom.css" rel="stylesheet"/>
+<link href="../../../css/counter.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
-<script src="../../js/scheme.js" type="text/javascript"></script>
+<script src="../../../js/scheme.js" type="text/javascript"></script>
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#matlab">
+<a class="md-skip" href="#_1">
             跳转至
           </a>
 </div>
@@ -38,7 +38,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="宁波大学课程攻略共享计划" class="md-header__button md-logo" data-md-component="logo" href="../.." title="宁波大学课程攻略共享计划">
+<a aria-label="宁波大学课程攻略共享计划" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="宁波大学课程攻略共享计划">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -54,7 +54,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              数值计算
+              随机过程
             
           </span>
 </div>
@@ -123,42 +123,42 @@
 <div class="md-tabs__inner md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../..">
+<a class="md-tabs__link" href="../../..">
         主页
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link md-tabs__link--active" href="../../%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/readme/">
+<a class="md-tabs__link md-tabs__link--active" href="../../">
         本科生课程
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+<a class="md-tabs__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         CS专业课
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+<a class="md-tabs__link" href="../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/">
         EE专业课
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/">
+<a class="md-tabs__link" href="../../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/">
         竞赛
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/">
+<a class="md-tabs__link" href="../../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/">
         升学
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../%E7%AE%80%E4%BB%8B/%E5%B7%A5%E4%BD%9C/">
+<a class="md-tabs__link" href="../../../%E7%AE%80%E4%BB%8B/%E5%B7%A5%E4%BD%9C/">
         工作
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../%E7%AE%80%E4%BB%8B/%E7%99%BE%E7%A7%91/">
+<a class="md-tabs__link" href="../../../%E7%AE%80%E4%BB%8B/%E7%99%BE%E7%A7%91/">
         百科
       </a>
 </li>
@@ -172,7 +172,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="宁波大学课程攻略共享计划" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="宁波大学课程攻略共享计划">
+<a aria-label="宁波大学课程攻略共享计划" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="宁波大学课程攻略共享计划">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
 </a>
     宁波大学课程攻略共享计划
@@ -191,7 +191,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../..">主页</a>
+<a href="../../..">主页</a>
 <label for="__nav_1">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -203,12 +203,12 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../contributing/">
+<a class="md-nav__link" href="../../../contributing/">
         贡献指南
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../template/">
+<a class="md-nav__link" href="../../../template/">
         课程页面模板
       </a>
 </li>
@@ -217,16 +217,23 @@
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
-<label aria-expanded="true" class="md-nav__link" for="__nav_2" tabindex="0">
-          本科生课程
-          <span class="md-nav__icon md-icon"></span>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../">本科生课程</a>
+<label for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
 </label>
+</div>
 <nav aria-label="本科生课程" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
           本科生课程
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%80%89%E8%AF%BE%E4%BF%A1%E6%81%AF/physics/">
+        体育选课
+      </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/readme/">
         毕业设计
@@ -237,14 +244,19 @@
         毕业实习
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/readme/">
+        数值计算
+      </a>
+</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          数值计算
+          随机过程
           <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./">
-        数值计算
+        随机过程
       </a>
 <nav aria-label="目录" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -253,41 +265,17 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-    理论课
-  </a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#_2">
-    实验课
+    期末考试
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_3">
     文件列表
   </a>
-<nav aria-label="文件列表" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    课程资料
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-    个人参考答案
-  </a>
 </li>
 </ul>
 </nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/readme/">
-        随机过程
-      </a>
 </li>
 </ul>
 </nav>
@@ -295,7 +283,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/">CS专业课</a>
+<a href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/">CS专业课</a>
 <label for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -309,7 +297,7 @@
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" id="__nav_3_2" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/">大二上</a>
+<a href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/">大二上</a>
 <label for="__nav_3_2">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -321,22 +309,22 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%A6%82%E7%8E%87%E8%AE%BA/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%A6%82%E7%8E%87%E8%AE%BA/">
         概率论
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">
         离散数学
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/">
         数字电路
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/Matlab%E4%B8%8E%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/Matlab%E4%B8%8E%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/">
         Matlab与数值计算
       </a>
 </li>
@@ -346,7 +334,7 @@
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" id="__nav_3_3" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/">大三上</a>
+<a href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/">大三上</a>
 <label for="__nav_3_3">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -358,47 +346,47 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%95%B0%E6%8D%AE%E5%BA%93/">
         数据库
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF/">
         汇编语言与接口技术
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
         操作系统
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
         软件工程
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
         网络工程课程设计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
         软硬件基础课程设计
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/">
         无线网络
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
         移动应用开发
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/Java%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/Java%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8/">
         Java高级应用
       </a>
 </li>
@@ -408,7 +396,7 @@
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" id="__nav_3_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/">大三下</a>
+<a href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/">大三下</a>
 <label for="__nav_3_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -420,7 +408,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+<a class="md-nav__link" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
         编译原理
       </a>
 </li>
@@ -433,7 +421,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__link--index">
-<a href="../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/">EE专业课</a>
+<a href="../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/">EE专业课</a>
 <label for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
 </label>
@@ -445,7 +433,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/%E6%99%BA%E8%83%BD%E6%8E%A7%E5%88%B6%E5%AF%BC%E8%AE%BA/">
+<a class="md-nav__link" href="../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/%E6%99%BA%E8%83%BD%E6%8E%A7%E5%88%B6%E5%AF%BC%E8%AE%BA/">
         智能控制导论
       </a>
 </li>
@@ -465,22 +453,22 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/">
+<a class="md-nav__link" href="../../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/">
         竞赛
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AB%9E%E8%B5%9B/paddle/">
+<a class="md-nav__link" href="../../../%E7%AB%9E%E8%B5%9B/paddle/">
         飞桨黑客马拉松
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AB%9E%E8%B5%9B/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/">
+<a class="md-nav__link" href="../../../%E7%AB%9E%E8%B5%9B/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/">
         电子设计竞赛
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AB%9E%E8%B5%9B/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%AB%9E%E8%B5%9B/">
+<a class="md-nav__link" href="../../../%E7%AB%9E%E8%B5%9B/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%AB%9E%E8%B5%9B/">
         机器人竞赛
       </a>
 </li>
@@ -500,7 +488,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/">
+<a class="md-nav__link" href="../../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/">
         升学
       </a>
 </li>
@@ -520,7 +508,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AE%80%E4%BB%8B/%E5%B7%A5%E4%BD%9C/">
+<a class="md-nav__link" href="../../../%E7%AE%80%E4%BB%8B/%E5%B7%A5%E4%BD%9C/">
         工作
       </a>
 </li>
@@ -540,7 +528,7 @@
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E7%AE%80%E4%BB%8B/%E7%99%BE%E7%A7%91/">
+<a class="md-nav__link" href="../../../%E7%AE%80%E4%BB%8B/%E7%99%BE%E7%A7%91/">
         百科
       </a>
 </li>
@@ -562,33 +550,14 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-    理论课
-  </a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#_2">
-    实验课
+    期末考试
   </a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_3">
     文件列表
   </a>
-<nav aria-label="文件列表" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-    课程资料
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-    个人参考答案
-  </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -597,28 +566,44 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/NBUComputerRepairClub/nbu-icicles/tree/master/docs/数值计算/readme.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/NBUComputerRepairClub/nbu-icicles/tree/master/docs/本科生课程/随机过程/readme.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
-<h1 id="matlab"><span>Matlab<span class="heti-spacing"> </span></span>与数值计算<a class="headerlink" href="#matlab" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
-<p>这门课是电信的必修课，作为<span class="heti-skip"><span class="heti-spacing"> </span>CS<span class="heti-spacing"> </span></span>专业的选修课非常建议对图形学感兴趣的同学选修，每一章都是非常实用的内容。</p>
-<p>上的是<span class="heti-skip"><span class="heti-spacing"> </span>2023<span class="heti-spacing"> </span></span>秋<span class="heti-skip"><span class="heti-spacing"> </span>DJF<span class="heti-spacing"> </span></span>的课，分为理论课和实验课</p>
-<h2 id="_1">理论课<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
-<p>理论课用的教材是浙大金一庆的数值方法，但是实际上课讲的内容有很多都省略了，比如<span class="heti-skip"><span class="heti-spacing"> </span>CG<span class="heti-spacing"> </span></span>法。作业留的题目很少，都在<span class="heti-skip"><span class="heti-spacing"> </span>PPT<span class="heti-spacing"> </span></span>上（<span>PPT<span class="heti-spacing"> </span></span>似乎每年不会改，历年的课后习题是一样的）。考试是一页开卷，题目也很简单，不过注意不要只复习课后习题！有些上课讲的内容虽然课后习题没有，但是考试会考到！比如今年就考了个课后习题里没有的拉格朗日插值。</p>
-<p><span>DJF<span class="heti-spacing"> </span></span>每节理论课都会随机点名提问（上机课有概率点名），因此不建议逃课。</p>
-<h2 id="_2">实验课<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
-<p>实验课是要求<span class="heti-skip"><span class="heti-spacing"> </span>matlab<span class="heti-spacing"> </span></span>编程。如果你对<span class="heti-skip"><span class="heti-spacing"> </span>matlab<span class="heti-spacing"> </span></span>所使用的一下语法习惯感到不适（比如一个函数一个文件）这里个人建议可以使用<span class="heti-skip"><span class="heti-spacing"> </span>matlab<span class="heti-spacing"> </span></span>的实时脚本（matlab live editor）编写，体验和<span class="heti-skip"><span class="heti-spacing"> </span>jupyter notebook<span class="heti-spacing"> </span></span>差不多</p>
-<h2 id="_3">文件列表<a class="headerlink" href="#_3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
-<h3 id="_4">课程资料<a class="headerlink" href="#_4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<h1 id="_1">随机过程<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
+<p>上的是<span class="heti-skip"><span class="heti-spacing"> </span>2022<span class="heti-spacing"> </span></span>秋<span class="heti-skip"><span class="heti-spacing"> </span>JXJ<span class="heti-spacing"> </span></span>的随机过程。课本是张波的应用随机过程。课上很多人在摸鱼，老师比较随意，也不挂人，都会捞的。</p>
+<h2 id="_2">期末考试<a class="headerlink" href="#_2" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<p>期末考试的组成如下</p>
 <ul>
-<li><a href="../MATLAB%E5%AE%9E%E9%AA%8C%E6%89%8B%E5%86%8C.pdf">实验手册</a></li>
-<li>课本 <a href="https://pan.baidu.com/s/1dhOEYK2pXsYBk-Bldh32dA?pwd=mdu4">百度网盘</a></li>
+<li>叙述题<span class="heti-skip"><span class="heti-spacing"> </span>25<span class="heti-spacing"> </span></span>分</li>
+<li>填空题<span class="heti-skip"><span class="heti-spacing"> </span>15<span class="heti-spacing"> </span></span>分</li>
+<li>计算题<span class="heti-skip"><span class="heti-spacing"> </span>40<span class="heti-spacing"> </span></span>分（<span>5<span class="heti-spacing"> </span></span>个）</li>
+<li>证明题<span class="heti-skip"><span class="heti-spacing"> </span>20<span class="heti-spacing"> </span></span>分（<span>2<span class="heti-spacing"> </span></span>个）</li>
 </ul>
-<h3 id="_5">个人参考答案<a class="headerlink" href="#_5" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
+<p>范围是<span class="heti-skip"><span class="heti-spacing"> </span>1-9<span class="heti-spacing"> </span></span>章，第四章更新过程不考。</p>
+<p>以下是个人回忆的期末考题：</p>
+<p>简答题<span><span class="heti-spacing"> </span>x5</span>（写概念）</p>
 <ul>
-<li><a href="../main.pdf">实验报告<span><span class="heti-spacing"> </span>(pdf)</span></a></li>
-<li><a href="../main.mlx">实验报告<span><span class="heti-spacing"> </span>(matlab)</span></a>：实时脚本，直接用<span class="heti-skip"><span class="heti-spacing"> </span>matlab<span class="heti-spacing"> </span></span>打开即可。导出实验报告建议先转换成<span><span class="heti-spacing"> </span>word</span>，再用<span class="heti-skip"><span class="heti-spacing"> </span>word<span class="heti-spacing"> </span></span>导出<span><span class="heti-spacing"> </span>pdf</span></li>
-<li><a href="../exercise.pdf">课后习题</a></li>
+<li>条件期望的性质</li>
+<li><span>possion<span class="heti-spacing"> </span></span>过程</li>
+<li>首达概率</li>
+<li>正常返</li>
+<li>离散鞅</li>
+</ul>
+<p>填空题（忘了不全）</p>
+<ul>
+<li><span class="arithmatex">\(N(s+h)-N(s)\)</span> 概率服从一个<span class="arithmatex">\(2\times2\)</span>的表格，求条件期望</li>
+<li><span>0-1<span class="heti-spacing"> </span></span>布朗运动，求期望<span class="arithmatex">\(E(X(S)X(T))\)</span></li>
+</ul>
+<p>大题（忘了不全）</p>
+<ul>
+<li>求<span class="arithmatex">\(P\{\int^1_0B(t)\mathrm{d}t\}&lt;\frac{2}{\sqrt{3}}\)</span>的概率</li>
+<li>伊藤公式计算</li>
+<li><span>possion<span class="heti-spacing"> </span></span>过程里的指数推导</li>
+<li>证明布朗运动的鞅是自己</li>
+</ul>
+<h2 id="_3">文件列表<a class="headerlink" href="#_3" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<ul>
+<li><a href="../course.pdf">课件（<span>1-5<span class="heti-spacing"> </span></span>章）</a>：包括课后习题和考点</li>
 </ul>
 <script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOMGJWvs4Cf87g" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="lindocedskes/nbu-icicles" data-repo-id="R_kgDOMGJWvg" data-strict="1" data-theme="light" src="https://giscus.app/client.js">
 </script>
@@ -638,7 +623,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: 毕业实习" class="md-footer__link md-footer__link--prev" href="../../%E6%AF%95%E4%B8%9A%E5%AE%9E%E4%B9%A0/readme/" rel="prev">
+<a aria-label="上一页: 数值计算" class="md-footer__link md-footer__link--prev" href="../../%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/readme/" rel="prev">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
 </div>
@@ -647,17 +632,17 @@
 <span class="md-footer__direction">
                   上一页
                 </span>
-                毕业实习
+                数值计算
               </div>
 </div>
 </a>
-<a aria-label="下一页: 随机过程" class="md-footer__link md-footer__link--next" href="../../%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/readme/" rel="next">
+<a aria-label="下一页: 概览" class="md-footer__link md-footer__link--next" href="../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                   下一页
                 </span>
-                随机过程
+                概览
               </div>
 </div>
 <div class="md-footer__button md-icon">
@@ -682,8 +667,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.action.edit", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.footer", "navigation.indexes", "navigation.sections"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
-<script src="../../assets/javascripts/bundle.ba449ae6.min.js"></script>
-<script src="../../js/katex.js"></script>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.action.edit", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.footer", "navigation.indexes", "navigation.sections"], "search": "../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+<script src="../../../js/katex.js"></script>
 </body>
 </html>
