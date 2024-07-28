@@ -12,7 +12,8 @@ nav :
     - 贡献指南: contributing.md
     - 课程页面模板: template.md
   - 本科生课程: 
-    - 体育选课: 本科生课程/选课信息/index.md
+    - 概览: 本科生课程/index.md
+    - 体育选课: 本科生课程/选课信息/physics.md
     - 毕业设计: 本科生课程/毕业设计/readme.md
     - 毕业实习: 本科生课程/毕业实习/readme.md    
     - 数值计算: 本科生课程/数值计算/readme.md
