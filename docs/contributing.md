@@ -19,6 +19,10 @@
     ```shell
     $ mkdocs serve
     ```
+    如果不行可以试试
+    ```shell
+    $ python -m mkdocs serve
+    ```
     - 之后即可通过浏览器访问 localhost:8000 预览网站
 
 ## 贡献内容
