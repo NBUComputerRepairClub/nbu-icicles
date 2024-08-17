@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    {
+      "source": "/nbu-icicles/:match*",
+      "destination": "/:match*"
+    }
+  ],
+  "github": {
+      "silent": true
+  }
+}
