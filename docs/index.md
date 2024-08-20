@@ -26,6 +26,22 @@
 
  等等。。
 
+## 本地构建/预览
+1. 克隆本项目 repo
+    ```shell
+    $ git clone https://github.com/NBUComputerRepairClub/nbu-icicles.git
+    $ cd nbu-icicles
+    ```
+2. 安装 python 依赖（mkdocs 以及 material）
+    ```shell
+    $ pip install -r requirements.txt
+    ```
+
+3. 启动 mkdocs 本地服务
+    ```shell
+    $ mkdocs serve
+    ```
+    - 之后即可通过浏览器访问 localhost:8000 预览网站
 
 ## 贡献
 欢迎贡献！
@@ -37,34 +53,16 @@
 ——因为很重要所以说了三遍
 
 
-贡献方法：
+[贡献指南](docs/contributing.md)：
 
- - fork本项目并下载到本地
-
- - 在`docs`目录下进行更改，commit到github。如果是添加新页面的话，请记得同时更新好 `mkdocs.yml` 的 `nav` 部分，使新页面能够正常通过站点目录被访问。
-
- - 提交pr
+ - 有Pull Request和直接提交 2种方式，具体详见[贡献指南](docs/contributing.md)： docs/contributing.md
 
 
-本地预览（构建）：
-
-如果你计划在提交前进行预览，或者计划在本地部署，你可以参考[mkdocs](https://www.mkdocs.org/)的文档（基于python的，非常简单）
-
-1. 克隆本项目 repo
-2. 安装 python 依赖（mkdocs 以及 material）
-    ```shell
-    $ pip3 install -r requirements.txt
-    ```
-3. 启动 mkdocs 本地服务（当前项目目录下）
-    ```shell
-    $ mkdocs serve
-    ```
-
-贡献规范：
+## 贡献规范：
 
 我们希望该项目可以持续性地发展下去，因此希望提交最好满足
 
-提交内容
+### 提交内容
 
  - 统一使用markdown作为介绍（有typora可以直接预览，没有可以用任意的编辑器打开，参考本文件的语法）。文件优先pdf。
 
@@ -74,33 +72,38 @@
 
  - 不要向仓库内上传图片！所有图片一律通过图床显示（推荐使用[postimage](https://postimages.org/)使用简单无需注册）
 
-
-提交格式
+### 提交格式
 
  - 增加文档内容：`docs: 增加/更新xxx课程内容`
  - 增加网站功能：`feat: xxx`
- - 修改big：`fix: xxx`
+ - 修改bug：`fix: xxx`
 
 Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
 
 来自大家的关注、维护和贡献，才是让这个宁波大学独有的攻略本继续存在的动力~
 
+## 微信公众号
 
+ - n8u-icicles
+ - 请注意，搜索公众号时不输入短横杠时不会搜索出结果
+
+## 访问域名：
+
+https://nbucomputerrepairclub.github.io/nbu-icicles/ （github.io源站点）
+
+由于github访问慢的问题，提供**国内访问较快**的站点：
++ https://workstation.love/         域名提供者：[LingLingLinging](https://github.com/LingLingLinging)
++ https://nbu-icicles.1u0yt.fun/  域名提供者：[lindocedskes](https://github.com/lindocedskes)
+
+## 贡献者
+
+<a href="https://github.com/NBUComputerRepairClub/nbu-icicles/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=NBUComputerRepairClub/nbu-icicles" />
+</a>
+
+## 鸣谢
 本项目参考了
 
  - https://github.com/ZJU-Turing/TuringCourses
 
  - https://github.com/QSCTech/zju-icicles
-
-
-
-
-
-
-
-
-
-
-
-
-
