@@ -3,7 +3,7 @@ site_url: https://NBUComputerRepairClub.github.io/nbu-icicles/
 site_description: 宁波大学课程攻略共享计划
 repo_name: nbu-icicles
 repo_url: https://github.com/NBUComputerRepairClub/nbu-icicles/
-edit_uri: tree/master/docs
+edit_uri: tree/main/docs
 
 nav :
   - 主页: 
