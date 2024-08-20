@@ -537,7 +537,51 @@
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_4">
+    本地构建/预览
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
     贡献
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+    贡献规范：
+  </a>
+<nav aria-label="贡献规范：" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+    提交内容
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+    提交格式
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+    微信公众号
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+    访问域名：
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+    贡献者
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+    鸣谢
   </a>
 </li>
 </ul>
@@ -547,7 +591,7 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/NBUComputerRepairClub/nbu-icicles/tree/master/docs/index.md" title="编辑此页">
+<a class="md-content__button md-icon" href="https://github.com/NBUComputerRepairClub/nbu-icicles/tree/main/docs/index.md" title="编辑此页">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="_1">宁波大学课程攻略共享计划<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
@@ -569,37 +613,38 @@
 <li>竞赛<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>科研指南</li>
 </ul>
 <p>等等。。</p>
-<h2 id="_4">贡献<a class="headerlink" href="#_4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<h2 id="_4">本地构建<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>预览<a class="headerlink" href="#_4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<ol>
+<li>克隆本项目<span><span class="heti-spacing"> </span>repo</span>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NBUComputerRepairClub/nbu-icicles.git
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>nbu-icicles
+</code></pre></div></li>
+<li>
+<p>安装<span class="heti-skip"><span class="heti-spacing"> </span>python<span class="heti-spacing"> </span></span>依赖（<span>mkdocs<span class="heti-spacing"> </span></span>以及<span><span class="heti-spacing"> </span>material</span>）
+    </p><div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+</li>
+<li>
+<p>启动<span class="heti-skip"><span class="heti-spacing"> </span>mkdocs<span class="heti-spacing"> </span></span>本地服务
+    </p><div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<ul>
+<li>之后即可通过浏览器访问<span class="heti-skip"><span class="heti-spacing"> </span>localhost:8000<span class="heti-spacing"> </span></span>预览网站</li>
+</ul>
+</li>
+</ol>
+<h2 id="_5">贡献<a class="headerlink" href="#_5" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <p>欢迎贡献！</p>
 <p>欢迎贡献！</p>
 <p>欢迎贡献！</p>
 <p>——因为很重要所以说了三遍</p>
-<p>贡献方法：</p>
+<p><a href="docs/contributing.md">贡献指南</a>：</p>
 <ul>
-<li>
-<p><span>fork<span class="heti-spacing"> </span></span>本项目并下载到本地</p>
-</li>
-<li>
-<p>在<code>docs</code>目录下进行更改，<span>commit<span class="heti-spacing"> </span></span>到<span><span class="heti-spacing"> </span>github</span>。如果是添加新页面的话，请记得同时更新好 <code>mkdocs.yml</code> 的 <code>nav</code> 部分，使新页面能够正常通过站点目录被访问。</p>
-</li>
-<li>
-<p>提交<span><span class="heti-spacing"> </span>pr</span></p>
-</li>
+<li>有<span class="heti-skip"><span class="heti-spacing"> </span>Pull Request<span class="heti-spacing"> </span></span>和直接提交<span class="heti-skip"><span class="heti-spacing"> </span>2<span class="heti-spacing"> </span></span>种方式，具体详见<a href="docs/contributing.md">贡献指南</a>： docs/contributing.md</li>
 </ul>
-<p>本地预览（构建）：</p>
-<p>如果你计划在提交前进行预览，或者计划在本地部署，你可以参考<a href="https://www.mkdocs.org/"><span class="heti-skip"><span class="heti-spacing"> </span>mkdocs<span class="heti-spacing"> </span></span></a>的文档（基于<span class="heti-skip"><span class="heti-spacing"> </span>python<span class="heti-spacing"> </span></span>的，非常简单）</p>
-<ol>
-<li>克隆本项目<span><span class="heti-spacing"> </span>repo</span></li>
-<li>安装<span class="heti-skip"><span class="heti-spacing"> </span>python<span class="heti-spacing"> </span></span>依赖（<span>mkdocs<span class="heti-spacing"> </span></span>以及<span><span class="heti-spacing"> </span>material</span>）
-    <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div></li>
-<li>启动<span class="heti-skip"><span class="heti-spacing"> </span>mkdocs<span class="heti-spacing"> </span></span>本地服务（当前项目目录下）
-    <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>mkdocs<span class="w"> </span>serve
-</code></pre></div></li>
-</ol>
-<p>贡献规范：</p>
+<h2 id="_6">贡献规范：<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
 <p>我们希望该项目可以持续性地发展下去，因此希望提交最好满足</p>
-<p>提交内容</p>
+<h3 id="_7">提交内容<a class="headerlink" href="#_7" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <ul>
 <li>
 <p>统一使用<span class="heti-skip"><span class="heti-spacing"> </span>markdown<span class="heti-spacing"> </span></span>作为介绍（有<span class="heti-skip"><span class="heti-spacing"> </span>typora<span class="heti-spacing"> </span></span>可以直接预览，没有可以用任意的编辑器打开，参考本文件的语法）。文件优先<span><span class="heti-spacing"> </span>pdf</span>。</p>
@@ -614,14 +659,29 @@
 <p>不要向仓库内上传图片！所有图片一律通过图床显示（推荐使用<a href="https://postimages.org/"><span class="heti-skip"><span class="heti-spacing"> </span>postimage<span class="heti-spacing"> </span></span></a>使用简单无需注册）</p>
 </li>
 </ul>
-<p>提交格式</p>
+<h3 id="_8">提交格式<a class="headerlink" href="#_8" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <ul>
 <li>增加文档内容：<code>docs: 增加/更新xxx课程内容</code></li>
 <li>增加网站功能：<code>feat: xxx</code></li>
-<li>修改<span><span class="heti-spacing"> </span>big</span>：<code>fix: xxx</code></li>
+<li>修改<span><span class="heti-spacing"> </span>bug</span>：<code>fix: xxx</code></li>
 </ul>
 <p>Issue、PR、纠错、资料、选课<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>考试攻略，完全欢迎！</p>
 <p>来自大家的关注、维护和贡献，才是让这个宁波大学独有的攻略本继续存在的动力<span><span class="heti-spacing"> </span>~</span></p>
+<h2 id="_9">微信公众号<a class="headerlink" href="#_9" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<ul>
+<li>n8u-icicles</li>
+<li>请注意，搜索公众号时不输入短横杠时不会搜索出结果</li>
+</ul>
+<h2 id="_10">访问域名：<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<p><a href="https://nbucomputerrepairclub.github.io/nbu-icicles/">https://nbucomputerrepairclub.github.io/nbu-icicles/</a> （<span>github.io<span class="heti-spacing"> </span></span>源站点）</p>
+<p>由于<span class="heti-skip"><span class="heti-spacing"> </span>github<span class="heti-spacing"> </span></span>访问慢的问题，提供<strong>国内访问较快</strong>的站点：
++ <a href="https://workstation.love/">https://workstation.love/</a>         域名提供者：<a href="https://github.com/LingLingLinging">LingLingLinging</a>
++ <a href="https://nbu-icicles.1u0yt.fun/">https://nbu-icicles.1u0yt.fun/</a>  域名提供者：<a href="https://github.com/lindocedskes">lindocedskes</a></p>
+<h2 id="_11">贡献者<a class="headerlink" href="#_11" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
+<p><a href="https://github.com/NBUComputerRepairClub/nbu-icicles/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=NBUComputerRepairClub/nbu-icicles"/>
+</a></p>
+<h2 id="_12">鸣谢<a class="headerlink" href="#_12" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h2>
 <p>本项目参考了</p>
 <ul>
 <li>
@@ -631,7 +691,7 @@
 <p><a href="https://github.com/QSCTech/zju-icicles">https://github.com/QSCTech/zju-icicles</a></p>
 </li>
 </ul>
-<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOMGJWvs4Cf87g" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="lindocedskes/nbu-icicles" data-repo-id="R_kgDOMGJWvg" data-strict="1" data-theme="light" src="https://giscus.app/client.js">
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOMGJWvs4Cf87g" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="NBUComputerRepairClub/nbu-icicles" data-repo-id="R_kgDOLF7hCA" data-strict="1" data-theme="light" src="https://giscus.app/client.js">
 </script>
 <script>
     if (document.querySelector("body").getAttribute("data-md-color-scheme") === "slate") {
