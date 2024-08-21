@@ -22,7 +22,7 @@
 | [编译原理](大三下/编译原理/)                 |      | 大三下   |     必修     | 待完善😘  |
 |  | |  |  |  |
 
-PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  [模版](/docs/template.md)
+PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  [模版](../template.md)
 
 <style>
 .md-typeset table:not([class]) th {
