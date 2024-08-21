@@ -53,9 +53,9 @@
 ——因为很重要所以说了三遍
 
 
-[贡献指南](docs/contributing.md)：
+[贡献指南](./contributing.md)：
 
- - 有Pull Request和直接提交 2种方式，具体详见[贡献指南](docs/contributing.md)： docs/contributing.md
+ - 有Pull Request和直接提交 2种方式，具体点击： [贡献指南](./contributing.md) 位于仓库 docs/contributing.md
 
 
 ## 贡献规范：
