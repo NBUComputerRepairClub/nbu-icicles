@@ -77,6 +77,10 @@
 !!! note
     可以直接通过网站顶部的页面标题右侧的编辑按钮 :material-pencil: 定位到对应的 GitHub 页面进行修改。
 
+![](./assets/img/2024-08-22-15-48-12.png)
+![alt text](assets/img/contributing2.png)
+![alt text](assets/img/contributing3.png)
+最后点击commit changes 就修改成功啦
 ## 问题反馈
 如果你发现本网站内容存在问题，请优先在对应页面下方评论区中进行评论，或者在 repo 中开一个 issue 来提出问题。
 
