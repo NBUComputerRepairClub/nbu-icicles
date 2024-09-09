@@ -26,7 +26,8 @@ PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  提交请�
 |--|--|--|
 |大学物理学 第5版 上 (赵近芳,王登龙) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblceimh7TlTF-fCH7fYz?e=PNaHBe)|[百度网盘](https://pan.baidu.com/s/1ZTPP3r-joCNiewlwTQBGnQ?pwd=icic)|
 |大学物理学 第5版 下 (赵近芳,王登龙) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblceimnAHKwA3Nk7ob3B?e=5vVkvB)| [百度网盘](https://pan.baidu.com/s/1ye_zbnX7gYZRgCnsnSxfzQ?pwd=icic)|
-
+|高等数学 上册 (同济大学) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblcejB61snmiNDFBCGPk?e=PAxu5G)|[百度网盘](https://pan.baidu.com/s/1oNMo1z8JQrZJVQ1P-oIrzg?pwd=icic)|
+|高等数学 下册 (同济大学) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblcejBxbAjlItFlCyZMJ?e=e6zomZ)|[百度网盘](https://pan.baidu.com/s/1IkOejNyVxsFkh9wb9IsS-A?pwd=icic)|
 
 PS:由于书本资料可能来自某些公众号，书本内的广告不要轻信！
 PS:如果有需要的书籍，可以在微信公众号n8u-icicles私信中留言，如果你获得了某些书籍的电子版，也可以通过网盘链接等方式连同备注发给我们，我们将会上传至仓库。
