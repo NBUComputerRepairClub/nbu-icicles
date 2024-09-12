@@ -693,6 +693,9 @@
 <p>启动<span class="heti-skip"><span class="heti-spacing"> </span>mkdocs<span class="heti-spacing"> </span></span>本地服务
     </p><div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>mkdocs<span class="w"> </span>serve
 </code></pre></div>
+    如果不行可以试试
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve
+</code></pre></div>
 <ul>
 <li>之后即可通过浏览器访问<span class="heti-skip"><span class="heti-spacing"> </span>localhost:8000<span class="heti-spacing"> </span></span>预览网站</li>
 </ul>
@@ -702,19 +705,19 @@
 <h3 id="_4">网站结构<a class="headerlink" href="#_4" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>目前本站内容根据课程类别进行分组，然后在根据课程单独分页，每页内记录关于该课程的介绍、学习资料、学习技巧等。</p>
 <p>在源代码层面，使用<span class="heti-skip"><span class="heti-spacing"> </span>markdown<span class="heti-spacing"> </span></span>进行编写，每一门课程是一个文件夹，路径和网站链接路径保持一致，文件夹内 <code>index.md</code> 为该门课程的主页，文件夹内可以存放该课程的图片素材、学习资料等等。整体结构在 <code>mkdocs.yml</code> 文件中的 <code>nav</code> 部分定义。</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>.
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>├── docs
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>│   ├── contributing.md     # 本页
-<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>│   ├── template.md         # 课程页面模板
-<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>│   ├── index.md            # 主页
-<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>│   ├── css/                # 本站用到的所有 css 样式
-<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>│   ├── images/             # 仅用来保存网站图标
-<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>│   ├── js/                 # 本站用到的所有 js 脚本
-<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>│   ├── CS专业课/            # CS专业课
-<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a>│   ├── ....
-<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>├── mkdocs.yml          # mkdocs 站点设置
-<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>├── overrides/          # mkdocs-material 个性主题设置
-<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>└── requirements.txt    # 本站构建所需全部 python 依赖
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>.
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>├── docs
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>│   ├── contributing.md     # 本页
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>│   ├── template.md         # 课程页面模板
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>│   ├── index.md            # 主页
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>│   ├── css/                # 本站用到的所有 css 样式
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>│   ├── images/             # 仅用来保存网站图标
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>│   ├── js/                 # 本站用到的所有 js 脚本
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>│   ├── CS专业课/            # CS专业课
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>│   ├── ....
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>├── mkdocs.yml          # mkdocs 站点设置
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>├── overrides/          # mkdocs-material 个性主题设置
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>└── requirements.txt    # 本站构建所需全部 python 依赖
 </code></pre></div>
 <h3 id="_5">贡献守则<a class="headerlink" href="#_5" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h3>
 <p>你可以对本网站进行任何贡献，包括完善、更新页面内容，添加新页面，样式修改等等。</p>
