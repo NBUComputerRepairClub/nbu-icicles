@@ -82,10 +82,28 @@ Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
 
 来自大家的关注、维护和贡献，才是让这个宁波大学独有的攻略本继续存在的动力~
 
-## 微信公众号
 
+
+本项目参考了
+
+ - https://github.com/ZJU-Turing/TuringCourses
+
+ - https://github.com/QSCTech/zju-icicles
+
+**微信公众号:** 
+ 
  - n8u-icicles
  - 请注意，搜索公众号时不输入短横杠时不会搜索出结果
+ <br>
+
+**接受投诉&建议等等**
+
+==QQ群==: nbu-icicles对外联系群(可直接搜索)
+
+==群号==: 962041281
+
+
+
 
 ## 访问域名：
 
