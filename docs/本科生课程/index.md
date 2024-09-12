@@ -18,10 +18,11 @@
 |[随机过程](随机过程/readme.md)|||选修|较完善✅|
 
 
-PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  提交请参考[模板](/docs/template.md)
+PS:较完善✅ 的内容也欢迎补充，目前都不是很详细  提交请参考[模版](../template.md)
 
 提供部分书籍下载方式
 (由于各种原因，大文件将不会被直接存储在仓库中，而提供下载链接)
+
 |书本|链接1|链接2|
 |--|--|--|
 |大学物理学 第5版 上 (赵近芳,王登龙) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblceimh7TlTF-fCH7fYz?e=PNaHBe)|[百度网盘](https://pan.baidu.com/s/1ZTPP3r-joCNiewlwTQBGnQ?pwd=icic)|
