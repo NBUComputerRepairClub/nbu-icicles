@@ -53,6 +53,16 @@ nav :
     - 概览: EE专业课/index.md
     - 智能控制导论: EE专业课/智能控制导论/index.md
     
+  - EI专业课:
+    - 概览: EI专业课/index.md
+    - 大二上:
+       - EI专业课/大二上/index.md
+       - 电路原理: EI专业课/大二上/电路原理/index.md
+       - 复变函数与积分变换: EI专业课/大二上/复变函数与积分变换/index.md
+       - 概率统计: EI专业课/大二上/概率统计/index.md
+       - 数字电子技术基础: EI专业课/大二上/数字电子技术基础/index.md
+       - Matlab与数值计算: EI专业课/大二上/Matlab与数值计算/index.md
+
   - 竞赛:
     - 简介/竞赛.md
     - 飞桨黑客马拉松: 竞赛/paddle.md

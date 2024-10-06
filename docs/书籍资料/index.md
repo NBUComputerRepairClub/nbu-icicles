@@ -9,6 +9,8 @@
 |大学物理学 第5版 上 (赵近芳,王登龙) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblceimh7TlTF-fCH7fYz?e=PNaHBe)|[百度网盘](https://pan.baidu.com/s/1ZTPP3r-joCNiewlwTQBGnQ?pwd=icic)|
 |大学物理学 第5版 下 (赵近芳,王登龙) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblceimnAHKwA3Nk7ob3B?e=5vVkvB)| [百度网盘](https://pan.baidu.com/s/1ye_zbnX7gYZRgCnsnSxfzQ?pwd=icic)|
 |电路 第6版 ||[百度网盘](https://pan.baidu.com/s/141C7W1kvYtJnhJlfX-ZiLg?pwd=icic)|
+|F|||
+|复变函数与积分变换 第5版 (华科大 李红) ||[百度网盘](https://pan.baidu.com/s/18tfbTcHH83AC6nYRHlM-Fw?pwd=icic)|
 |G|||
 |高等数学 上册 (同济大学) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblcejB61snmiNDFBCGPk?e=PAxu5G)|[百度网盘](https://pan.baidu.com/s/1oNMo1z8JQrZJVQ1P-oIrzg?pwd=icic)|
 |高等数学 下册 (同济大学) |[onedrive](https://1drv.ms/b/s!AvQDpbwiblcejBxbAjlItFlCyZMJ?e=e6zomZ)|[百度网盘](https://pan.baidu.com/s/1IkOejNyVxsFkh9wb9IsS-A?pwd=icic)|
