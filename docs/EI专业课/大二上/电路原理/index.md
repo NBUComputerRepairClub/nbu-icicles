@@ -21,14 +21,6 @@
 === "hjj"
     待补充
 
-=== ""
-    待补充
-
-=== ""
-    待补充
-
-=== ""
-    待补充
 
 ## 课程教材
 + [电路 第6版](https://pan.baidu.com/s/141C7W1kvYtJnhJlfX-ZiLg?pwd=icic)
