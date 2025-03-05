@@ -110,8 +110,9 @@ Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！
 https://nbucomputerrepairclub.github.io/nbu-icicles/ （github.io源站点）
 
 由于github访问慢的问题，提供**国内访问较快**的站点：
-+ https://workstation.love/         域名提供者：[LingLingLinging](https://github.com/LingLingLinging)
-+ https://nbu-icicles.1u0yt.fun/  域名提供者：[lindocedskes](https://github.com/lindocedskes)
+
+ + [https://workstation.love/](https://workstation.love/) 域名提供者：[LingLingLinging](https://github.com/LingLingLinging)
+ + [https://nbu-icicles.1u0yt.fun/](https://nbu-icicles.1u0yt.fun/)  域名提供者：[lindocedskes](https://github.com/lindocedskes)
 
 ## 贡献者
 
