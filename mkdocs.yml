@@ -63,6 +63,8 @@ nav :
        - 数字电子技术基础: EI专业课/大二上/数字电子技术基础/index.md
        - 数字电子技术基础: EI专业课/大二上/数字电子技术基础/index.md
        - Matlab与数值计算: EI专业课/大二上/Matlab与数值计算/index.md
+    - 大二下:
+       - EI专业课/大二下/index.md
 
   - 竞赛:
     - 简介/竞赛.md
@@ -78,6 +80,24 @@ nav :
 
   - 百科:
     - 简介/百科.md
+  
+  - 课外拓展学习:
+    - 概览: 课外拓展学习/index.md
+    - 单片机相关:
+       - 概览: 课外拓展学习/单片机相关/index.md
+       - 野火_STM32F103C8T6:
+         - 概览: 课外拓展学习/单片机相关/野火_STM32F103C8T6/index.md
+         - 章节一: 课外拓展学习/单片机相关/野火_STM32F103C8T6/Chapter1.md
+         - 章节二: 课外拓展学习/单片机相关/野火_STM32F103C8T6/Chapter2.md
+         - 章节三: 课外拓展学习/单片机相关/野火_STM32F103C8T6/Chapter3.md
+
+       - 正点原子_ATK-NANO_STM32F1:
+         - 概览: 课外拓展学习/单片机相关/正点原子_ATK-NANO_STM32F1/index.md
+
+       - ESP32:
+         - 概览: 课外拓展学习/单片机相关/ESP32/index.md
+
+
 
   
 theme:
