@@ -48,7 +48,7 @@ ok，现在我们开始我们的教程。
 所以，我现在想跟您分享的是，我们应该如何从零开始去编写我们的工程。
 这里我采用vscode来进行工程项目的撰写，如果有个别不同的我会注明（因为vscode能加皮肤，还有让我很有编写欲望的高亮，咱就是说，咱很喜欢）。
 
-我们看着上述的提示，先打开我们的Template，然后打开main中的main.c（连这一步都做不到的话，那您应该考虑放弃了），他长这样：
+我们看着上述的提示，先打开我们的Template，然后打开User中的main.c（连这一步都做不到的话，那您应该考虑放弃了），他长这样：
 
 ![main函数](./相关图片/3-6%20main函数.png)
 
@@ -70,6 +70,65 @@ ok，现在你已经知道了init是初始化配置的操作，setbit跟resetbit
 
 下面给出思考题跟完整代码：
 
-![3-7 完整代码(未封装)](./相关图片/3-7%20完整代码(未封装).png)
+```
+#include "stm32f10x.h"
+
+void LED_Config(void);
+
+void LED_ON(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+void LED_OFF(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+
+int main(void)
+{
+	LED_Config();
+
+	LED_ON( GPIOA,GPIO_Pin_1);
+	LED_ON( GPIOA,GPIO_Pin_2);
+	LED_ON( GPIOA,GPIO_Pin_3);
+
+    while(1);
+}
+
+
+void LED_Config(void)
+{
+	GPIO_InitTypeDef gpio_init = {0};                     //初始化端口
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); //开启端口时钟
+	
+	//关闭灯（初始化灯的状态）
+	GPIO_SetBits( GPIOA, GPIO_Pin_1 );                    //让引脚端口1输出1，使得灯灭
+	GPIO_SetBits( GPIOA, GPIO_Pin_2 );                    //让引脚端口2输出1，使得灯灭
+	GPIO_SetBits( GPIOA, GPIO_Pin_3 );                    //让引脚端口3输出1，使得灯灭
+	
+	//配置io模式，推挽模式，50M
+	gpio_init.GPIO_Pin    = GPIO_Pin_1;
+	gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+	gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, & gpio_init);                        //配置端口引脚的模式
+	
+	gpio_init.GPIO_Pin    = GPIO_Pin_2;
+//	gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+//	gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, & gpio_init);                        //配置端口引脚的模式	
+	
+	gpio_init.GPIO_Pin    = GPIO_Pin_3;
+//	gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+//	gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;	
+	GPIO_Init(GPIOA, & gpio_init);                        //配置端口引脚的模式	
+}
+
+void LED_ON(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+	GPIO_ResetBits( GPIOx, GPIO_Pin );					//让引脚端口x输出0，使得灯亮
+}
+
+void LED_OFF(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+	GPIO_SetBits( GPIOx, GPIO_Pin );					//让引脚端口x输出1，使得灯灭
+}
+
+```
 
 （这个代码看上去还是很冗杂的，有没有其他的办法可以让我们把这个代码给简化呢？）
