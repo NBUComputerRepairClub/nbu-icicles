@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="宁波大学课程攻略共享计划" name="description"/>
+<link href="https://NBUComputerRepairClub.github.io/nbu-icicles/%E8%AF%BE%E5%A4%96%E6%8B%93%E5%B1%95%E5%AD%A6%E4%B9%A0/%E5%8D%95%E7%89%87%E6%9C%BA%E7%9B%B8%E5%85%B3/%E9%87%8E%E7%81%AB_STM32F103C8T6/Chapter3/" rel="canonical"/>
+<link href="../Chapter2/" rel="prev"/>
+<link href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/" rel="next"/>
+<link href="../../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-9.0.4" name="generator"/>
+<title>章节三 - 宁波大学课程攻略共享计划</title>
+<link href="../../../../assets/stylesheets/main.9c788c91.min.css" rel="stylesheet"/>
+<link href="../../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../../../css/heti.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300i,400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<link href="../../../../css/tasklist.css" rel="stylesheet"/>
+<link href="../../../../css/card.css" rel="stylesheet"/>
+<link href="../../../../css/custom.css" rel="stylesheet"/>
+<link href="../../../../css/counter.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script src="../../../../js/scheme.js" type="text/javascript"></script>
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+            跳转至
+          </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="宁波大学课程攻略共享计划" class="md-header__button md-logo" data-md-component="logo" href="../../../.." title="宁波大学课程攻略共享计划">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            宁波大学课程攻略共享计划
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              章节三
+            
+          </span>
+</div>
+</div>
+</div>
+<div class="md-header__options">
+<div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon">
+<a class="light-mode" href="javascript:toggleScheme();" title="Light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+</a>
+<a class="dark-mode" href="javascript:toggleScheme();" title="Dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+</a>
+<a class="system-mode" href="javascript:toggleScheme();" title="System preference">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07 19.07 3.5m-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13.51 1.67m-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87.4 1.31M19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35-2.53-2.2m4.33-2.7 1.15-2.77 2.2 2.54-3.35.23m1.15-4.96-1.14-2.78 3.34.24-2.2 2.54M9.63 18.93l2.77 1.15-2.53 2.19-.24-3.34Z"></path></svg>
+</a>
+<a class="unknown-mode" href="javascript:toggleScheme();" title="Unknown scheme">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10Z"></path></svg>
+</a>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/NBUComputerRepairClub/nbu-icicles/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    nbu-icicles
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../..">
+        主页
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%96%99/">
+        书籍资料下载
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/">
+        本科生课程
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+        CS专业课
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+        EE专业课
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/">
+        EI专业课
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/">
+        竞赛
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/">
+        升学
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../%E7%AE%80%E4%BB%8B/%E5%B7%A5%E4%BD%9C/">
+        工作
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../../%E7%AE%80%E4%BB%8B/%E7%99%BE%E7%A7%91/">
+        百科
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../../">
+        课外拓展学习
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="宁波大学课程攻略共享计划" class="md-nav__button md-logo" data-md-component="logo" href="../../../.." title="宁波大学课程攻略共享计划">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 4v6l-2-2-2 2V4H9v16h10V4h-2M3 7V5h2V4a2 2 0 0 1 2-2h12c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m2-2v2h2V5H5m0 14h2v-2H5v2m0-6h2v-2H5v2Z"></path></svg>
+</a>
+    宁波大学课程攻略共享计划
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/NBUComputerRepairClub/nbu-icicles/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</div>
+<div class="md-source__repository">
+    nbu-icicles
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../..">主页</a>
+<label for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="主页" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          主页
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../contributing/">
+        贡献指南
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../template/">
+        课程页面模板
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%96%99/">
+        书籍资料
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%96%99/">书籍资料下载</a>
+</div>
+<nav aria-label="书籍资料下载" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          书籍资料下载
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/">本科生课程</a>
+<label for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="本科生课程" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          本科生课程
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/%E9%80%89%E8%AF%BE%E4%BF%A1%E6%81%AF/physics/">
+        体育选课
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/CET/">
+        CET-4&amp;6
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/readme/">
+        毕业设计
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/%E6%AF%95%E4%B8%9A%E5%AE%9E%E4%B9%A0/readme/">
+        毕业实习
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/readme/">
+        数值计算
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E6%9C%AC%E7%A7%91%E7%94%9F%E8%AF%BE%E7%A8%8B/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/readme/">
+        随机过程
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/">CS专业课</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="CS专业课" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          CS专业课
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" id="__nav_4_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/">大二上</a>
+<label for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="大二上" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          大二上
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%A6%82%E7%8E%87%E8%AE%BA/">
+        概率论
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/">
+        离散数学
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/">
+        数字电路
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/Matlab%E4%B8%8E%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/">
+        Matlab与数值计算
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" id="__nav_4_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/">大三上</a>
+<label for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="大三上" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_3">
+<span class="md-nav__icon md-icon"></span>
+          大三上
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+        数据库
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%8E%A5%E5%8F%A3%E6%8A%80%E6%9C%AF/">
+        汇编语言与接口技术
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+        操作系统
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">
+        软件工程
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
+        网络工程课程设计
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%9F%BA%E7%A1%80%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/">
+        软硬件基础课程设计
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C/">
+        无线网络
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/%E7%A7%BB%E5%8A%A8%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/">
+        移动应用开发
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8A/Java%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8/">
+        Java高级应用
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" id="__nav_4_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/">大三下</a>
+<label for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="大三下" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_4">
+<span class="md-nav__icon md-icon"></span>
+          大三下
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+        编译原理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F/">
+        嵌入式系统
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E8%BD%AF%E4%BB%B6%E5%AE%9E%E4%B9%A0%E9%A1%B9%E7%9B%AE/">
+        软件实习项目
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+        算法设计与分析
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%BD%91%E7%BB%9C%E9%9B%86%E6%88%90%E5%AE%9E%E4%B9%A0/">
+        网络集成实习
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF/">
+        信息安全技术
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/IT%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/">
+        IT项目管理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../CS%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E4%BA%91%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF/">
+        云计算技术
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/">EE专业课</a>
+<label for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="EE专业课" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          EE专业课
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/">大三下</a>
+<label for="__nav_5_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="大三下" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_2">
+<span class="md-nav__icon md-icon"></span>
+          大三下
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EE%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E6%99%BA%E8%83%BD%E6%8E%A7%E5%88%B6%E5%AF%BC%E8%AE%BA/">
+        智能控制导论
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/">EI专业课</a>
+<label for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="EI专业课" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          EI专业课
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/">大二上</a>
+<label for="__nav_6_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="大二上" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_6_2">
+<span class="md-nav__icon md-icon"></span>
+          大二上
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E7%94%B5%E8%B7%AF%E5%8E%9F%E7%90%86/">
+        电路原理
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E4%B8%8E%E7%A7%AF%E5%88%86%E5%8F%98%E6%8D%A2/">
+        复变函数与积分变换
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%A6%82%E7%8E%87%E7%BB%9F%E8%AE%A1/">
+        概率统计
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80/">
+        数字电子技术基础
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/%E6%95%B0%E5%AD%97%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E9%AA%8C/">
+        数字电子技术实验
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8A/Matlab%E4%B8%8E%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/">
+        Matlab与数值计算
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" id="__nav_6_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../../EI%E4%B8%93%E4%B8%9A%E8%AF%BE/%E5%A4%A7%E4%BA%8C%E4%B8%8B/">大二下</a>
+</div>
+<nav aria-label="大二下" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_6_3">
+<span class="md-nav__icon md-icon"></span>
+          大二下
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label aria-expanded="false" class="md-nav__link" for="__nav_7" tabindex="0">
+          竞赛
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="竞赛" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          竞赛
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AE%80%E4%BB%8B/%E7%AB%9E%E8%B5%9B/">
+        竞赛
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AB%9E%E8%B5%9B/paddle/">
+        飞桨黑客马拉松
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AB%9E%E8%B5%9B/%E7%94%B5%E5%AD%90%E8%AE%BE%E8%AE%A1%E7%AB%9E%E8%B5%9B/">
+        电子设计竞赛
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AB%9E%E8%B5%9B/%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%AB%9E%E8%B5%9B/">
+        机器人竞赛
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" id="__nav_8" type="checkbox"/>
+<label aria-expanded="false" class="md-nav__link" for="__nav_8" tabindex="0">
+          升学
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="升学" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+          升学
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AE%80%E4%BB%8B/%E5%8D%87%E5%AD%A6/">
+        升学
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" id="__nav_9" type="checkbox"/>
+<label aria-expanded="false" class="md-nav__link" for="__nav_9" tabindex="0">
+          工作
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="工作" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+          工作
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AE%80%E4%BB%8B/%E5%B7%A5%E4%BD%9C/">
+        工作
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" id="__nav_10" type="checkbox"/>
+<label aria-expanded="false" class="md-nav__link" for="__nav_10" tabindex="0">
+          百科
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="百科" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_10">
+<span class="md-nav__icon md-icon"></span>
+          百科
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../../%E7%AE%80%E4%BB%8B/%E7%99%BE%E7%A7%91/">
+        百科
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" id="__nav_11" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../../">课外拓展学习</a>
+<label for="__nav_11">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="课外拓展学习" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_11">
+<span class="md-nav__icon md-icon"></span>
+          课外拓展学习
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2" id="__nav_11_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../">单片机相关</a>
+<label for="__nav_11_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="单片机相关" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_11_2">
+<span class="md-nav__icon md-icon"></span>
+          单片机相关
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_2" id="__nav_11_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../">野火_STM32F103C8T6</a>
+<label for="__nav_11_2_2">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="野火_STM32F103C8T6" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_11_2_2">
+<span class="md-nav__icon md-icon"></span>
+          野火_STM32F103C8T6
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chapter1/">
+        章节一
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chapter2/">
+        章节二
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<a class="md-nav__link md-nav__link--active" href="./">
+        章节三
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_3" id="__nav_11_2_3" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/">正点原子_ATK-NANO_STM32F1</a>
+</div>
+<nav aria-label="正点原子_ATK-NANO_STM32F1" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_11_2_3">
+<span class="md-nav__icon md-icon"></span>
+          正点原子_ATK-NANO_STM32F1
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11_2_4" id="__nav_11_2_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../ESP32/">ESP32</a>
+</div>
+<nav aria-label="ESP32" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_11_2_4">
+<span class="md-nav__icon md-icon"></span>
+          ESP32
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/NBUComputerRepairClub/nbu-icicles/tree/main/docs/课外拓展学习/单片机相关/野火_STM32F103C8T6/Chapter3.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="_1">神说要有光，于是有了光<a class="headerlink" href="#_1" title="Permanent link"><span><span class="heti-spacing"> </span>¶</span></a></h1>
+<p>很高兴你能看到这里，本章我们要做的是，点亮我们<span class="heti-skip"><span class="heti-spacing"> </span>STM32<span class="heti-spacing"> </span></span>上面的板载<span><span class="heti-spacing"> </span>LED</span>（随便哪一个都可以）。这也是我们在学习<span class="heti-skip"><span class="heti-spacing"> </span>STM32<span class="heti-spacing"> </span></span>时的第一个项目。</p>
+<p>拿野火的<span class="heti-skip"><span class="heti-spacing"> </span>STM32F103C8T6<span class="heti-spacing"> </span></span>举例，要点亮的就是上面的那三颗<span class="heti-skip"><span class="heti-spacing"> </span>blingbling<span class="heti-spacing"> </span></span>亮亮的东西<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>这个东西长这么大是因为我买了他们专门的扩展板，将<span class="heti-skip"><span class="heti-spacing"> </span>STM32<span class="heti-spacing"> </span></span>直接查到扩展板上使用了，正常人使用的时候一般都是用面包板加其他的配件的<span><span class="heti-spacing"> </span>)</span>。</p>
+<p><img alt="野火STM32F103C8T6" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-1%20%E9%87%8E%E7%81%ABSTM32F103C8T6.jpg"/></p>
+<p>ok，现在我们开始我们的教程。</p>
+<p>在上一章一个打括号的内容中我有说到过，<span>LED<span class="heti-spacing"> </span></span>接的都是<span class="heti-skip"><span class="heti-spacing"> </span>PA<span class="heti-spacing"> </span></span>接口，且这个<span class="heti-skip"><span class="heti-spacing"> </span>PA<span class="heti-spacing"> </span></span>接口实际上就是我们的<span><span class="heti-spacing"> </span>GPIOA</span>，而且，这个接口是接在<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>的负极上的。于是就有了这个——“实际上在原理图中可以看出，在这块板子上，<span>LED<span class="heti-spacing"> </span></span>的正极是始终接<span class="heti-skip"><span class="heti-spacing"> </span>3.3V<span class="heti-spacing"> </span></span>的正电压，而<span class="heti-skip"><span class="heti-spacing"> </span>PA1<span class="heti-spacing"> </span></span>接的是<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>的负极，也就是说<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>不发光的原因实际上是因为<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>两端的电压并没有达到正向导通电压的最低要求（1.2~4V），所以<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>不发光。如果说想让他发光，用数电的理解就是给一个低电平信号就可以了<heti-adjacent class="heti-adjacent-quarter">。</heti-adjacent>”（第二章的内容）。</p>
+<p>但是实际我们在书写的时候我们会发现一个问题：按照我们在<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>语言或者<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>的思维来说，我们在写的时候应该是把端口看成是我们的对象，然后对这个对象进行编程。然而，在实际写的时候你会发现这样子是行不通的，因为根本没有<span class="heti-skip"><span class="heti-spacing"> </span>GPIO<span class="heti-spacing"> </span></span>这个对象（也别想着去新建一个<span class="heti-skip"><span class="heti-spacing"> </span>GPIOA<span class="heti-spacing"> </span></span>对象了，要不然就相当于重新写一个库了，而且还有一些寄存器的东西，很麻烦）。所以我们直接采取用正经的 库函数 的方法来书写这个功能。</p>
+<p>（看到这里时，您可以先不往下拉进度条，先看着这个题目来自己尝试书写一下）
+下面请听题：请使用STM32和其标准库来编写对应的程序（Template文件在之前的资料包中，按照上一章的内容来弄一下就可以了）。
+程序的书写在User-&gt;main.c中进行书写。
+要用到的函数有：RCC_APB2PeriphClockCmd、GPIO_SetBits、GPIO_Init、GPIO_ResetBits。
+要用到的type类型有：GPIO_InitTypeDef。
+（请学会善用 选中函数之后用鼠标右键=&gt;前往定义(Go To Definition Of 'xx') 这一功能）</p>
+<p><img alt="前往定义" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-2%20%E5%89%8D%E5%BE%80%E5%AE%9A%E4%B9%89.png#pic_center"/></p>
+<p>如果您能直接按照上面的提示来写出这个程序的话，那么您是真的很天才，已经不需要我这样的学习笔记辅佐您学习了。
+如果您没有什么想法的话，不要气馁，这是正常的，毕竟我这份笔记在这个时候还没有写到对标准库函数的介绍。接下来我们简单的来介绍一下标准库函数。</p>
+<p>在我所提供的<span class="heti-skip"><span class="heti-spacing"> </span>Template<span class="heti-spacing"> </span></span>文件中，主程序<span><span class="heti-spacing"> </span>main.c</span>（记得用<span class="heti-skip"><span class="heti-spacing"> </span>Keil5<span class="heti-spacing"> </span></span>打开，<span>Template-&gt;Project-&gt;<span class="heti-spacing"> </span></span>有一个<span class="heti-skip"><span class="heti-spacing"> </span>.uvproj<span class="heti-spacing"> </span></span>文件并且有<span class="heti-skip"><span class="heti-spacing"> </span>Keil5<span class="heti-spacing"> </span></span>的图标的，双击就可以了）中有一行这样的<span><span class="heti-spacing"> </span>include</span>：</p>
+<p><img alt="include" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-3%20include.png#pic_center"/> </p>
+<p>这个<span class="heti-skip"><span class="heti-spacing"> </span>include<span class="heti-spacing"> </span></span>导入的就是<span class="heti-skip"><span class="heti-spacing"> </span>STM32<span class="heti-spacing"> </span></span>的标准库，而所有的库函数则在左侧栏中的<span class="heti-skip"><span class="heti-spacing"> </span>FWLIB<span class="heti-spacing"> </span></span>中可以找到：</p>
+<p><img alt="Keil5左侧栏" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-4%20Keil5%E5%B7%A6%E4%BE%A7%E6%A0%8F.png#pic_center"/></p>
+<p>回到我们上一章说过的内容，<span>PA1<span class="heti-spacing"> </span></span>是在<span class="heti-skip"><span class="heti-spacing"> </span>GPIOA<span class="heti-spacing"> </span></span>底下的，<span>GPIOA<span class="heti-spacing"> </span></span>是在<span class="heti-skip"><span class="heti-spacing"> </span>APB2<span class="heti-spacing"> </span></span>中的，<span>APB2<span class="heti-spacing"> </span></span>是“<span>AHB<span class="heti-spacing"> </span></span>系统总线”的，而控制“<span>AHB<span class="heti-spacing"> </span></span>系统总线”的是“复位和时钟控制（RCC）”，然后我们可以发现<span class="heti-skip"><span class="heti-spacing"> </span>RCC<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>GPIO<span class="heti-spacing"> </span></span>在左侧栏中的<span class="heti-skip"><span class="heti-spacing"> </span>FWLIB<span class="heti-spacing"> </span></span>中都是有对应的文件的（一个是<span><span class="heti-spacing"> </span>xxxx_rcc.c</span>，还有一个是<span><span class="heti-spacing"> </span>xxxx_gpio.c</span>），根据上面的提示我们可以去看一下这几个函数有什么用。
+（看到这里时，您可以先不往下拉进度条，先看着这个题目来自己尝试书写一下）</p>
+<p><img alt="系统结构图" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/2-2%20%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE.png#pic_center"/></p>
+<p>然后您就会发现，这些函数写的使用说明，全都是英文的……
+请不要惊讶，因为这个标准库最早都是由外国人搭建的，就算是中国人搭建的，也是要给外国人使用的，可以理解是国际统一标准。
+这时候您可以使用您的AI工具来帮您翻译这些内容，真挺好用的。
+现在您要做的就是，翻译上面我所提供的提示函数，然后用这些函数去编写你的点亮LED的启动程序。
+（注意，在使用前往定义这一功能的时候，不要拘泥于只查函数的，可以去看看函数后面的形参的定义是怎么样的）</p>
+<p>如果您看到我这边的内容之后，还是对这个没有什么想法的话，不要气馁，因为我学到这里的时候也是没有什么想法的，说明您跟我的水平是大差不差的。而我是个很正常的人，这也变相说明了您也是个很正常的人，断然是没有比别人笨很多说法的。</p>
+<p>所以，我现在想跟您分享的是，我们应该如何从零开始去编写我们的工程。
+这里我采用vscode来进行工程项目的撰写，如果有个别不同的我会注明（因为vscode能加皮肤，还有让我很有编写欲望的高亮，咱就是说，咱很喜欢）。</p>
+<p>我们看着上述的提示，先打开我们的<span><span class="heti-spacing"> </span>Template</span>，然后打开<span class="heti-skip"><span class="heti-spacing"> </span>User<span class="heti-spacing"> </span></span>中的<span><span class="heti-spacing"> </span>main.c</span>（连这一步都做不到的话，那您应该考虑放弃了），他长这样：</p>
+<p><img alt="main函数" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-6%20main%E5%87%BD%E6%95%B0.png"/></p>
+<p>这个<span class="heti-skip"><span class="heti-spacing"> </span>main<span class="heti-spacing"> </span></span>函数就是我们放代码的地方，上面的注释部分是给我们拿来写简介用的，这也是我的一个编程习惯，当然你不喜欢的话也可以放到<span class="heti-skip"><span class="heti-spacing"> </span>README<span class="heti-spacing"> </span></span>里面，甚至是不写。但是我还是建议你写一下，以免有人来问你或者你自己之后学习的过程中忘记了。</p>
+<p>然后，我们把我们的相关函数放进去（RCC_APB2PeriphClockCmd、GPIO_SetBits、GPIO_Init、GPIO_ResetBits），用 右键<span class="heti-skip"><span class="heti-spacing"> </span>-&gt;<span class="heti-spacing"> </span></span>前往定义 的方式来去查看这个函数到底怎么用的（不要被庞大的英文和乱七八糟的形参给吓到，我们现在生活在一个充满着科技感的时代，好好利用你的<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>工具）。</p>
+<p>当你看完所有的函数之后，你会发现有一个地方要用到一个奇奇怪怪的自定义的结构体：GPIO_InitTypeDef，猜一下他是什么意思？
+好叭，你应该也猜不到是什么意思，其实可以直接简单的去理解一下——GPIO是我们的接口，Init是初始化的意思，我们要Init（初始化）我们的GPIO（接口），学过面向对象程序设计的你应该能理解这一步是什么操作了，实际上就是构造一个对象，能把我们的GPIO接口从现实中带到我们的代码中进行操作。就我个人来理解，我这一步操作称呼为——实例化。
+如果到这一步你还是不理解实例化到底有什么作用的话，就先将
+</p><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>GPIO_InitTypeDef gpio_init = {0};
+</code></pre></div>
+这串代码放在你的int main之后叭，你之后会知道的。
+<p>ok，现在你已经知道了<span class="heti-skip"><span class="heti-spacing"> </span>init<span class="heti-spacing"> </span></span>是初始化配置的操作，<span>setbit<span class="heti-spacing"> </span></span>跟<span class="heti-skip"><span class="heti-spacing"> </span>resetbit<span class="heti-spacing"> </span></span>很好理解，设置跟置零的区别，用数电的话来讲就是置一和置零的关系，还记得这章的开头说了什么吗？不记得的话再回去看看，你将会对这两个函数恍然大悟。而我们的<span class="heti-skip"><span class="heti-spacing"> </span>rcc_clk<span class="heti-spacing"> </span></span>是干嘛的呢？时钟信号不要忘了。什么？你说你不知道时钟信号是什么意思有什么用？我相信<a href="https://blog.csdn.net/weixin_44395686/article/details/105318472">这篇<span class="heti-skip"><span class="heti-spacing"> </span>blog<span class="heti-spacing"> </span></span></a>你会用上的。</p>
+<p>所以我们现在只要给接口设置上对应的配置（回去瞅瞅你的<span class="heti-skip"><span class="heti-spacing"> </span>GPIO_InitTypeDef<span class="heti-spacing"> </span></span>的相关定义，就知道要配置什么了），记得模式是推挽输出模式（建议是去看一下使用手册中<span class="heti-skip"><span class="heti-spacing"> </span>GPIO<span class="heti-spacing"> </span></span>的那一大章，看完就应该知道推挽是什么意思了。但大多数人心急（我也是），所以也可以看<a href="https://blog.csdn.net/weixin_44788542/article/details/115303125">这篇介绍推挽输出模式的<span><span class="heti-spacing"> </span>blog</span></a>）</p>
+<p>下面给出思考题跟完整代码：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>#include "stm32f10x.h"
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>void LED_Config(void);
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>void LED_ON(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>void LED_OFF(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>int main(void)
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>{
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>    LED_Config();
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>    LED_ON( GPIOA,GPIO_Pin_1);
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>    LED_ON( GPIOA,GPIO_Pin_2);
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a>    LED_ON( GPIOA,GPIO_Pin_3);
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>    while(1);
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a>}
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a>
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a>void LED_Config(void)
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a>{
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a>    GPIO_InitTypeDef gpio_init = {0};                     //初始化端口
+<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a>
+<a href="#__codelineno-1-25" id="__codelineno-1-25" name="__codelineno-1-25"></a>    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); //开启端口时钟
+<a href="#__codelineno-1-26" id="__codelineno-1-26" name="__codelineno-1-26"></a>
+<a href="#__codelineno-1-27" id="__codelineno-1-27" name="__codelineno-1-27"></a>    //关闭灯（初始化灯的状态）
+<a href="#__codelineno-1-28" id="__codelineno-1-28" name="__codelineno-1-28"></a>    GPIO_SetBits( GPIOA, GPIO_Pin_1 );                    //让引脚端口1输出1，使得灯灭
+<a href="#__codelineno-1-29" id="__codelineno-1-29" name="__codelineno-1-29"></a>    GPIO_SetBits( GPIOA, GPIO_Pin_2 );                    //让引脚端口2输出1，使得灯灭
+<a href="#__codelineno-1-30" id="__codelineno-1-30" name="__codelineno-1-30"></a>    GPIO_SetBits( GPIOA, GPIO_Pin_3 );                    //让引脚端口3输出1，使得灯灭
+<a href="#__codelineno-1-31" id="__codelineno-1-31" name="__codelineno-1-31"></a>
+<a href="#__codelineno-1-32" id="__codelineno-1-32" name="__codelineno-1-32"></a>    //配置io模式，推挽模式，50M
+<a href="#__codelineno-1-33" id="__codelineno-1-33" name="__codelineno-1-33"></a>    gpio_init.GPIO_Pin    = GPIO_Pin_1;
+<a href="#__codelineno-1-34" id="__codelineno-1-34" name="__codelineno-1-34"></a>    gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+<a href="#__codelineno-1-35" id="__codelineno-1-35" name="__codelineno-1-35"></a>    gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;
+<a href="#__codelineno-1-36" id="__codelineno-1-36" name="__codelineno-1-36"></a>    GPIO_Init(GPIOA, &amp; gpio_init);                        //配置端口引脚的模式
+<a href="#__codelineno-1-37" id="__codelineno-1-37" name="__codelineno-1-37"></a>
+<a href="#__codelineno-1-38" id="__codelineno-1-38" name="__codelineno-1-38"></a>    gpio_init.GPIO_Pin    = GPIO_Pin_2;
+<a href="#__codelineno-1-39" id="__codelineno-1-39" name="__codelineno-1-39"></a>//  gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+<a href="#__codelineno-1-40" id="__codelineno-1-40" name="__codelineno-1-40"></a>//  gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;
+<a href="#__codelineno-1-41" id="__codelineno-1-41" name="__codelineno-1-41"></a>    GPIO_Init(GPIOA, &amp; gpio_init);                        //配置端口引脚的模式   
+<a href="#__codelineno-1-42" id="__codelineno-1-42" name="__codelineno-1-42"></a>
+<a href="#__codelineno-1-43" id="__codelineno-1-43" name="__codelineno-1-43"></a>    gpio_init.GPIO_Pin    = GPIO_Pin_3;
+<a href="#__codelineno-1-44" id="__codelineno-1-44" name="__codelineno-1-44"></a>//  gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+<a href="#__codelineno-1-45" id="__codelineno-1-45" name="__codelineno-1-45"></a>//  gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;   
+<a href="#__codelineno-1-46" id="__codelineno-1-46" name="__codelineno-1-46"></a>    GPIO_Init(GPIOA, &amp; gpio_init);                        //配置端口引脚的模式   
+<a href="#__codelineno-1-47" id="__codelineno-1-47" name="__codelineno-1-47"></a>}
+<a href="#__codelineno-1-48" id="__codelineno-1-48" name="__codelineno-1-48"></a>
+<a href="#__codelineno-1-49" id="__codelineno-1-49" name="__codelineno-1-49"></a>void LED_ON(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+<a href="#__codelineno-1-50" id="__codelineno-1-50" name="__codelineno-1-50"></a>{
+<a href="#__codelineno-1-51" id="__codelineno-1-51" name="__codelineno-1-51"></a>    GPIO_ResetBits( GPIOx, GPIO_Pin );                  //让引脚端口x输出0，使得灯亮
+<a href="#__codelineno-1-52" id="__codelineno-1-52" name="__codelineno-1-52"></a>}
+<a href="#__codelineno-1-53" id="__codelineno-1-53" name="__codelineno-1-53"></a>
+<a href="#__codelineno-1-54" id="__codelineno-1-54" name="__codelineno-1-54"></a>void LED_OFF(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+<a href="#__codelineno-1-55" id="__codelineno-1-55" name="__codelineno-1-55"></a>{
+<a href="#__codelineno-1-56" id="__codelineno-1-56" name="__codelineno-1-56"></a>    GPIO_SetBits( GPIOx, GPIO_Pin );                    //让引脚端口x输出1，使得灯灭
+<a href="#__codelineno-1-57" id="__codelineno-1-57" name="__codelineno-1-57"></a>}
+</code></pre></div>
+<p>（这个代码看上去还是很冗杂的，有没有其他的办法可以让我们把这个代码给简化呢<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>）</p>
+<script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOLF7hCM4ChzJD" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="NBUComputerRepairClub/nbu-icicles" data-repo-id="R_kgDOLF7hCA" data-strict="1" data-theme="light" src="https://giscus.app/client.js">
+</script>
+<script>
+    if (document.querySelector("body").getAttribute("data-md-color-scheme") === "slate") {
+      var giscus = document.querySelector("script[src*=giscus]")
+      giscus.setAttribute("data-theme", "https://gcore.jsdelivr.net/gh/TonyCrane/note/docs/css/giscus.css") 
+    }
+  </script>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+              回到页面顶部
+            </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: 章节二" class="md-footer__link md-footer__link--prev" href="../Chapter2/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  上一页
+                </span>
+                章节二
+              </div>
+</div>
+</a>
+<a aria-label="下一页: 概览" class="md-footer__link md-footer__link--next" href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                  下一页
+                </span>
+                概览
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../../..", "features": ["content.code.annotate", "content.action.edit", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.footer", "navigation.indexes", "navigation.sections"], "search": "../../../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../../assets/javascripts/bundle.ba449ae6.min.js"></script>
+<script src="../../../../js/katex.js"></script>
+</body>
+</html>
