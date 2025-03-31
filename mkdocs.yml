@@ -51,6 +51,10 @@ nav :
     
   - EE专业课:
     - 概览: EE专业课/index.md
+    - 大一下: 
+      - EE专业课/大一下/index.md
+      - EE专业课/大一下/C语言程序设计/index.md
+      - EE专业课/大一下/面向对象程序设计/index.md
     - 智能控制导论: EE专业课/智能控制导论/index.md
     
   - 竞赛:
