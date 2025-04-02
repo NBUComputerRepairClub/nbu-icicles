@@ -6,7 +6,7 @@
 <meta content="宁波大学课程攻略共享计划" name="description"/>
 <link href="https://NBUComputerRepairClub.github.io/nbu-icicles/%E8%AF%BE%E5%A4%96%E6%8B%93%E5%B1%95%E5%AD%A6%E4%B9%A0/%E5%8D%95%E7%89%87%E6%9C%BA%E7%9B%B8%E5%85%B3/%E9%87%8E%E7%81%AB_STM32F103C8T6/Chapter3/" rel="canonical"/>
 <link href="../Chapter2/" rel="prev"/>
-<link href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/" rel="next"/>
+<link href="../Chapter4/" rel="next"/>
 <link href="../../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.4" name="generator"/>
 <title>章节三 - 宁波大学课程攻略共享计划</title>
@@ -766,6 +766,11 @@
         章节三
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chapter4/">
+        章节四
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -831,9 +836,9 @@
 <p>（看到这里时，您可以先不往下拉进度条，先看着这个题目来自己尝试书写一下）
 下面请听题：请使用STM32和其标准库来编写对应的程序（Template文件在之前的资料包中，按照上一章的内容来弄一下就可以了）。</p>
 <p>程序的书写在<span class="heti-skip"><span class="heti-spacing"> </span>User-&gt;main.c<span class="heti-spacing"> </span></span>中进行书写。
-要用到的函数有：RCC_APB2PeriphClockCmd、GPIO_SetBits、GPIO_Init、GPIO_ResetBits。
-要用到的type类型有：GPIO_InitTypeDef。
-（请学会善用 选中函数之后用鼠标右键=&gt;前往定义(Go To Definition Of 'xx') 这一功能，详细见下图片）
+要用到的函数有：<code>RCC_APB2PeriphClockCmd</code>、<code>GPIO_SetBits</code>、<code>GPIO_Init</code>、<code>GPIO_ResetBits</code>。
+要用到的type类型有：<code>GPIO_InitTypeDef</code>。
+（请学会善用 选中函数之后用鼠标右键=&gt;前往定义(<code>Go To Definition Of 'xx'</code>) 这一功能，详细见下图片）
 （没有什么想法的话可以把这几个函数跟和类型复制到keil5中，然后去前往定义就可以了）</p>
 <p><img alt="前往定义" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-2%20%E5%89%8D%E5%BE%80%E5%AE%9A%E4%B9%89.png#pic_center"/></p>
 <p>如果您能直接按照上面的提示来写出这个程序的话，那么您是真的很天才，已经不需要我这样的学习笔记辅佐您学习了。
@@ -856,16 +861,17 @@
 <p>我们看着上述的提示，先打开我们的<span><span class="heti-spacing"> </span>Template</span>，然后打开<span class="heti-skip"><span class="heti-spacing"> </span>User<span class="heti-spacing"> </span></span>中的<span><span class="heti-spacing"> </span>main.c</span>（连这一步都做不到的话，那您应该考虑放弃了），他长这样：</p>
 <p><img alt="main函数" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/3-6%20main%E5%87%BD%E6%95%B0.png"/></p>
 <p>这个<span class="heti-skip"><span class="heti-spacing"> </span>main<span class="heti-spacing"> </span></span>函数就是我们放代码的地方，上面的注释部分是给我们拿来写简介用的，这也是我的一个编程习惯，当然你不喜欢的话也可以放到<span class="heti-skip"><span class="heti-spacing"> </span>README<span class="heti-spacing"> </span></span>里面，甚至是不写。但是我还是建议你写一下，以免有人来问你或者你自己之后学习的过程中忘记了。</p>
-<p>然后，我们把我们的相关函数放进去（RCC_APB2PeriphClockCmd、GPIO_SetBits、GPIO_Init、GPIO_ResetBits），用 右键<span class="heti-skip"><span class="heti-spacing"> </span>-&gt;<span class="heti-spacing"> </span></span>前往定义 的方式来去查看这个函数到底怎么用的（不要被庞大的英文和乱七八糟的形参给吓到，我们现在生活在一个充满着科技感的时代，好好利用你的<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>工具）。</p>
+<p>然后，我们把我们的相关函数放进去（RCC_APB2PeriphClockCmd、GPIO_SetBits、GPIO_Init、GPIO_ResetBits），用<code>右键-&gt;前往定义</code>的方式来去查看这个函数到底怎么用的（不要被庞大的英文和乱七八糟的形参给吓到，我们现在生活在一个充满着科技感的时代，好好利用你的<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>工具）。</p>
 <p>当你看完所有的函数之后，你会发现有一个地方要用到一个奇奇怪怪的自定义的结构体：GPIO_InitTypeDef，猜一下他是什么意思？
-好叭，你应该也猜不到是什么意思，其实可以直接简单的去理解一下——GPIO是我们的接口，Init是初始化的意思，我们要Init（初始化）我们的GPIO（接口），学过面向对象程序设计的你应该能理解这一步是什么操作了，实际上就是构造一个对象，能把我们的GPIO接口从现实中带到我们的代码中进行操作。就我个人来理解，我这一步操作称呼为——实例化。
+好叭，你应该也猜不到是什么意思，其实可以直接简单的去理解一下——GPIO是我们的接口，Init是初始化的意思，我们要Init（初始化）我们的GPIO（接口），学过面向对象程序设计的你应该能理解这一步是什么操作了，实际上就是构造一个对象，能把我们的GPIO接口从现实中带到我们的代码中进行操作。就我个人来理解，我这一步操作称呼为——<code>实例化</code>。
 如果到这一步你还是不理解实例化到底有什么作用的话，就先将
 </p><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>GPIO_InitTypeDef gpio_init;
 </code></pre></div>
 这串代码放在你的int main之后叭，你之后会知道的。
-<p>ok，现在你已经知道了<span class="heti-skip"><span class="heti-spacing"> </span>init<span class="heti-spacing"> </span></span>是初始化配置的操作，<span>setbit<span class="heti-spacing"> </span></span>跟<span class="heti-skip"><span class="heti-spacing"> </span>resetbit<span class="heti-spacing"> </span></span>很好理解，设置跟置零的区别，用数电的话来讲就是置一和置零的关系，还记得这章的开头说了什么吗？不记得的话再回去看看，你将会对这两个函数恍然大悟。而我们的<span class="heti-skip"><span class="heti-spacing"> </span>rcc_clk<span class="heti-spacing"> </span></span>是干嘛的呢？时钟信号不要忘了。什么？你说你不知道时钟信号是什么意思有什么用？我相信<a href="https://blog.csdn.net/weixin_44395686/article/details/105318472">这篇<span class="heti-skip"><span class="heti-spacing"> </span>blog<span class="heti-spacing"> </span></span></a>你会用上的。</p>
-<p>所以我们现在只要给接口设置上对应的配置（回去瞅瞅你的<span class="heti-skip"><span class="heti-spacing"> </span>GPIO_InitTypeDef<span class="heti-spacing"> </span></span>的相关定义，就知道要配置什么了），记得模式是推挽输出模式（建议是去看一下使用手册中<span class="heti-skip"><span class="heti-spacing"> </span>GPIO<span class="heti-spacing"> </span></span>的那一大章，看完就应该知道推挽是什么意思了。但大多数人心急（我也是），所以也可以看<a href="https://blog.csdn.net/weixin_44788542/article/details/115303125">这篇介绍推挽输出模式的<span><span class="heti-spacing"> </span>blog</span></a>）</p>
-<p>下面给出思考题跟完整代码：</p>
+<p>ok，现在你已经知道了<code>init</code>是初始化配置的操作，<code>setbit</code>跟<code>resetbit</code>很好理解，设置跟置零的区别，用数电的话来讲就是置一和置零的关系，还记得这章的开头说了什么吗？不记得的话再回去看看，你将会对这两个函数恍然大悟。而我们的<code>rcc_clk</code>是干嘛的呢？<code>时钟信号</code>不要忘了。什么？你说你不知道时钟信号是什么意思有什么用？我在这里给你做一个简单的比喻先：我们寻常生物如果要运动要生活，离不开我们的核心——心脏。心脏扑通扑通的跳动，可以说是这个由心脏产生的频率维持了我们的日常工作跟生活。那么现在我们要把这个<code>心脏</code>移植到我们的单片机上，是不是单片机也需要一个这样的频率来维持他的工作？你这么一想，配置时钟信号的含义是不是就很清晰了？
+当然，我这里只是利用了一个比喻来介绍这个时钟信号，这个时钟信号肯定不是这么简单的。如果你想了解更多的话，我相信<a href="https://blog.csdn.net/weixin_44395686/article/details/105318472">这篇blog</a>你会用上的。</p>
+<p>所以我们现在只要给接口设置上对应的配置（回去瞅瞅你的<code>GPIO_InitTypeDef</code>的相关定义，就知道要配置什么了），记得配置的模式是<code>推挽输出模式</code>（建议是去看一下使用手册中<span class="heti-skip"><span class="heti-spacing"> </span>GPIO<span class="heti-spacing"> </span></span>的那一大章，看完就应该知道推挽是什么意思了。但大多数人心急（我也是），所以也可以看<a href="https://blog.csdn.net/weixin_44788542/article/details/115303125">这篇介绍推挽输出模式的<span><span class="heti-spacing"> </span>blog</span></a>）</p>
+<p>下面给出思考题跟主函数完整代码：</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>#include "stm32f10x.h"
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>void LED_Config(void);
@@ -924,7 +930,8 @@
 <a href="#__codelineno-1-56" id="__codelineno-1-56" name="__codelineno-1-56"></a>    GPIO_SetBits( GPIOx, GPIO_Pin );                    //让引脚端口x输出1，使得灯灭
 <a href="#__codelineno-1-57" id="__codelineno-1-57" name="__codelineno-1-57"></a>}
 </code></pre></div>
-<p>（这个代码看上去还是很冗杂的，有没有其他的办法可以让我们把这个代码给简化呢？或者，更精确一点——把这个<span class="heti-skip"><span class="heti-spacing"> </span>main<span class="heti-spacing"> </span></span>函数给简化呢<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>）</p>
+<p>（这个代码看上去还是很冗杂的，有没有其他的办法可以让我们把这个代码给简化呢？或者——把这个主函数函数给简化呢<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>）
+（更精确的说法应该是，我们能不能写的更规范一点？就像……库函数写的那样？）</p>
 <script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOLF7hCM4ChzJD" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="NBUComputerRepairClub/nbu-icicles" data-repo-id="R_kgDOLF7hCA" data-strict="1" data-theme="light" src="https://giscus.app/client.js">
 </script>
 <script>
@@ -956,13 +963,13 @@
               </div>
 </div>
 </a>
-<a aria-label="下一页: 概览" class="md-footer__link md-footer__link--next" href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/" rel="next">
+<a aria-label="下一页: 章节四" class="md-footer__link md-footer__link--next" href="../Chapter4/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                   下一页
                 </span>
-                概览
+                章节四
               </div>
 </div>
 <div class="md-footer__button md-icon">
