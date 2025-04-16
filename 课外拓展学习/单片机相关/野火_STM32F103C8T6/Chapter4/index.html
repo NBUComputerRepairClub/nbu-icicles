@@ -6,7 +6,7 @@
 <meta content="宁波大学课程攻略共享计划" name="description"/>
 <link href="https://NBUComputerRepairClub.github.io/nbu-icicles/%E8%AF%BE%E5%A4%96%E6%8B%93%E5%B1%95%E5%AD%A6%E4%B9%A0/%E5%8D%95%E7%89%87%E6%9C%BA%E7%9B%B8%E5%85%B3/%E9%87%8E%E7%81%AB_STM32F103C8T6/Chapter4/" rel="canonical"/>
 <link href="../Chapter3/" rel="prev"/>
-<link href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/" rel="next"/>
+<link href="../Chapter5/" rel="next"/>
 <link href="../../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.4" name="generator"/>
 <title>章节四 - 宁波大学课程攻略共享计划</title>
@@ -771,6 +771,11 @@
         章节四
       </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Chapter5/">
+        章节五
+      </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -827,7 +832,241 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
 </a>
 <h1 id="_1">什么？你也是影流之主？<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
-<p>静……静候佳音？<span>Σ(<span class="heti-spacing"> </span></span>っ<span><span class="heti-spacing"> </span>°</span>Д <span>°;)<span class="heti-spacing"> </span></span>っ</p>
+<p>上一章我们讲到了要如何去点亮我们的板载<span><span class="heti-spacing"> </span>LED</span>。但是众所周知，我们的日常生活中的<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>灯都是可以做各种各样的操作的。像用开关操作<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>灯啦、这个灯一遍遍地闪烁啦、又或者是让他有一个呼吸状态的效果啦，之类的。在本章中，我们要完成的任务就是——让这几个板载的<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>灯实现一个流水灯的效果。</p>
+<p>流水灯其实就是好几个灯 依次的 、 有间隔 的亮灭，也可以叫跑马灯或者其他的什么，但是我更喜欢叫流水灯。那请思考一下，我们要达成这样 依次的、有间隔的亮灭，应该如何去实现呢？</p>
+<p>聪明的你应该能想到， 依次的 对应到代码中，就是要我们去控制他每一个灯对应的<span class="heti-skip"><span class="heti-spacing"> </span>GPIO<span class="heti-spacing"> </span></span>口的高低电平，相信你看了上一章的内容之后，你应该能很清楚的知道我们该怎么去实现这个功能了。而 有间隔的亮灭 ，对应到代码当中的含义就是，需要我们执行 延迟 操作，也就是让我们写一个 延时函数 。</p>
+<p>如果你觉得自己已经差不多懂了，想迫不及待的上手练练你的<span class="heti-skip"><span class="heti-spacing"> </span>stm32<span class="heti-spacing"> </span></span>了，那接下来我估计得给你浇一盆冷水了——我在上一章写的任务，您完成了么？</p>
+<p>我在上一章给的最后的任务的意思其实是想让你们把和<span class="heti-skip"><span class="heti-spacing"> </span>led<span class="heti-spacing"> </span></span>有关的程序——“LED_Config”<heti-adjacent class="heti-adjacent-quarter">、</heti-adjacent>“LED_ON”<heti-adjacent class="heti-adjacent-quarter">、</heti-adjacent>“LED_OFF”，给封装成一个<span class="heti-skip"><span class="heti-spacing"> </span>led.c<span class="heti-spacing"> </span></span>文件。和其他的库函数一样，有<span class="heti-skip"><span class="heti-spacing"> </span>.c<span class="heti-spacing"> </span></span>文件，就一定有<span class="heti-skip"><span class="heti-spacing"> </span>.h<span class="heti-spacing"> </span></span>文件（头文件），所以同时，我们要重新写出来一个<span class="heti-skip"><span class="heti-spacing"> </span>led.h<span class="heti-spacing"> </span></span>文件。</p>
+<p>然后，你可以利用你在<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>语言中学到的 宏定义 （对的，就是那个你觉得没啥用的东西），来给你在上一章定义的那些莫名其妙的地址和端口什么的，重新命名一下。比方说像这样：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>#define LED_PORT        GPIOA
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>#define LED_CLK         RCC_APB2Periph_GPIOA
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>#define RED_Pin         GPIO_Pin_1
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>#define GREEN_Pin       GPIO_Pin_2
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>#define BLUE_Pin        GPIO_Pin_3
+</code></pre></div>
+<p>当然，函数的声明什么的，也要在这里写一下：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>void LED_Config(void)       ;
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>void LED_on (GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>void LED_off(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+</code></pre></div>
+<p>然后就是别忘了你头文件<span class="heti-skip"><span class="heti-spacing"> </span>(.h<span class="heti-spacing"> </span></span>文件<span class="heti-skip"><span class="heti-spacing"> </span>)<span class="heti-spacing"> </span></span>的初始化和你写函数的那个<span class="heti-skip"><span class="heti-spacing"> </span>.c<span class="heti-spacing"> </span></span>文件的头文件导入：</p>
+<p>这是写在<span class="heti-skip"><span class="heti-spacing"> </span>.h<span class="heti-spacing"> </span></span>文件最前面的部分：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>#ifndef __LED_H
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>#define __LED_H
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>#include "stm32f10x.h"
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>……(写上你的那些宏定义和函数声明)
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>#endif /*  __LED_H  */
+</code></pre></div>
+<p>这是写在<span class="heti-skip"><span class="heti-spacing"> </span>.c<span class="heti-spacing"> </span></span>文件最前面的部分<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>导入你的刚刚写的头文件<span><span class="heti-spacing"> </span>)</span>：
+</p><div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>#include "led.h"
+</code></pre></div>
+<p>剩下的就是写复制粘贴的事情了，跟你一开始写的时候一样，只不过所有函数的定义你都要放在对应的<span class="heti-skip"><span class="heti-spacing"> </span>.c<span class="heti-spacing"> </span></span>文件中。最后别忘了在<span class="heti-skip"><span class="heti-spacing"> </span>main.c<span class="heti-spacing"> </span></span>中，你要多导入一个头文件——嗯，对的，就是你刚刚定义的那个<span class="heti-skip"><span class="heti-spacing"> </span>led.h<span class="heti-spacing"> </span></span>文件。这样你才能去调用你刚刚写的那些控制<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>的函数。</p>
+<p>上次的课后题就讲这么多，接下来我们开始想想，如何延时，从而让<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>灯实现流水灯的效果。</p>
+<p>按照我们的正常思路，如果说你想要延迟，你就要让这个玩意儿休息一段时间。像<span class="heti-skip"><span class="heti-spacing"> </span>python<span class="heti-spacing"> </span></span>中有<span class="heti-skip"><span class="heti-spacing"> </span>sleep<span class="heti-spacing"> </span></span>函数，让一个器件在一段时间内 “如同婴儿般的入睡” 。同理，我们也可以让这个<span class="heti-skip"><span class="heti-spacing"> </span>stm32<span class="heti-spacing"> </span></span>在这段时间内什么事情都不执行，来做到我们延时的效果。</p>
+<p>那现在效果有了，我们要如何书写函数来做到判断经过了多少时间呢？还记得我们在第<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>章中讲到的时钟么，我们就用这个<span class="heti-skip"><span class="heti-spacing"> </span>stm32<span class="heti-spacing"> </span></span>的心脏来判断流过了多少时间。</p>
+<p>所以你要做的，就是在<span class="heti-skip"><span class="heti-spacing"> </span>main.c<span class="heti-spacing"> </span></span>文件中（也可以再用<span><span class="heti-spacing"> </span>.c</span>、<span>.h<span class="heti-spacing"> </span></span>文件来进行库函数的封装的，你喜欢哪个就用哪个<heti-adjacent class="heti-adjacent-half">，</heti-adjacent><code>建议后者</code><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，用一个循环，让他什么也不做，然后反复测试你的时间来看下是否可行。但是这个函数归根结底是占用了我们的<span class="heti-skip"><span class="heti-spacing"> </span>CPU<span class="heti-spacing"> </span></span>资源，只能做到一个简单、粗略的延时功能。在后面的学习中，我们会用到定时器来书写更精准的延时函数，但是现在么，还是拿这个先将就着用一下叭。</p>
+<p>我也简单的写了一个<span class="heti-skip"><span class="heti-spacing"> </span>delay<span class="heti-spacing"> </span></span>的函数，如下：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>void Rough_Delay(__IO uint32_t ncount)
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>{
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>    for ( uint32_t i = 0 ; i &lt; ncount ; i++)
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>    {
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>        __NOP();
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>    }
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>}
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>void Rough_Delay_us(__IO uint32_t time)
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>{
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>    Rough_Delay(7*time);
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>}
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>
+<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>void Rough_Delay_ms(__IO uint32_t time)
+<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a>{
+<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a>    Rough_Delay(0x318*7*time);
+<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a>}
+<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a>
+<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>void Rough_Delay_s(__IO uint32_t time)
+<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a>{
+<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a>    Rough_Delay(0x318*0x318*7*time);
+<a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a>}
+</code></pre></div>
+<p>函数中的一些数值是通过计时测试得出来了，可以的话尽量不要做特别的修改，当然你想改也没啥太大的关系啦，别动<span class="heti-skip"><span class="heti-spacing"> </span>7<span class="heti-spacing"> </span></span>这个数字就可以了。<span>0x318<span class="heti-spacing"> </span></span>是十六进制的<span><span class="heti-spacing"> </span>1000</span>，乘上去相当于是单位的换算了。</p>
+<p>那现在，我们有了延迟函数，也把<span class="heti-skip"><span class="heti-spacing"> </span>LED<span class="heti-spacing"> </span></span>相关的函数给封装了起来，聪明的你应该也能写出一个漂亮的流水灯了。？你说你还是不会写？八嘎，快快闭门再造造车叭。</p>
+<p>你说你想照搬我的代码？行叭行叭，但只能参考借鉴哦：</p>
+<p><span>led.c<span class="heti-spacing"> </span></span>文件：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>#include "led.h"
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>void LED_Config (void)
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>{
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>    GPIO_InitTypeDef gpio_init = {0};                     //初始化端口
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>    RCC_APB2PeriphClockCmd(LED_CLK, ENABLE); //开启端口时钟
+<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a>    //关闭灯（初始化灯的状态）
+<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a>    GPIO_SetBits( LED_PORT, RED     );                    //让红灯引脚端口输出1，使得灯灭
+<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a>    GPIO_SetBits( LED_PORT, GREEN   );                    //让绿灯引脚端口输出1，使得灯灭
+<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>    GPIO_SetBits( LED_PORT, BLUE    );                    //让蓝灯引脚端口输出1，使得灯灭
+<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a>
+<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a>    //配置io模式，推挽模式，50M
+<a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a>    gpio_init.GPIO_Pin    = RED     ;
+<a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a>    gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+<a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a>    gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;
+<a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a>    GPIO_Init(LED_PORT, &amp; gpio_init);                        //配置端口引脚的模式
+<a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a>
+<a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a>    gpio_init.GPIO_Pin    = GREEN   ;
+<a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a>//  gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+<a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a>//  gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;
+<a href="#__codelineno-5-23" id="__codelineno-5-23" name="__codelineno-5-23"></a>    GPIO_Init(LED_PORT, &amp; gpio_init);                        //配置端口引脚的模式    
+<a href="#__codelineno-5-24" id="__codelineno-5-24" name="__codelineno-5-24"></a>
+<a href="#__codelineno-5-25" id="__codelineno-5-25" name="__codelineno-5-25"></a>    gpio_init.GPIO_Pin    = BLUE    ;
+<a href="#__codelineno-5-26" id="__codelineno-5-26" name="__codelineno-5-26"></a>//  gpio_init.GPIO_Mode   = GPIO_Mode_Out_PP;
+<a href="#__codelineno-5-27" id="__codelineno-5-27" name="__codelineno-5-27"></a>//  gpio_init.GPIO_Speed  = GPIO_Speed_50MHz;   
+<a href="#__codelineno-5-28" id="__codelineno-5-28" name="__codelineno-5-28"></a>    GPIO_Init(LED_PORT, &amp; gpio_init);                        //配置端口引脚的模式    
+<a href="#__codelineno-5-29" id="__codelineno-5-29" name="__codelineno-5-29"></a>}
+<a href="#__codelineno-5-30" id="__codelineno-5-30" name="__codelineno-5-30"></a>
+<a href="#__codelineno-5-31" id="__codelineno-5-31" name="__codelineno-5-31"></a>void LED_on (GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+<a href="#__codelineno-5-32" id="__codelineno-5-32" name="__codelineno-5-32"></a>{
+<a href="#__codelineno-5-33" id="__codelineno-5-33" name="__codelineno-5-33"></a>    GPIO_ResetBits( GPIOx, GPIO_Pin );                  //让红灯引脚端口x输出1，使得灯灭
+<a href="#__codelineno-5-34" id="__codelineno-5-34" name="__codelineno-5-34"></a>}
+<a href="#__codelineno-5-35" id="__codelineno-5-35" name="__codelineno-5-35"></a>
+<a href="#__codelineno-5-36" id="__codelineno-5-36" name="__codelineno-5-36"></a>void LED_off(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+<a href="#__codelineno-5-37" id="__codelineno-5-37" name="__codelineno-5-37"></a>{
+<a href="#__codelineno-5-38" id="__codelineno-5-38" name="__codelineno-5-38"></a>    GPIO_SetBits(  GPIOx, GPIO_Pin);                        //让红灯引脚端口x输出1，使得灯灭
+<a href="#__codelineno-5-39" id="__codelineno-5-39" name="__codelineno-5-39"></a>}
+</code></pre></div>
+<p><span>led.h<span class="heti-spacing"> </span></span>文件：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>#ifndef __LED_H
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>#define __LED_H
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>#include "stm32f10x.h"
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>#define LED_PORT    GPIOA
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>#define LED_CLK     RCC_APB2Periph_GPIOA
+<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>#define RED         GPIO_Pin_1
+<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a>#define GREEN       GPIO_Pin_2
+<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a>#define BLUE        GPIO_Pin_3
+<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a>
+<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a>#define LED_RED_ON          LED_on( LED_PORT,RED    );
+<a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a>#define LED_GREEN_ON        LED_on( LED_PORT,GREEN  );
+<a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a>#define LED_BLUE_ON         LED_on( LED_PORT,BLUE   );
+<a href="#__codelineno-6-15" id="__codelineno-6-15" name="__codelineno-6-15"></a>
+<a href="#__codelineno-6-16" id="__codelineno-6-16" name="__codelineno-6-16"></a>#define LED_RED_OFF         LED_off( LED_PORT,RED    );
+<a href="#__codelineno-6-17" id="__codelineno-6-17" name="__codelineno-6-17"></a>#define LED_GREEN_OFF       LED_off( LED_PORT,GREEN  );
+<a href="#__codelineno-6-18" id="__codelineno-6-18" name="__codelineno-6-18"></a>#define LED_BLUE_OFF        LED_off( LED_PORT,BLUE   );
+<a href="#__codelineno-6-19" id="__codelineno-6-19" name="__codelineno-6-19"></a>
+<a href="#__codelineno-6-20" id="__codelineno-6-20" name="__codelineno-6-20"></a>#define LED_ONLY_RED_ON     LED_on  ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-21" id="__codelineno-6-21" name="__codelineno-6-21"></a>                            LED_off ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-22" id="__codelineno-6-22" name="__codelineno-6-22"></a>                            LED_off ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-23" id="__codelineno-6-23" name="__codelineno-6-23"></a>
+<a href="#__codelineno-6-24" id="__codelineno-6-24" name="__codelineno-6-24"></a>#define LED_ONLY_GREEN_ON   LED_off ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-25" id="__codelineno-6-25" name="__codelineno-6-25"></a>                            LED_on  ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-26" id="__codelineno-6-26" name="__codelineno-6-26"></a>                            LED_off ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-27" id="__codelineno-6-27" name="__codelineno-6-27"></a>
+<a href="#__codelineno-6-28" id="__codelineno-6-28" name="__codelineno-6-28"></a>#define LED_ONLY_BLUE_ON    LED_off ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-29" id="__codelineno-6-29" name="__codelineno-6-29"></a>                            LED_off ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-30" id="__codelineno-6-30" name="__codelineno-6-30"></a>                            LED_on  ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-31" id="__codelineno-6-31" name="__codelineno-6-31"></a>
+<a href="#__codelineno-6-32" id="__codelineno-6-32" name="__codelineno-6-32"></a>#define LED_ONLY_RED_OFF    LED_off ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-33" id="__codelineno-6-33" name="__codelineno-6-33"></a>                            LED_on  ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-34" id="__codelineno-6-34" name="__codelineno-6-34"></a>                            LED_on  ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-35" id="__codelineno-6-35" name="__codelineno-6-35"></a>
+<a href="#__codelineno-6-36" id="__codelineno-6-36" name="__codelineno-6-36"></a>#define LED_ONLY_GREEN_OFF  LED_on  ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-37" id="__codelineno-6-37" name="__codelineno-6-37"></a>                            LED_off ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-38" id="__codelineno-6-38" name="__codelineno-6-38"></a>                            LED_on  ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-39" id="__codelineno-6-39" name="__codelineno-6-39"></a>
+<a href="#__codelineno-6-40" id="__codelineno-6-40" name="__codelineno-6-40"></a>#define LED_ONLY_BLUE_OFF   LED_on  ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-41" id="__codelineno-6-41" name="__codelineno-6-41"></a>                            LED_on  ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-42" id="__codelineno-6-42" name="__codelineno-6-42"></a>                            LED_off ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-43" id="__codelineno-6-43" name="__codelineno-6-43"></a>
+<a href="#__codelineno-6-44" id="__codelineno-6-44" name="__codelineno-6-44"></a>#define LED_ALL_ON          LED_on  ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-45" id="__codelineno-6-45" name="__codelineno-6-45"></a>                            LED_on  ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-46" id="__codelineno-6-46" name="__codelineno-6-46"></a>                            LED_on  ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-47" id="__codelineno-6-47" name="__codelineno-6-47"></a>
+<a href="#__codelineno-6-48" id="__codelineno-6-48" name="__codelineno-6-48"></a>#define LED_ALL_OFF         LED_off ( LED_PORT,RED    );    \
+<a href="#__codelineno-6-49" id="__codelineno-6-49" name="__codelineno-6-49"></a>                            LED_off ( LED_PORT,GREEN  );    \
+<a href="#__codelineno-6-50" id="__codelineno-6-50" name="__codelineno-6-50"></a>                            LED_off ( LED_PORT,BLUE   );
+<a href="#__codelineno-6-51" id="__codelineno-6-51" name="__codelineno-6-51"></a>
+<a href="#__codelineno-6-52" id="__codelineno-6-52" name="__codelineno-6-52"></a>void LED_Config(void)       ;
+<a href="#__codelineno-6-53" id="__codelineno-6-53" name="__codelineno-6-53"></a>
+<a href="#__codelineno-6-54" id="__codelineno-6-54" name="__codelineno-6-54"></a>void LED_on (GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+<a href="#__codelineno-6-55" id="__codelineno-6-55" name="__codelineno-6-55"></a>void LED_off(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+<a href="#__codelineno-6-56" id="__codelineno-6-56" name="__codelineno-6-56"></a>
+<a href="#__codelineno-6-57" id="__codelineno-6-57" name="__codelineno-6-57"></a>#endif /*  __LED_H  */
+</code></pre></div>
+<p><span>delay.c<span class="heti-spacing"> </span></span>文件：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>#include "delay.h"
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a>void Rough_Delay(__IO uint32_t ncount)
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a>{
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>    for ( uint32_t i = 0 ; i &lt; ncount ; i++)
+<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a>    {
+<a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a>        __NOP();
+<a href="#__codelineno-7-8" id="__codelineno-7-8" name="__codelineno-7-8"></a>    }
+<a href="#__codelineno-7-9" id="__codelineno-7-9" name="__codelineno-7-9"></a>}
+<a href="#__codelineno-7-10" id="__codelineno-7-10" name="__codelineno-7-10"></a>
+<a href="#__codelineno-7-11" id="__codelineno-7-11" name="__codelineno-7-11"></a>void Rough_Delay_us(__IO uint32_t time)
+<a href="#__codelineno-7-12" id="__codelineno-7-12" name="__codelineno-7-12"></a>{
+<a href="#__codelineno-7-13" id="__codelineno-7-13" name="__codelineno-7-13"></a>    Rough_Delay(7*time);
+<a href="#__codelineno-7-14" id="__codelineno-7-14" name="__codelineno-7-14"></a>}
+<a href="#__codelineno-7-15" id="__codelineno-7-15" name="__codelineno-7-15"></a>
+<a href="#__codelineno-7-16" id="__codelineno-7-16" name="__codelineno-7-16"></a>void Rough_Delay_ms(__IO uint32_t time)
+<a href="#__codelineno-7-17" id="__codelineno-7-17" name="__codelineno-7-17"></a>{
+<a href="#__codelineno-7-18" id="__codelineno-7-18" name="__codelineno-7-18"></a>    Rough_Delay(0x318*7*time);
+<a href="#__codelineno-7-19" id="__codelineno-7-19" name="__codelineno-7-19"></a>}
+<a href="#__codelineno-7-20" id="__codelineno-7-20" name="__codelineno-7-20"></a>
+<a href="#__codelineno-7-21" id="__codelineno-7-21" name="__codelineno-7-21"></a>void Rough_Delay_s(__IO uint32_t time)
+<a href="#__codelineno-7-22" id="__codelineno-7-22" name="__codelineno-7-22"></a>{
+<a href="#__codelineno-7-23" id="__codelineno-7-23" name="__codelineno-7-23"></a>    Rough_Delay(0x318*0x318*7*time);
+<a href="#__codelineno-7-24" id="__codelineno-7-24" name="__codelineno-7-24"></a>}
+</code></pre></div>
+<p><span>delay.h<span class="heti-spacing"> </span></span>文件：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>#ifndef __DELAY_H
+<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a>#define __DELAY_H
+<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a>#include "stm32f10x.h"
+<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a>
+<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a>void Rough_Delay(__IO uint32_t ncount);
+<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a>void Rough_Delay_us(__IO uint32_t time);
+<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a>void Rough_Delay_ms(__IO uint32_t time);
+<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a>void Rough_Delay_s(__IO uint32_t time);
+<a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a>
+<a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a>#endif /*  __DELAY_H  */
+</code></pre></div>
+<p><span>main.c<span class="heti-spacing"> </span></span>文件：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>#include "stm32f10x.h"
+<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a>#include "led.h"
+<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a>#include "delay.h"
+<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a>int main(void)
+<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a>{
+<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a>    LED_Config();
+<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a>    uint32_t time_temp = 1000;
+<a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a>
+<a href="#__codelineno-9-11" id="__codelineno-9-11" name="__codelineno-9-11"></a>    while(1)
+<a href="#__codelineno-9-12" id="__codelineno-9-12" name="__codelineno-9-12"></a>    {
+<a href="#__codelineno-9-13" id="__codelineno-9-13" name="__codelineno-9-13"></a>        LED_ONLY_RED_ON ;
+<a href="#__codelineno-9-14" id="__codelineno-9-14" name="__codelineno-9-14"></a>        Rough_Delay_ms(time_temp);
+<a href="#__codelineno-9-15" id="__codelineno-9-15" name="__codelineno-9-15"></a>        LED_ONLY_GREEN_ON ;
+<a href="#__codelineno-9-16" id="__codelineno-9-16" name="__codelineno-9-16"></a>        Rough_Delay_ms(time_temp);
+<a href="#__codelineno-9-17" id="__codelineno-9-17" name="__codelineno-9-17"></a>        LED_ONLY_BLUE_ON ;
+<a href="#__codelineno-9-18" id="__codelineno-9-18" name="__codelineno-9-18"></a>        Rough_Delay_ms(time_temp);
+<a href="#__codelineno-9-19" id="__codelineno-9-19" name="__codelineno-9-19"></a>        LED_ALL_ON
+<a href="#__codelineno-9-20" id="__codelineno-9-20" name="__codelineno-9-20"></a>        Rough_Delay_ms(time_temp);
+<a href="#__codelineno-9-21" id="__codelineno-9-21" name="__codelineno-9-21"></a>        LED_ALL_OFF
+<a href="#__codelineno-9-22" id="__codelineno-9-22" name="__codelineno-9-22"></a>        Rough_Delay_ms(time_temp);
+<a href="#__codelineno-9-23" id="__codelineno-9-23" name="__codelineno-9-23"></a>    }
+<a href="#__codelineno-9-24" id="__codelineno-9-24" name="__codelineno-9-24"></a>}
+</code></pre></div>
+<p>如果你把这些代码一通复制进去然后又说什么报错什么的，想想你的是不是漏了什么：文件有放到<span class="heti-skip"><span class="heti-spacing"> </span>keil<span class="heti-spacing"> </span></span>里面么？又或者是你忘记把相关文件夹的路径给放进去了？又或者——你在<span class="heti-skip"><span class="heti-spacing"> </span>mainn.c<span class="heti-spacing"> </span></span>文件里面忘记<span class="heti-skip"><span class="heti-spacing"> </span>#include "led.h"<span class="heti-spacing"> </span></span>了么？</p>
+<p><img alt="文件位置" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/4-1%20keil%E4%B8%AD%E8%99%9A%E6%8B%9F%E6%96%87%E4%BB%B6%E4%BD%8D%E7%BD%AE.png"/></p>
+<p><img alt="文件路径" src="../%E7%9B%B8%E5%85%B3%E5%9B%BE%E7%89%87/4-2%20%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84.png"/></p>
+<p>好了，说再多的话，你就失去了自主探索的能力了。人本来就是在不断犯错当中成长的，如果说你总是一帆风顺的话，那也不太好，对叭<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span>ゝ∀･)？</p>
 <script async="" crossorigin="anonymous" data-category="General" data-category-id="DIC_kwDOLF7hCM4ChzJD" data-emit-metadata="0" data-input-position="bottom" data-lang="zh-CN" data-mapping="pathname" data-reactions-enabled="1" data-repo="NBUComputerRepairClub/nbu-icicles" data-repo-id="R_kgDOLF7hCA" data-strict="1" data-theme="light" src="https://giscus.app/client.js">
 </script>
 <script>
@@ -859,13 +1098,13 @@
               </div>
 </div>
 </a>
-<a aria-label="下一页: 概览" class="md-footer__link md-footer__link--next" href="../../%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90_ATK-NANO_STM32F1/" rel="next">
+<a aria-label="下一页: 章节五" class="md-footer__link md-footer__link--next" href="../Chapter5/" rel="next">
 <div class="md-footer__title">
 <div class="md-ellipsis">
 <span class="md-footer__direction">
                   下一页
                 </span>
-                概览
+                章节五
               </div>
 </div>
 <div class="md-footer__button md-icon">
