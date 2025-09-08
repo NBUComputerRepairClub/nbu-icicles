@@ -10,7 +10,10 @@ nav :
     - index.md
     - 贡献指南: contributing.md
     - 课程页面模板: template.md
-    - 书籍资料 : 书籍资料/index.md
+    - 书籍资料: 书籍资料/index.md
+  - 新生专区 :
+    - 新生专区/index.md
+    - 选课教程: 新生专区/选课.md
   - 书籍资料下载 : 
     - 下载库: 书籍资料/index.md
   - 本科生课程: 

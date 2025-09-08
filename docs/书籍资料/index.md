@@ -35,7 +35,7 @@ https://pan.baidu.com/s/562i_eOCX8NbvcRZoUiSTEw
 |P|||
 |Python数学建模算法与应用 (司守奎, 孙玺菁 主编) |[百度网盘](https://pan.baidu.com/s/1bTF9msuP5JTlQ0RfkjgorQ?pwd=icic)||
 |R|||
-|人工智能导论 第5版 |||
+|人工智能导论 第5版 |[百度网盘](https://pan.baidu.com/s/1UhKsFlqayP5sgXmQUHkYCg?pwd=icic)||
 |S|||
 |数字电子技术基础 (第六版) |[百度网盘](https://pan.baidu.com/s/1iB2nNIU7brInveVoDxm3pg?pwd=icic)||
 |思想道德与法治 (2023) |[百度网盘](https://pan.baidu.com/s/1M_wORjqqvqHq_So-onoC_Q?pwd=icic)||
