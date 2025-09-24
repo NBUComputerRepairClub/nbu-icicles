@@ -23,9 +23,11 @@ https://pan.baidu.com/s/562i_eOCX8NbvcRZoUiSTEw
 |高等数学 上册 (同济大学) (答案解析) |[百度网盘](https://pan.baidu.com/s/1Ad-ZnPmYMXPtljPOPqb7jg?pwd=icic)||
 |高等数学 下册 (同济大学) |[百度网盘](https://pan.baidu.com/s/1IkOejNyVxsFkh9wb9IsS-A?pwd=icic)|[onedrive](https://1drv.ms/b/s!AvQDpbwiblcejBxbAjlItFlCyZMJ?e=e6zomZ)|
 |高等数学 下册 (同济大学) (答案解析) |[百度网盘](https://pan.baidu.com/s/1Dq8xHONipVGTnvt8S_SlXA?pwd=icic)||
+|工程热力学 第六版 童钧耕|[百度网盘](https://pan.baidu.com/s/1SaSBwT6qDEoQKgmq-xKVOw?pwd=icic)||
 |工程图学 线性代数 第7版 (同济大学) |[百度网盘](https://pan.baidu.com/s/1KUUbsZslW3lCnipumoXswg?pwd=icic)||
 |J|||
 |计算机网络 自顶向下方法 第七版 <br> (Computer Networking A Top-Down Approach Seventh Edition)|[百度网盘](https://pan.baidu.com/s/1jpd5mEKpxQKVdGEJ0GwUqg?pwd=icic)|[onedrive](https://1drv.ms/b/s!AvQDpbwiblcejFjxWt7-aCIL4GyT?e=voA9dr)|
+|机械振动基础 陈奎孚 |[百度网盘](https://pan.baidu.com/s/1I1wIo6NCNzBvMbqZsGuuaw?pwd=icic)||
 |M|||
 |马克思主义基本原理(2023) |[百度网盘](https://pan.baidu.com/s/1ruRxaTonIobjsjVf1d1ZiA?pwd=icic)||
 |毛泽东思想和中国特色社会主义理论体系 (2023) |[百度网盘](https://pan.baidu.com/s/1ULcyJw7a5tpRyJsW9yJT4A?pwd=icic)||
@@ -44,6 +46,8 @@ https://pan.baidu.com/s/562i_eOCX8NbvcRZoUiSTEw
 |线性代数 第7版 (同济大学) |[百度网盘](https://pan.baidu.com/s/1izGH4Ekakz-Rg3vkztkvrA?pwd=icic)||
 |新编概率论与数理统计 |[百度网盘](https://pan.baidu.com/s/1JLp1E7kXnSpLoed5PUBnYA?pwd=icic)||
 |新视野大学英语读写教程 第四版 读写+视听说 |[百度网盘](https://pan.baidu.com/s/1zIewGT_J9Wxj4_QoERX7oA?pwd=icic)||
+|Z|||
+|振动力学 （刘延柱 陈立群 陈文良） |[百度网盘](https://pan.baidu.com/s/1kSNyF3-op74wB6hJR-o0Ww?pwd=icic)||
 
 
 请注意！仅作分享，请勿商用！<br>
