@@ -2,10 +2,16 @@
 title: Matlab与数值计算
 category: 专业课程
 offerings:
-  - major: CS
-    semester: 大二上
-  - major: EI
-    semester: 大二上
+- major: CS
+  semester: 大二上
+  credits: ''
+  requirement: 选修
+  resources: 待完善😘
+- major: EI
+  semester: 大二上
+  credits: '2.5'
+  requirement: 选修
+  resources: 待完善😘
 ---
 
 # Matlab与数值计算

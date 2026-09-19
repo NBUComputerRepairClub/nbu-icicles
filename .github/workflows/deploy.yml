@@ -1,5 +1,6 @@
 name: deploy
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -8,7 +9,7 @@ on:
 permissions:
   contents: write
 jobs:
-  deploy:
+  verify-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,13 +17,22 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.x
-      - run: pip install -r requirements.txt
-      # 不使用ZJU-Turing的插件,不然action会有问题，应该是缺少插件需要的自定义的一些文件
-      # - name: Install TuringPlugins
-      #   run: |
-      #     git clone https://github.com/ZJU-Turing/TuringPlugins.git
-      #     cd TuringPlugins
-      #     pip install -e .
-      #     cd ..
-      - run: mkdocs gh-deploy --force
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run setup
+      - run: npm test
+      - run: npm run generate
+      - name: Check committed generated files
+        run: |
+          git diff --exit-code
+          if [ -n "$(git status --porcelain --untracked-files=all)" ]; then
+            git status --short
+            echo 'Generated course pages/navigation are not committed. Run npm run generate locally.'
+            exit 1
+          fi
+      - run: npm run build
+      - name: Deploy verified site
+        if: github.event_name == 'push'
+        run: .venv/bin/python -m mkdocs gh-deploy --force

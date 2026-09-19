@@ -2,8 +2,11 @@
 title: IT项目管理
 category: 专业课程
 offerings:
-  - major: CS
-    semester: 大三下
+- major: CS
+  semester: 大三下
+  credits: ''
+  requirement: 必修
+  resources: 待完善😘
 ---
 
 # IT项目管理 

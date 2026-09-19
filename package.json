@@ -1,0 +1,13 @@
+{
+  "name": "nbu-icicles-course-tools",
+  "private": true,
+  "scripts": {
+    "setup": "node scripts/courses.cjs setup",
+    "new:course": "node scripts/courses.cjs new",
+    "edit:course": "node scripts/courses.cjs edit",
+    "generate": "node scripts/courses.cjs generate",
+    "build": "node scripts/courses.cjs build",
+    "preview": "node scripts/courses.cjs preview",
+    "test": "node --test tests/*.test.cjs"
+  }
+}

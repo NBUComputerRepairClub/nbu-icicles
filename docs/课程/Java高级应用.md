@@ -2,8 +2,11 @@
 title: Java高级应用
 category: 专业课程
 offerings:
-  - major: CS
-    semester: 大三上
+- major: CS
+  semester: 大三上
+  credits: ''
+  requirement: 软件方向必修
+  resources: 较完善✅
 ---
 
 # Java高级应用
