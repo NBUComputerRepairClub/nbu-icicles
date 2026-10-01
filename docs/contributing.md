@@ -10,26 +10,76 @@
     $ git clone https://github.com/NBUComputerRepairClub/nbu-icicles.git
     $ cd nbu-icicles
     ```
-2. 安装 python 依赖（mkdocs 以及 material）
+2. 准备 Python 依赖（MkDocs 及其插件；首次运行一次）
     ```shell
-    $ pip install -r requirements.txt
+    $ npm run setup
     ```
 
-3. 启动 mkdocs 本地服务
+3. 生成索引并启动本地服务
     ```shell
-    $ mkdocs serve
+    $ npm run preview
     ```
-    如果不行可以试试
+    提交前运行严格构建：
     ```shell
-    $ python -m mkdocs serve
+    $ npm run build
     ```
-    - 之后即可通过浏览器访问 localhost:8000 预览网站
+    - 浏览器访问 http://127.0.0.1:8000/ 。`build` 不会暗中联网安装依赖；缺环境时先运行 `npm run setup`。
+
+### 新增或调整课程
+
+新增课程运行 `npm run new:course`，依次填写课程名称、分类、专业、学期和学分；可以继续添加多个专业／学期组合。修读性质与资料情况可留空，不确定时不要猜测。命令创建 `docs/课程/课程名.md`，并立即更新总览、分类页、专业速查及导航；已有同名文件绝不会覆盖。
+
+非交互示例：
+
+```shell
+npm run new:course -- --name "示例课程" --category "专业课程" --major EI --semester 大二上 --credits 2 --requirement 选修
+```
+
+新建时可重复传入 `--offering "ECE,大二下,3,必修"`。已有课程通过 `edit:course` 修改，常见用法如下。修读性质属于每条专业＋学期关系，可以保留“网络方向必修”等具体表述。
+
+#### 常用修改命令速查
+
+以下以“示例课程”为例，命令彼此独立；请把课程名、专业和学期换成**当前实际值**。其中 `--major` 与 `--semester` 用来定位要修改的旧记录，`--set-major` 与 `--set-semester` 才是修改后的新值。
+
+```powershell
+# 交互式选择已有课程的 offering 并修改
+npm run edit:course -- --name "示例课程"
+
+# 修改 EI 大二上这条记录的学分、修读性质或资料情况
+npm run edit:course -- --name "示例课程" --major EI --semester 大二上 --credits 2.5
+npm run edit:course -- --name "示例课程" --major EI --semester 大二上 --requirement "选修"
+npm run edit:course -- --name "示例课程" --major EI --semester 大二上 --resources "已有笔记"
+
+# 把这条记录改到大二下，或改为 ECE 专业
+npm run edit:course -- --name "示例课程" --major EI --semester 大二上 --set-semester 大二下
+npm run edit:course -- --name "示例课程" --major EI --semester 大二上 --set-major ECE
+
+# 增加或移除另一条专业＋学期记录
+npm run edit:course -- --name "示例课程" --add --major ECE --semester 大二下 --credits 3 --requirement "必修"
+npm run edit:course -- --name "示例课程" --remove --major ECE --semester 大二下
+```
+
+每次 `edit:course` 成功后都会自动刷新索引与导航。改过专业或学期后，下一次定位时应使用新值；不能移除课程的最后一条 offering。本命令不负责课程改名或修改分类：课程介绍、教师说明及资料链接直接编辑对应的 `docs/课程/课程名.md`；手工改动分类或其他 front matter 后运行 `npm run generate`。
+
+```powershell
+# 常用检查与预览
+npm run generate       # 根据 front matter 重新生成课程表和导航
+npm run preview        # 本地预览：http://127.0.0.1:8000/
+npm run build          # 生成、校验并严格构建；提交前运行
+npm test               # 运行课程维护命令的集成测试
+git status             # 查看哪些文件被修改
+git diff --check       # 检查空白字符错误
+```
+
+课程正文中的**课程介绍、授课教师说明和资料链接**仍需贡献者自己填写，工具不会编造评价。附件放在 `docs/assets/courses/课程名/`，正文使用相对链接。不要修改有生成标记的表格；提交时把生成页面及 `mkdocs.yml` 一并提交。
+
+专业—学院映射位于 `config/course-majors.json`。历史课程的 `未标注／未注明` 会警告并进入“信息待补全”，新建时不能使用这些占位值。争议历史数据见 `COURSE_MIGRATION_REVIEW.md`，请核实后通过 `edit:course` 填写。
 
 ## 贡献内容
 ### 网站结构
 课程正文按课程名称集中存放；专业与学期概览只负责索引，课程介绍、授课教师和资料链接写在同一份课程页面中。
 
-在源代码层面，每门课程对应 `docs/课程/课程名.md`，不再为每门课程创建文件夹或 `index.md`。课程页开头的 YAML front matter 记录 `title`、`category` 和 `offerings`；`offerings` 中每项包含专业 `major` 与学期 `semester`，一门课可有多项。不分专业的课程写 `major: 通用`，无法从现有资料确定专业或学期时分别写 `未标注`、`未注明`。PDF、DOC、ZIP、图片等课程附件统一放在 `docs/assets/courses/课程名/`，正文使用相对链接。当前导航仍在 `mkdocs.yml` 的 `nav` 中维护。
+在源代码层面，每门课程对应 `docs/课程/课程名.md`，不再为每门课程创建文件夹或 `index.md`。YAML front matter 记录 `title`、`category`、`offerings`；每条 offering 包含专业 `major`、学期 `semester`、学分 `credits`，可选修读性质 `requirement` 和资料情况 `resources`。不分专业写 `major: 通用`；旧资料无法确定时保留 `未标注／未注明`，但新增时必须填明确值。PDF、DOC、ZIP、图片等附件统一放在 `docs/assets/courses/课程名/`。课程导航和概览由 `npm run generate` 更新，不再手改课程路径。
 
 ```text
 .
@@ -53,7 +103,7 @@
 ### 贡献守则
 你可以对本网站进行任何贡献，包括完善、更新页面内容，添加新页面，样式修改等等。
 
-如果是添加新页面的话，请记得同时更新好 `mkdocs.yml` 的 `nav` 部分，使新页面能够正常通过站点目录被访问。
+如果添加非课程页面，请更新 `mkdocs.yml` 中对应的非课程导航；课程导航由生成器自动维护。
 
 对于页面内容：
 

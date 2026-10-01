@@ -2,10 +2,16 @@
 title: C语言程序设计
 category: 基础课程
 offerings:
-  - major: 通用
-    semester: 未注明
-  - major: EE
-    semester: 大一下
+- major: 通用
+  semester: 未注明
+  credits: ''
+  requirement: 必修
+  resources: 较完善✅
+- major: EE
+  semester: 大一下
+  credits: '3'
+  requirement: ''
+  resources: 中等完善😘
 ---
 
 # C语言程序设计
@@ -57,3 +63,11 @@ offerings:
 ## 课程资料
 
 无，编程嘛，自己网上多学多实践即可。
+
+## 历史表格记录（待核对）
+
+以下为迁移前相互矛盾或归属不明的原始记录，未据此猜定课程关系：
+
+- 本科生总览：学分「空」、学期「大三上」、修读情况「必修」、资料情况「较完善✅」
+- 基础课程概览：学分「空」、学期「大一上」、修读情况「必修」、资料情况「较完善✅」
+- 集成电路学院/EE：学分「3」、学期「大一下」、修读情况「基础」、资料情况「中等完善😘」
